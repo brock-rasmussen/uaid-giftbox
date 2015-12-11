@@ -58,3 +58,8 @@ Requirements for integration are:
 
 * A GitHub account
 * The [GitHub Desktop App](https://desktop.github.com/) OR [Git](https://git-scm.com/downloads) for the command line. (Further instructions will be for the desktop app)
+
+To integrate, follow these steps:
+
+1. Fork this repository (at the top of this page).
+2. In the Desktop App clone your fork (upper left corner). Clone it to "wamp/www/<wordpress-folder-name>/wp-content/ (we'll need to decide if it goes in the plugins folder or themes folder)"

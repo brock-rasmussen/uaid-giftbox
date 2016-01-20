@@ -62,4 +62,4 @@ Requirements for integration are:
 To integrate, follow these steps:
 
 1. Fork this repository (at the top of this page).
-2. In the Desktop App clone your fork (upper left corner). Clone it to "wamp/www/<wordpress-folder-name>/wp-content/ (we'll need to decide if it goes in the plugins folder or themes folder)"
+2. In the Desktop App clone your fork (upper left corner). Clone it to "wamp/www/<wordpress-folder-name>/wp-content/ (we'll need to decide if it goes in the plugins folder or themes folder.)"

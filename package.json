@@ -1,0 +1,27 @@
+{
+  "name": "uaid-giftbox",
+  "version": "1.0.0",
+  "description": "In order to set up a working environment for this repository you will need a Wamp server and a WordPress installation. Setup instructions are detailed below.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brock-rasmussen/uaid-giftbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brock-rasmussen/uaid-giftbox/issues"
+  },
+  "homepage": "https://github.com/brock-rasmussen/uaid-giftbox#readme",
+  "dependencies": {
+    "angular": "^1.4.9",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.6"
+  }
+}

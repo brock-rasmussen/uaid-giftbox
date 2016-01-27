@@ -19,7 +19,8 @@
   "dependencies": {
     "angular": "^1.4.9",
     "body-parser": "^1.14.2",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "nodemailer": "^2.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

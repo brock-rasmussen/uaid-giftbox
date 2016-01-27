@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({'extended': true}));
 
 
 app.use(express.static('node_modules/angular/'));
+app.use(express.static('source/scripts/'));
 
 //Routes
 giftboxRouter = require('./source/routes/giftboxRoutes.js')(path);

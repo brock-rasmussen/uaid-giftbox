@@ -5,8 +5,16 @@ angular.module('UAID-Giftbox', [])
     var self = this;
     this.userName = "";
     this.userEmail = "";
-    this.submit = function (userInfo){
-      console.log("name:" + self.userName +"  Email: " + self.userEmail);
+    this.submit = function (){
+      $http.post('/recipients',
+      {
+        'name': self.userName,
+        'email': self.userEmail
+      })
+      .then(function(res){
+          console.log(res.data);
+      })
+
     };
 
   }]);

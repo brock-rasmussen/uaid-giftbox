@@ -13,7 +13,10 @@ var routes = function(path){
     res.send('Testing Recipients Get');
   })
   .post(function (req, res){
-    res.send('');
+    var name = req.body.name;
+    var email = req.body.email;
+    console.log('User request recieved!');
+    res.send('request recieved! ' + name + " " + email);
   });
 
   giftboxRouter.route('/recipients/:recid')

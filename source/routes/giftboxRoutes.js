@@ -3,6 +3,11 @@ var routes = function(path, nodemailer, Parse){
 
   var giftboxRouter = express.Router(path, nodemailer, Parse);
 
+  //Initialize Parse and Select Table ----- INSERT THE APPLICATION ID AND JS KEY FOR TESTING
+  Parse.initialize();
+  var Recipients = Parse.Object.extend("recipients");
+
+
   giftboxRouter.route('/')
   .get(function(req, res){
     res.sendFile(path.join(__dirname + './../index.html'));
@@ -10,6 +15,18 @@ var routes = function(path, nodemailer, Parse){
 
   giftboxRouter.route('/recipients')
   .get(function (req, res){
+    var query = new Parse.Query(Recipients);
+    query.find({
+      success: function(results) {
+        for(x in results){
+          console.log(results[x].get('name'));
+          console.log(results[x].get('email'));
+        }
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
     res.send('Testing Recipients Get');
   })
   .post(function (req, res){

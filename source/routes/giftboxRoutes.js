@@ -1,7 +1,7 @@
 var express = require('express');
-var routes = function(path, nodemailer){
+var routes = function(path, nodemailer, Parse){
 
-  var giftboxRouter = express.Router(path, nodemailer);
+  var giftboxRouter = express.Router(path, nodemailer, Parse);
 
   giftboxRouter.route('/')
   .get(function(req, res){
@@ -22,7 +22,7 @@ var routes = function(path, nodemailer){
   ----------------------------------------------------- */
     var transporter = nodemailer.createTransport('smtps://email%40gmail.com:pass@smtp.gmail.com');
     var mailOptions = {
-      from: 'Example Name <example@example.com>',
+      from: 'Name <email@gmail.com>',
       to: req.body.email,
       subject: 'test',
       text: req.body.name

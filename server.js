@@ -4,6 +4,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
+var Parse = require('parse/node');
 
 //Middleware
 app.use(bodyParser.json());
@@ -14,7 +15,7 @@ app.use(express.static('node_modules/angular/'));
 app.use(express.static('source/scripts/'));
 
 //Routes
-giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer);
+giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Parse);
 app.use('/', giftboxRouter);
 
 

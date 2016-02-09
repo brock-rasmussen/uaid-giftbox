@@ -24,7 +24,7 @@
             </li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li><a href="http://chriscundick.com/giftbox/applicationInformation.php">Application</a></li>
-        </ul>
-    </div>    
+            <li><a href="http://chriscundick.com/giftbox/applicationInformation.php">Gift Box Application</a></li>
+        </ul> 
+	</div>
 </nav>

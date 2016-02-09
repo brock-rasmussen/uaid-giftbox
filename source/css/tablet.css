@@ -2,4 +2,9 @@
 /* CSS Document */
 
 @media only screen and (min-width: 601px) and (max-width: 1139px) {
+.wrapper {
+	min-width:601px;
+	margin:0 auto;
+	min-height:600px;
+}
 }

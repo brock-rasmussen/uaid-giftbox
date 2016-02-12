@@ -46,10 +46,10 @@ font-style: normal}
   margin: 0;
   padding: 0;
 }
-.flexslider .slides > li {
+/*.flexslider .slides > li {
   display: none;
   -webkit-backface-visibility: hidden;
-}
+}*/
 .flexslider .slides img {
   width: 100%;
   display: block;

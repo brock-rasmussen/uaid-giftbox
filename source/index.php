@@ -14,8 +14,9 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 <!-- CSS -->
-<link href="css/giftbox.css" rel="stylesheet">
-<link rel="stylesheet" href="css/flexslider.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/giftbox.css">
+<link rel="stylesheet" type="text/css" href="css/flexslider.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/mobilemenu.css">
 
 <!-- Scripts -->
 
@@ -23,6 +24,16 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
+
+<!-- Mobile Menu -->
+	<script>
+		$(document).ready(function(){
+			$(".nav-button").click(function () {
+			$(".nav-button,.primary-nav").toggleClass("open");
+			});    
+		});
+	</script>
+<!-- End Mobile Menu -->  
 
 <!-- FlexSlider -->
 <script src="scripts/jquery.flexslider.js"></script>
@@ -33,12 +44,13 @@
   });
 </script>
 <!-- End Slider -->
+  
 
 </head>
 
 <body>
     <!-- Begin Header Wrapper -->
-        <header>
+        <header class="wrapper">
             <!-- Begin Navigation -->
             <?php include 'includes/navigation.php';?>
             <!-- End Navigation -->

@@ -1,6 +1,6 @@
-<nav>
-	<div class="wrapper">
-        <ul>
+<nav class="wrapper">
+    	<button class="nav-button">Toggle Navigation</button>
+        <ul class="primary-nav">
             <li><a href="http://chriscundick.com/giftbox/index.php">Home</a></li>
             <li><a href="#">About Us</a>
                 <ul>
@@ -24,7 +24,7 @@
             </li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li><a href="http://chriscundick.com/giftbox/applicationInformation.php">Application</a></li>
-        </ul>
-    </div>    
+            <li><a href="http://chriscundick.com/giftbox/applicationInformation.php">Gift Box Application</a></li>
+        </ul> 
+    <div class="clear"></div>
 </nav>

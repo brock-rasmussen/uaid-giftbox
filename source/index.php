@@ -14,8 +14,9 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 <!-- CSS -->
-<link href="css/giftbox.css" rel="stylesheet">
-<link rel="stylesheet" href="css/flexslider.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/giftbox.css">
+<link rel="stylesheet" type="text/css" href="css/flexslider.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/mobilemenu.css">
 
 <!-- Scripts -->
 
@@ -23,6 +24,16 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
+
+<!-- Mobile Menu -->
+	<script>
+		$(document).ready(function(){
+			$(".nav-button").click(function () {
+			$(".nav-button,.primary-nav").toggleClass("open");
+			});    
+		});
+	</script>
+<!-- End Mobile Menu -->  
 
 <!-- FlexSlider -->
 <script src="scripts/jquery.flexslider.js"></script>
@@ -33,6 +44,7 @@
   });
 </script>
 <!-- End Slider -->
+  
 
 </head>
 
@@ -48,11 +60,8 @@
 
 <!-- Begin of Container -->
 <div id="container">	
-    
-    <!-- Begin Content -->
-    <div class="wrapper">
-    	<!-- Flex Slider -->
-    	<div class="flexslider">
+    <!-- Flex Slider -->
+        <div class="flexslider">
           <ul class="slides">
             <li>
               <img src="images/image1.jpg" />
@@ -68,7 +77,10 @@
             </li>
           </ul>
         </div>
-		<!-- End Slider Div -->
+        <!-- End Slider Div -->
+    <!-- Begin Content -->
+    <div class="wrapper">
+    	
         
         <p>Volunteering at UAID is the perfect way to afford opportunities to those with intellectual disabilities. There are many benefits to volunteering with UAID. This organization was founded by volunteers and is driven by volunteers. Volunteers are needed to continue to support us as we grow and develop new and innovative programs . We are looking for the next generation of volunteers to help us take our mission, purpose, and services to the next level.</p><br>
         
@@ -97,7 +109,7 @@
                     <img src="images/profile1.jpg" alt="" />
                     <span><strong>Age: </strong>20</span> <span><strong>Intellectual Age: </strong>7</span>
                     <ul>
-                        <li>Items Needed 1</li>
+                        <li>Items Needed 12</li>
                         <li>Items Needed 2</li>
                         <li>Items Needed 3</li>
                         <li>Items Needed 4</li>

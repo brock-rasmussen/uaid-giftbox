@@ -1,4 +1,4 @@
-<nav>
+<nav class="wrapper">
     	<button class="nav-button">Toggle Navigation</button>
         <ul class="primary-nav">
             <li><a href="http://chriscundick.com/giftbox/index.php">Home</a></li>

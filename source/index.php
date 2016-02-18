@@ -50,7 +50,7 @@
 
 <body>
     <!-- Begin Header Wrapper -->
-        <header class="wrapper">
+        <header>
             <!-- Begin Navigation -->
             <?php include 'includes/navigation.php';?>
             <!-- End Navigation -->
@@ -60,11 +60,8 @@
 
 <!-- Begin of Container -->
 <div id="container">	
-    
-    <!-- Begin Content -->
-    <div class="wrapper">
-    	<!-- Flex Slider -->
-    	<div class="flexslider">
+    <!-- Flex Slider -->
+        <div class="flexslider">
           <ul class="slides">
             <li>
               <img src="images/image1.jpg" />
@@ -80,7 +77,10 @@
             </li>
           </ul>
         </div>
-		<!-- End Slider Div -->
+        <!-- End Slider Div -->
+    <!-- Begin Content -->
+    <div class="wrapper">
+    	
         
         <p>Volunteering at UAID is the perfect way to afford opportunities to those with intellectual disabilities. There are many benefits to volunteering with UAID. This organization was founded by volunteers and is driven by volunteers. Volunteers are needed to continue to support us as we grow and develop new and innovative programs . We are looking for the next generation of volunteers to help us take our mission, purpose, and services to the next level.</p><br>
         
@@ -109,7 +109,7 @@
                     <img src="images/profile1.jpg" alt="" />
                     <span><strong>Age: </strong>20</span> <span><strong>Intellectual Age: </strong>7</span>
                     <ul>
-                        <li>Items Needed 1</li>
+                        <li>Items Needed 12</li>
                         <li>Items Needed 2</li>
                         <li>Items Needed 3</li>
                         <li>Items Needed 4</li>

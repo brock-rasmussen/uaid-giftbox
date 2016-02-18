@@ -152,17 +152,10 @@ footer {
 ========= Navigation ===============
 ====================================
 */
-nav {}
-
 nav ul li {
 	font-family: 'Roboto',sans-serif;
 	font-size:1em;
 }
-
-nav ul li a {}
-
-nav ul li a:hover {}
-
 
 /*
 ============================
@@ -195,7 +188,9 @@ button:hover {
     box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
-
+#container > div.flexslider > ol {
+	display:none;
+}
 /*
 ===========================
 ========= Form ============
@@ -361,7 +356,7 @@ button[type="button"] {
 ========= Tablet ============
 =============================
 */
-@media only screen and (min-width: 601px) and (max-width: 1139px) {
+@media only screen and (min-width: 601px) {
 .wrapper {
 	min-width:601px;
 	margin:0 auto;
@@ -388,13 +383,63 @@ button[type="button"] {
 ========= Navigation ===============
 ====================================
 */
-nav {}
-
-
-
+nav {
+	position:relative;
+	z-index:1000;
 }
+nav ul {
+	float:right;
+}
+header {
+	background-color: #363636;
+}
+nav li {
+    border-bottom: none;
+    height: 75px;
+    line-height: 75px;
+    display: inline-block;
+    padding: 0 25px; 
+  }
 
+  nav a {
+    border-bottom: none;
+  }
 
+  nav > ul > li {
+    text-align: center;
+  }
+
+  nav > ul > li > a {
+    color: white;
+    font-size: 12px;
+  }
+
+  /* Sub Menus */
+  nav li ul {
+    position: absolute;
+    display: none;
+    width: inherit;
+    background: white;
+    text-align: left;
+    top:75px;
+  }
+  nav li ul a {
+    color:#363636;
+    font-size: 12px;
+    padding:0;
+  }
+
+  nav li:hover ul {
+    display: block;
+  }
+  nav li ul li:hover {
+  	background-color:#f3553d
+  }
+
+  nav li ul li {
+    display: block;
+    padding-left:15px;
+  }
 /*
 ===============================
 ========= Desktop =============
@@ -413,8 +458,6 @@ nav {}
 ==================================
 */
 
-
-
 /*
 ===============================
 ========= Profiles ============
@@ -424,7 +467,7 @@ nav {}
 	padding:0;
 }
 .displayProfile {
-	border:1px solid #6B6B6B;
+	border:1px solid #dadada;
 	padding: 10px 15px;
 	width:100%;
 	
@@ -433,7 +476,7 @@ nav {}
 .profile {
 	width: 20%;
 	padding: 0 15px 15px 15px;
-	border:1px solid #6B6B6B;
+	border:1px solid #dadada;
 	float:left;
 	margin: 0 1%;
 }

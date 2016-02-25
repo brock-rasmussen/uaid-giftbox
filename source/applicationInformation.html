@@ -30,25 +30,54 @@
 	<div id="headerWrapper">
         <header>
         	<!-- Begin Navigation -->
-            <?php include 'includes/navigation.php';?>
+					<nav class="wrapper">
+					    	<button class="nav-button">Toggle Navigation</button>
+					        <ul class="primary-nav">
+					            <li><a href="http://chriscundick.com/giftbox/index.php">Home</a></li>
+					            <li><a href="#">About Us</a>
+					                <ul>
+					                    <li><a href="#">Our Mission</a></li>
+					                    <li><a href="#">Who We Are</a></li>
+					                    <li><a href="#">Who We Serve</a></li>
+					                </ul>
+					            </li>
+					            <li><a href="#">Support Us</a>
+					                <ul>
+					                    <li><a href="#">Volenteer</a></li>
+					                    <li><a href="#">Ways To Help</a></li>
+					                    <li><a href="#">Wish List</a></li>
+					                </ul>
+					            </li>
+					            <li><a href="#">Programs</a>
+					                <ul>
+					                    <li><a href="#">Holiday Gift Box</a></li>
+					                    <li><a href="#">Adopt Now</a></li>
+					                </ul>
+					            </li>
+					            <li><a href="#">Blog</a></li>
+					            <li><a href="#">Contact Us</a></li>
+					            <li><a href="http://chriscundick.com/giftbox/applicationInformation.php">Gift Box Application</a></li>
+					        </ul>
+					    <div class="clear"></div>
+					</nav>
             <!-- End Navigation -->
-        	
-        </header>            
+
+        </header>
 	</div>
     <!-- End of Header Wrapper -->
 
 
-	
-    
+
+
     <!-- Begin Content -->
     <div class="wrapper">
     	<h1>Applicant Information</h1>
-        
+
         <form action="" method="" class="form" name="ApplicantInfo" enctype="multipart/form-data">
         	<fieldset>
             	<legend>Recipient Information</legend>
                 <label>
-                	<span>First Name:</span> 
+                	<span>First Name:</span>
                     <input type="text" name="firstName" value="" placeholder="First Name" pattern="{a-zA-Z -._} {3,99}"  required>
                 </label>
                 <label>
@@ -63,15 +92,15 @@
                 	<input type="text" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="{0-9} {1,3}"  required>
                     </label>
                 <legend>Ethnicity/Race(Check One):</legend>
-                
+
                     <div class="form-checkbox"><input type="checkbox" name="ethnicity" value="Caucasian" />Caucasian</div>
                     <div class="form-checkbox"><input type="checkbox" name="ethnicity" value="Native American" />Native American</div>
                     <div class="form-checkbox"><input type="checkbox" name="ethnicity" value="Black/African-American" />Black/African-American</div>
                     <div class="form-checkbox"><input type="checkbox" name="ethnicity" value="Asian/Pacic Islander" />Asian/Pacific Islander</div>
                     <div class="form-checkbox"><input type="checkbox" name="ethnicity" value="Hispanic/Latino" />Hispanic/Latino</div>
-                
+
             </fieldset>
-            
+
             <fieldset>
             	<legend>Person Submitting Application:</legend>
                 <label>
@@ -112,17 +141,21 @@
                 </label>
             </fieldset>
             <button type="submit">Submit Form</button>
-            
+
             <p>** Applicant agrees to allow their picture and rst name to be placed on materials which can be given to individuals or corporate sponsors. All other personal
 information will be kept condential. Please attach 2 wallet sized(2x3) color photographs to be placed on ornaments. Each donor will buy approximately $75
 in gifts. Please indicate below which items are needed by following the guidelines for each box. Please call (801) 654-8449 if you have questions. **</p>
             </form>
-            
+
     </div>
     <!-- End Content -->
-    
+
     <!-- Begin Footer -->
-    <?php include 'includes/footer.php';?>
+		<footer>
+			<div class="wrapper">
+				<p>Copyright 2016. All Rights Reserved.</p>
+		    </div>
+		</footer>
     <!-- End Footer -->
 </div>
 <!-- End of Container -->

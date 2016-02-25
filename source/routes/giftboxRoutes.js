@@ -1,11 +1,26 @@
 var express = require('express');
-var routes = function(path, nodemailer, Parse){
 
-  var giftboxRouter = express.Router(path, nodemailer, Parse);
 
-  //Initialize Parse and Select Table ----- INSERT THE APPLICATION ID AND JS KEY FOR TESTING
-  Parse.initialize();
-  var Recipients = Parse.Object.extend("recipients");
+var routes = function(path, nodemailer, Firebase){
+
+  var giftboxRouter = express.Router(path, nodemailer, Firebase);
+  var FirebaseTokenGenerator = require("firebase-token-generator");
+  //DO NOT FORGET TO REMOVE KEY BEFORE PUSHING!!!!!
+  var tokenGenerator = new FirebaseTokenGenerator("");
+  var token = tokenGenerator.createToken(
+    {uid: "1"},
+    {admin: true}
+  );
+  //Instantiates Firebase Reference
+  var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
+  fbApp.authWithCustomToken(token, function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      console.log("Login Succeeded!", authData);
+    }
+  });
+
 
 
   giftboxRouter.route('/')
@@ -15,19 +30,15 @@ var routes = function(path, nodemailer, Parse){
 
   giftboxRouter.route('/recipients')
   .get(function (req, res){
-    var query = new Parse.Query(Recipients);
-    query.find({
-      success: function(results) {
-        for(x in results){
-          console.log(results[x].get('name'));
-          console.log(results[x].get('email'));
-        }
-      },
-      error: function(error) {
-        console.log(error);
-      }
-    });
-    res.send('Testing Recipients Get');
+    var users;
+    fbApp.limitToFirst(8).once("value", function(snapshot) {
+      console.log(snapshot.val());
+        users = snapshot.val();
+        res.send(users);
+    }, function (err) {
+      console.log("The read failed: " + err.code);
+    })
+
   })
   .post(function (req, res){
     var name = req.body.name;

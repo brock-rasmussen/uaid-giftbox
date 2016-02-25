@@ -18,10 +18,14 @@
   "homepage": "https://github.com/brock-rasmussen/uaid-giftbox#readme",
   "dependencies": {
     "angular": "^1.4.9",
+    "angular-recaptcha": "^2.2.5",
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
+    "firebase": "^2.4.1",
+    "firebase-token-generator": "^2.0.0",
+    "ng-file-upload": "^12.0.1",
     "nodemailer": "^2.0.0",
-    "parse": "^1.7.0"
+    "request": "^2.69.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

@@ -1,0 +1,513 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+===============================
+========= Reset ===============
+===============================
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+/*
+===============================
+========= Mobile ==============
+===============================
+*/
+
+.wrapper {
+	min-width:320px;
+	margin:0 auto;
+	padding:0 2%;
+	width:100%;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background: #FFF;
+	font-size: 1em;
+}
+strong {
+	font-weight:bold;
+}
+
+h1 {
+	font-weight: 700;
+	margin: 20px 0;
+	font-family: 'Roboto',sans-serif;
+	color:#444;
+}
+
+h2,h3,h4 {
+	font-weight: 700;
+	margin: 20px 0;
+	font-family: 'Roboto',sans-serif;
+	color:#DA4453;
+}
+
+h1 {
+	font-size: 1.5em;
+}
+
+h2 {
+	font-size: 1.25em;
+}
+
+h3 {
+	font-size: 1.1em;
+}
+h4 {
+	font-size: 1em;
+}
+
+.slider {
+	width: 100%;
+}
+
+.slider img {
+	width: 100%;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+p {
+	padding: 10px 0;
+	color:#6B6B6B;
+	line-height: 1.7;
+}
+.clear:after {
+	content:"";
+	display:block;
+	clear:both;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+/*
+====================================
+========= Header/Footer ============
+====================================
+*/
+
+header {
+	display:block;
+}
+
+footer {
+	margin-top: 10px;
+	padding: 10px 0;
+	min-height: 50px;
+	background-color:#1F1F1F;
+	display:block;
+}
+/*
+====================================
+========= Navigation ===============
+====================================
+*/
+nav ul li {
+	font-family: 'Roboto',sans-serif;
+	font-size:1em;
+}
+
+/*
+============================
+========= Links ============
+============================
+*/
+a {
+	text-decoration: none;
+}
+button {
+	text-transform: uppercase;
+	font-size: 18px;
+    font-family: 'Roboto',sans-serif;
+	font-weight:bold;
+	color:#DA4453;
+    border-radius: 6px;
+	padding: 15px 30px;
+	background-color: #FFF;
+	outline:none;
+	background-image:none;
+	border:1px solid #DA4453;
+	margin: 30px 0px 10px 0px;
+	line-height: 1.3333333;
+}
+button:hover {
+	transition: background-color .7s ease;
+	background-color: #DA4453;
+	color:#FFFFFF;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+#container > div.flexslider > ol {
+	display:none;
+}
+/*
+===========================
+========= Form ============
+===========================
+*/
+.form {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	background: #F7F7F7;
+	padding: 25px 15px 25px 10px;
+	font: 12px Roboto,sans-serif;
+	font-weight: 700;
+	color: #888;
+	text-shadow: 1px 1px 1px #FFF;
+	border: 1px solid #dadada;
+}
+
+.form h1 {
+	font-size: 25px;
+	padding: 0 0 10px 40px;
+	display: block;
+	border-bottom: 1px solid #dadada;
+	margin: -10px -15px 30px -10px;
+	color: #888;
+}
+
+.form h1>span {
+	display: block;
+	font-size: 11px;
+}
+
+.form label {
+	display: block;
+	margin: 0;
+}
+
+.form label>span {
+	width: 10%;
+	text-align: right;
+	padding-right: 10px;
+	margin-top: 10px;
+	color: #888;
+}
+
+.form input[type="text"],.form input[type="email"],.form textarea,.form select {
+	border: 1px solid #dadada;
+	color: #888;
+	height: 30px;
+	margin-bottom: 16px;
+	margin-right: 6px;
+	margin-top: 2px;
+	outline: 0 none;
+	padding: 3px 3px 3px 5px;
+	width: 70%;
+	font-size: 12px;
+	line-height: 15px;
+	box-shadow: inset 0 1px 4px #ECECEC;
+	-moz-box-shadow: inset 0 1px 4px #ECECEC;
+	-webkit-box-shadow: inset 0 1px 4px #ECECEC;
+}
+
+.form textarea {
+	padding: 5px 3px 3px 5px;
+}
+
+.form select {
+	background: #FFF url(down-arrow.png) no-repeat right;
+	background: #FFF url(down-arrow.png) no-repeat right);
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: .01px;
+	text-overflow: ;
+	width: 70%;
+	height: 35px;
+	line-height: 25px;
+}
+
+.form textarea {
+	height: 100px;
+}
+
+.form .button {
+	background: #E27575;
+	border: none;
+	padding: 10px 25px;
+	color: #FFF;
+	box-shadow: 1px 1px 5px #B6B6B6;
+	border-radius: 3px;
+	text-shadow: 1px 1px 1px #9E3F3F;
+	cursor: pointer;
+}
+
+.form .button:hover {
+	background: #CF7A7A;
+}
+
+.form input[type="checkbox"] {
+	display: block;
+	float: left;
+}
+
+.form-checkbox {
+	float: left;
+	padding: 0 80px 0 5px;
+}
+
+fieldset {
+	border: 1px solid #dadada;
+	padding: 15px 5px;
+}
+
+legend {
+	padding: 20px 10px;
+	color:#DA4453;
+	font-size:16px;
+}
+
+.form p {
+	padding-top: 25px;
+}
+button[type="submit"] {
+	width: 100%;
+}
+button[type="button"] {
+	width: 100%;
+}
+/*
+===============================
+========= Profiles ============
+===============================
+*/
+
+.displayProfile {
+	border:1px solid #6B6B6B;
+	padding: 10px 4%;
+    width: 92%;
+	
+}
+
+.profile {
+	width: 95%;
+	margin: 0 .5%;
+}
+
+.profile img {
+	width:100%;
+	border:2px;
+	padding:5px 0;
+}
+.profile button {
+	width:100%;
+}
+.personaWrapper {
+	margin:0 auto;
+	width:100%;
+}
+/*
+=======================================
+========= Persona Template ============
+=======================================
+*/
+#leftcolumn, #rightcolumn {
+    float: left;
+    min-height: 350px;
+}
+#leftcolumn {
+     width: 33%;
+}
+
+#rightcolumn {
+     width: 65%;
+     padding-left:1%;
+}
+.fullSizeImage {
+	width: 100%;
+}
+/*
+=============================
+========= Tablet ============
+=============================
+*/
+@media only screen and (min-width: 601px) {
+.wrapper {
+	min-width:601px;
+	margin:0 auto;
+}
+/*
+===============================
+========= Profiles ============
+===============================
+*/
+
+
+.profile {
+	width: 40%;
+	padding: 0 15px 15px 15px;
+	border:1px solid #6B6B6B;
+	float:left;
+	margin: 5px .5%;
+}
+.form label>span {
+	float: left;
+}
+/*
+====================================
+========= Navigation ===============
+====================================
+*/
+nav {
+	position:relative;
+	z-index:1000;
+}
+nav ul {
+	float:right;
+}
+header {
+	background-color: #363636;
+}
+nav li {
+    border-bottom: none;
+    height: 75px;
+    line-height: 75px;
+    display: inline-block;
+    padding: 0 25px; 
+  }
+
+  nav a {
+    border-bottom: none;
+  }
+
+  nav > ul > li {
+    text-align: center;
+  }
+
+  nav > ul > li > a {
+    color: white;
+    font-size: 12px;
+  }
+
+  /* Sub Menus */
+  nav li ul {
+    position: absolute;
+    display: none;
+    width: inherit;
+    background: white;
+    text-align: left;
+    top:75px;
+  }
+  nav li ul a {
+    color:#363636;
+    font-size: 12px;
+    padding:0;
+  }
+
+  nav li:hover ul {
+    display: block;
+  }
+  nav li ul li:hover {
+  	background-color:#f3553d
+  }
+
+  nav li ul li {
+    display: block;
+    padding-left:15px;
+  }
+/*
+===============================
+========= Desktop =============
+===============================
+*/
+@media only screen and (min-width: 1141px) {
+.wrapper {
+	width:1140px;
+	margin:0 auto;
+}
+
+
+/*
+==================================
+========= Navigation =============
+==================================
+*/
+
+/*
+===============================
+========= Profiles ============
+===============================
+*/
+.wrapper {
+	padding:0;
+}
+.displayProfile {
+	border:1px solid #dadada;
+	padding: 10px 15px;
+	width:100%;
+	
+}
+
+.profile {
+	width: 20%;
+	padding: 0 15px 15px 15px;
+	border:1px solid #dadada;
+	float:left;
+	margin: 0 1%;
+}
+.form label>span {
+	float: left;
+}
+
+}

@@ -126,8 +126,16 @@ p {
 	color:#6B6B6B;
 	line-height: 1.7;
 }
-.clear {
+.clear:after {
+	content:"";
+	display:block;
 	clear:both;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
 }
 
 /*
@@ -349,8 +357,26 @@ button[type="button"] {
 	margin:0 auto;
 	width:100%;
 }
+/*
+=======================================
+========= Persona Template ============
+=======================================
+*/
+#leftcolumn, #rightcolumn {
+    float: left;
+    min-height: 350px;
+}
+#leftcolumn {
+     width: 33%;
+}
 
-
+#rightcolumn {
+     width: 65%;
+     padding-left:1%;
+}
+.fullSizeImage {
+	width: 100%;
+}
 /*
 =============================
 ========= Tablet ============

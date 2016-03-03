@@ -1,6 +1,6 @@
-angular.module('UAID-Giftbox', ['vcRecaptcha', 'ngFileUpload'])
+angular.module('UAID-Giftbox', [])
 
-  .controller('UAID-Controller', ['$http', 'vcRecaptchaService', 'Upload', function($http, recaptcha, Upload){
+  .controller('UAID-Controller',  function($http){
 
     getRecipients();
     var self = this;
@@ -40,4 +40,4 @@ angular.module('UAID-Giftbox', ['vcRecaptcha', 'ngFileUpload'])
     };
 
 
-  }]);
+  });

@@ -76,8 +76,15 @@ var routes = function(path, nodemailer, Firebase){
     res.send('');
   });
 
+  giftboxRouter.route('/apply')
+  .get(function(req, res){
+    res.sendFile(path.join(__dirname + './../applicationInformation.html'));
+  });
+
+
+
   return giftboxRouter;
 
 };
 
-module.exports = routes;
+  module.exports = routes;

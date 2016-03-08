@@ -20,7 +20,7 @@ app.use(express.static('source/css/'));
 app.use(express.static('source/images/'));
 
 //Routes
-giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Firebase);
+giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Firebase, request);
 app.use('/', giftboxRouter);
 
 

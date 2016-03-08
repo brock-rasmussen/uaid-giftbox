@@ -1,9 +1,9 @@
 var express = require('express');
 
 
-var routes = function(path, nodemailer, Firebase){
+var routes = function(path, nodemailer, Firebase, request){
 
-  var giftboxRouter = express.Router(path, nodemailer, Firebase);
+  var giftboxRouter = express.Router(path, nodemailer, Firebase, request);
   var FirebaseTokenGenerator = require("firebase-token-generator");
   //DO NOT FORGET TO REMOVE KEY BEFORE PUSHING!!!!!
   var tokenGenerator = new FirebaseTokenGenerator("");
@@ -32,9 +32,17 @@ var routes = function(path, nodemailer, Firebase){
   .get(function (req, res){
     var users;
     fbApp.limitToFirst(8).once("value", function(snapshot) {
-      console.log(snapshot.val());
         users = snapshot.val();
-        res.send(users);
+        securedUsers = {};
+        for(x in users) {
+          securedUsers[x] = {
+            'fname': users[x].fname,
+            'age': users[x].age,
+            'intage': users[x].intage
+          }
+        };
+        console.log(securedUsers);
+        res.send(securedUsers);
     }, function (err) {
       console.log("The read failed: " + err.code);
     })
@@ -79,6 +87,52 @@ var routes = function(path, nodemailer, Firebase){
   giftboxRouter.route('/apply')
   .get(function(req, res){
     res.sendFile(path.join(__dirname + './../applicationInformation.html'));
+  })
+
+  .post(function(req, res){
+
+
+    var payload = {
+      'fname': req.body.fname,
+      'lname': req.body.lname,
+      'age': req.body.age,
+      'intage': req.body.intage,
+      'ethnicity': req.body.ethnicity,
+      'contactName': req.body.contactName,
+      'contactPhone': req.body.contactPhone,
+      'contactEmail': req.body.contactEmail,
+      'contactRelationship': req.body.contactRelationship,
+      'contactSecPhone': req.body.contactSecPhone,
+      'contactSecRelationship': req.body.contactSecRelationship,
+      'agencyName': req.body.agencyName,
+      'agencyLocation': req.body.agencyLocation,
+      'agencyPhone': req.body.agencyPhone
+    };
+    console.log(payload);
+    console.log(req.body);
+
+    //Verify Recaptcha
+    request.post(
+    'https://www.google.com/recaptcha/api/siteverify',
+    {form: {
+      'secret': '',
+      'response': req.body.recapResponse,
+      'remoteip': req.connection.remoteAddress,
+    }},
+    function(error, response, body) {
+      var responseJson = JSON.parse(body);
+      if(!error && response.statusCode == 200 && responseJson.success === true) {
+      console.log("Recaptcha has been verified successfully!");
+      fbApp.push(payload);
+      res.send({'success': 'true'});
+      } else if (error){
+        console.log(error);
+        res.end();
+      }
+    }
+  );
+
+
   });
 
 

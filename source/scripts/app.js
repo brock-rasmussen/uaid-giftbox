@@ -8,17 +8,6 @@ angular.module('UAID-Giftbox', [])
     this.userEmail = "";
     this.recipsArr = [];
     this.limit = 4;
-    this.submit = function (){
-      $http.post('/recipients',
-      {
-        'name': self.userName,
-        'email': self.userEmail
-      })
-      .then(function(res){
-          console.log(res.data);
-      })
-
-    };
 
     function getRecipients() {
         $http.get('/recipients')
@@ -36,7 +25,6 @@ angular.module('UAID-Giftbox', [])
       if(self.limit < 8) {
         self.limit = 8;
       }
-      console.log(self.limit);
     };
 
 

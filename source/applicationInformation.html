@@ -80,23 +80,23 @@
     <div class="wrapper">
     	<h1>Applicant Information</h1>
 
-        <form action="" method="" class="form" name="ApplicantInfo" enctype="multipart/form-data">
+        <form ng-submit="uaid.log()"  class="form" name="ApplicantInfo" enctype="multipart/form-data">
         	<fieldset>
             	<legend>Recipient Information</legend>
                 <label>
                 	<span>First Name:</span>
-                    <input ng-model="uaid.fname" type="text" name="firstName" value="" placeholder="First Name" pattern="{a-zA-Z -._} {3,99}"  required>
+                    <input ng-model="uaid.fname" type="text"  placeholder="First Name" pattern="[a-zA-Z]{3,99}"  required></input>
                 </label>
                 <label>
                 	<span>Last Name:</span>
-                    <input ng-model="uaid.lname" type="text" name="lastName" value="" placeholder="Last Name" pattern="{a-zA-Z -._} {3,99}"  required>
+                    <input ng-model="uaid.lname" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}"  required>
                 </label>
                 <label><span>Age:</span>
-                	<input ng-model="uaid.age"  type="text" name="age" value="" placeholder="Age" pattern="{0-9} {1,3}"  required>
+                	<input ng-model="uaid.age"  type="text" name="age" value="" placeholder="Age" pattern="[0-9]{1,3}"  required>
                 </label>
             	<label>
                 	<span>Intellectual Age:</span>
-                	<input ng-model="uaid.intage"  type="text" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="{0-9} {1,3}"  required>
+                	<input ng-model="uaid.intage"  type="text" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="[0-9]{1,3}"  required>
                     </label>
                 <legend>Ethnicity/Race(Check One):</legend>
 
@@ -112,27 +112,27 @@
             	<legend>Person Submitting Application:</legend>
                 <label>
                 	<span>Primary Contact:</span>
-                    <input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="{a-zA-Z -._} {3,99}"  required>
+                    <input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}"  required>
                 </label>
                 <label>
                 	<span>Primary Contact Phone:</span>
-                    <input ng-model="uaid.contactPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="{0-9()-} {10,20}"  required>
+                    <input ng-model="uaid.contactPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
                 </label>
                 <label>
                 	<span>Primary E-mail:</span>
-                    <input ng-model="uaid.contactEmail" type="text" name="email" value="" placeholder="JohnSmith@gmail.com" pattern="{^\S+@\S+$} {3,99}"  required>
+                    <input ng-model="uaid.contactEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com"  required>
                 </label>
                 <label>
                 	<span>Relationship to Applicant:</span>
-                	<input ng-model="uaid.contactRelationship" type="text" name="relationship" value="" placeholder="Relationship to Applicant" pattern="{a-zA-Z -._} {3,99}"  required>
+                	<input ng-model="uaid.contactRelationship" type="text" name="relationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
                 </label>
                 <label>
                 	<span>Secondary Contact Phone:</span>
-                	<input ng-model="uaid.contactSecPhone" type="text" name="secondaryContactPhone" value="" placeholder="801-575-7777" pattern="{0-9().-} {10,20}"  required>
+                	<input ng-model="uaid.contactSecPhone" type="text" name="secondaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9().-]{10,20}"  required>
                 </label>
                 <label>
                 	<span>Relationship to Applicant:</span>
-                    <input ng-model="uaid.contactSecRelationship" type="text" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="{a-zA-Z -._} {3,99}"  required>
+                    <input ng-model="uaid.contactSecRelationship" type="text" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
                 </label>
                 <label>
                 	<span>Agency Name:</span>
@@ -144,10 +144,11 @@
                 </label>
                 <label>
                 	<span>Agency Contact Phone Number:</span>
-                	<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="{0-9()-} {10,20}"  required>
+                	<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
                 </label>
+								  <div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
             </fieldset>
-            <button type="submit">Submit Form</button>
+            <button>Submit Form</button>
 
             <p>** Applicant agrees to allow their picture and rst name to be placed on materials which can be given to individuals or corporate sponsors. All other personal
 information will be kept condential. Please attach 2 wallet sized(2x3) color photographs to be placed on ornaments. Each donor will buy approximately $75

@@ -1,6 +1,7 @@
 node_modules/
 bower_components/
 build/
+_notes/
 .DS_Store
 *.db
 *.log

@@ -20,18 +20,18 @@
 <!-- Scripts -->
 
 <!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
 
 <!-- Mobile Menu -->
-	<script>
-		$(document).ready(function(){
-			$(".nav-button").click(function () {
-			$(".nav-button,.primary-nav").toggleClass("open");
-			});    
-		});
-	</script>
+    <script>
+        $(document).ready(function(){
+            $(".nav-button").click(function () {
+            $(".nav-button,.primary-nav").toggleClass("open");
+            });    
+        });
+    </script>
 <!-- End Mobile Menu -->  
   
 
@@ -48,15 +48,33 @@
 
 
 <!-- Begin of Container -->
-<div id="container">	
+<div id="container">    
 
     <!-- Begin Content -->
     <div class="wrapper">
+        <a href="index.php" style="display: block;"><button>Back</button></a>
+        <div id="leftcolumn">
+            <img src="images/image4.jpg" class="fullSizeImage">
+        </div>
 
-    <div></div>
-    <div></div>
-    	
-        
+        <div id="rightcolumn">
+            <h1 style="margin: 0;">UAID Gift Box Recipient</h1>
+            <h2>Name</h2>
+            <hr>
+            <p style="padding:0;">Age: 32</p>
+            <p style="padding:0;">Intellectual Age: 11</p>
+            <hr>
+            <p>Wish List:</p>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+                <li>Item 5</li>
+            </ul>
+            <a href="#"><button type="button">Adopt Me</button></a>
+        </div>
+        <span class="clear"></span>
     </div>
     <!-- End Content -->
 </div>

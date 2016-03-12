@@ -40,28 +40,6 @@
 					    	<button class="nav-button">Toggle Navigation</button>
 					        <ul class="primary-nav">
 					            <li><a href="../">Home</a></li>
-					            <li><a href="#">About Us</a>
-					                <ul>
-					                    <li><a href="#">Our Mission</a></li>
-					                    <li><a href="#">Who We Are</a></li>
-					                    <li><a href="#">Who We Serve</a></li>
-					                </ul>
-					            </li>
-					            <li><a href="#">Support Us</a>
-					                <ul>
-					                    <li><a href="#">Volenteer</a></li>
-					                    <li><a href="#">Ways To Help</a></li>
-					                    <li><a href="#">Wish List</a></li>
-					                </ul>
-					            </li>
-					            <li><a href="#">Programs</a>
-					                <ul>
-					                    <li><a href="#">Holiday Gift Box</a></li>
-					                    <li><a href="#">Adopt Now</a></li>
-					                </ul>
-					            </li>
-					            <li><a href="#">Blog</a></li>
-					            <li><a href="#">Contact Us</a></li>
 					            <li><a href="./">Gift Box Application</a></li>
 					        </ul>
 					    <div class="clear"></div>
@@ -82,7 +60,7 @@
         <form ng-submit="uaid.log()"  class="form" name="ApplicantInfo" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Referrer Information</legend>
-			  	
+
 				<fieldset>
 					<legend>Agency Information</legend>
 					<p></p>
@@ -99,7 +77,7 @@
 				  		<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}">
 				  	</label>
 				</fieldset>
-			  
+
 			  	<fieldset>
 			  		<legend>Primary Contact</legend>
 				  	<label>
@@ -119,7 +97,7 @@
 						<input ng-model="uaid.contactRelationship" type="text" name="relationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
 					</label>
 			  	</fieldset>
-                
+
 			  	<fieldset>
 			  		<legend>Secondary Contact</legend>
 			  		<label>
@@ -132,7 +110,7 @@
 					</label>
 			  	</fieldset>
             </fieldset>
-		  
+
         	<fieldset>
             	<legend>Recipient Information</legend>
                 <label>
@@ -168,14 +146,14 @@
 		  			<span>Photo / Drawing of Recipient:</span>
 				  	<input type="file" id="photo-raw" required>
 		  		</label>
-		  		<input type="hidden" id="photo" name="photo">
+		  		<input type="hidden" id="photo" name="photo" ng-model="uaid.photoURI">
 		  		<canvas id="photo-editor" height="400" width="400"></canvas>
-		  
+					{{uaid.photoURI}}
 		  		<p><small>Recipient agrees to allow their picture / drawing and first name to be placed on materials which can be given to individuals or corporate sponsors. All other personal information will be kept condential.</small></p>
-		  		
-		  		<label><input type="checkbox" id="agreement">I / Recipient agree(s) to the terms above</label>
+
+		  		<label><input type="checkbox" id="agreement" ng-click="uaid.update()">I / Recipient agree(s) to the terms above</label>
             </fieldset>
-	  		
+
   			<fieldset>
 	  			<legend>Recipient Wish List</legend>
 			  	<p>Each donor will buy approximately $75 in gifts. Please indicate below which items are needed by the recipient. Please call <a href="tel:18016548449">+801 654-8449</a> if you have any questions.</p>
@@ -224,7 +202,7 @@
 						  	</select>
 				  		</label>
 			  	</fieldset>
-			  
+
 			  	<fieldset>
 			  		<legend>Please select 1 item:</legend>
 				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="'sheets'" type="radio" name="group2" value="sheets">Sheets</label>
@@ -232,7 +210,7 @@
 						  	<span>Size:</span>
 						  	<input type="text">
 				  		</label>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="'bathTowel'" type="radio" name="group2" value="bathTowel"></label>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="'bathTowel'" type="radio" name="group2" value="bathTowel">Bath Towel</label>
 				  		<label>
 						  	<span>Size:</span>
 						  	<input type="text">
@@ -243,7 +221,7 @@
 						  	<input type="text">
 				  		</label>
 			  	</fieldset>
-			  
+
 			  	<fieldset>
 			  		<legend>Please select 1 item:</legend>
 				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="'coat'" type="radio" name="group3" value="coat"></label>
@@ -277,7 +255,7 @@
 							</label>
 						</fieldset>
 			  	</fieldset>
-			  
+
 			  	<fieldset>
 			  		<legend>Please select 2 items:</legend>
 				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'costumeJewelry'" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry</label>
@@ -308,7 +286,7 @@
 						  	</label>
 						</fieldset>
 			  	</fieldset>
-			  
+
 			  	<fieldset>
 			  		<legend>Please select all items needed:</legend>
 				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="'socks'" type="checkbox" name="group5" value="socks">Socks</label>
@@ -361,10 +339,10 @@
 						</fieldset>
 				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="'hygieneKit'" type="checkbox" name="group5" value="hygieneKit">Hygiene Kit</label>
 			  	</fieldset>
-			  
+
 			  	<label><input type="checkbox" name="wrapped">Please wrap the gifts.</label>
-	  		</fieldset>		  
-            
+	  		</fieldset>
+
 	  		<div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
             <button>Submit Form</button>
 		</form>
@@ -381,8 +359,9 @@
     <!-- End Footer -->
 </div>
 <!-- End of Container -->
-  
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
 <script src="scripts/photo-editor.js"></script>
+<script src="photo-editor.js"></script> <!-- don't delete this -->
 </body>
 </html>

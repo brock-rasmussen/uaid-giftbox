@@ -78,7 +78,28 @@ var routes = function(path, nodemailer, Firebase, request){
 
   giftboxRouter.route('/recipients/data/:recid')
   .get(function (req, res){
-    res.sendFile(path.join(__dirname + './../recipient.html'));
+
+    recRef = new Firebase("https://giftboxtest.firebaseio.com/users/" + req.params.recid);
+    recRef.authWithCustomToken(token, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Login Succeeded!", authData);        }
+      });
+      recRef.once("value", function(snapshot) {
+          recData = snapshot.val();
+          var filteredData = {};
+          filteredData = {
+              'fname': recData.fname,
+              'age': recData.age,
+              'intage': recData.intage
+          };
+          console.log(filteredData);
+          res.send(filteredData);
+      }, function (err) {
+        console.log("The read failed: " + err.code);
+      })
+
   });
 
   giftboxRouter.route('/recipients/?:recid')

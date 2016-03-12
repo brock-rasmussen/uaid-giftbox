@@ -1,3 +1,5 @@
+var canvas = new fabric.Canvas('photo-editor', { backgroundColor: 'white', controlsAboveOverlay: true });
+
 function customizerFinished (el) {
 	if (el.checked) {
 		if (canvas.item(0)) {
@@ -13,8 +15,6 @@ function customizerFinished (el) {
 		document.getElementById('photo-raw').disabled = false;
     }
 }
-  
-var canvas = new fabric.Canvas('photo-editor', { backgroundColor: 'white', controlsAboveOverlay: true });
 
 document.getElementById('photo-raw').addEventListener('change', function(e) {
 	'use strict';
@@ -36,7 +36,7 @@ document.getElementById('photo-raw').addEventListener('change', function(e) {
 
 document.getElementById('agreement').addEventListener('change', function() {
 	'use strict';
-	document.getElementById('photo-editor').value = canvas.toDataURL({ format: 'jpg' });
+	document.getElementById('photo').value = canvas.toDataURL({ format: 'jpg' });
 	customizerFinished(this);
 });
 

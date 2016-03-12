@@ -28,7 +28,7 @@ var routes = function(path, nodemailer, Firebase, request){
     res.sendFile(path.join(__dirname + './../index.html'));
   });
 
-  giftboxRouter.route('/recipients')
+  giftboxRouter.route('/home')
   .get(function (req, res){
     var users;
     fbApp.limitToFirst(8).once("value", function(snapshot) {
@@ -76,9 +76,35 @@ var routes = function(path, nodemailer, Firebase, request){
 
   });
 
-  giftboxRouter.route('/recipients/:recid')
+  giftboxRouter.route('/recipients/data/:recid')
   .get(function (req, res){
-    res.send(req.params.recid);
+
+    recRef = new Firebase("https://giftboxtest.firebaseio.com/users/" + req.params.recid);
+    recRef.authWithCustomToken(token, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Login Succeeded!", authData);        }
+      });
+      recRef.once("value", function(snapshot) {
+          recData = snapshot.val();
+          var filteredData = {};
+          filteredData = {
+              'fname': recData.fname,
+              'age': recData.age,
+              'intage': recData.intage
+          };
+          console.log(filteredData);
+          res.send(filteredData);
+      }, function (err) {
+        console.log("The read failed: " + err.code);
+      })
+
+  });
+
+  giftboxRouter.route('/recipients/?:recid')
+  .get(function (req, res){
+    res.sendFile(path.join(__dirname + './../recipient.html'));
   })
   .post(function (req, res){
     res.send('');

@@ -1,7 +1,14 @@
 <nav class="wrapper">
+        <div id="headerLogo">
+            <a href="#"><span>UAID</span></a>
+        </div>
+        <div id="mobileLogo">
+            <a href="#"><span>UAID</span></a>
+        </div>
     	<button class="nav-button">Toggle Navigation</button>
         <ul class="primary-nav">
             <li><a href="http://chriscundick.com/giftbox/index.php">Home</a></li>
+            <!-- Dropdown Structure
             <li><a href="#">About Us</a>
                 <ul>
                     <li><a href="#">Our Mission</a></li>
@@ -24,6 +31,7 @@
             </li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Contact Us</a></li>
+            -->
             <li><a href="http://chriscundick.com/giftbox/applicationInformation.php">Gift Box Application</a></li>
         </ul> 
     <div class="clear"></div>

@@ -164,7 +164,21 @@ nav ul li {
 	font-family: 'Roboto',sans-serif;
 	font-size:1em;
 }
-
+#headerLogo {
+	display: none;
+}
+#mobileLogo {
+	display: inline;
+    position: absolute;
+    top: 12px;
+    left: 80px;
+    z-index: 999;
+}
+#mobileLogo span {
+	font-family: 'Roboto',sans-serif;
+	font-size: 1.5em;
+	color:white;
+}
 /*
 ============================
 ========= Links ============
@@ -194,6 +208,7 @@ button:hover {
 	color:#FFFFFF;
 	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
     box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    cursor: pointer;
 }
 
 #container > div.flexslider > ol {
@@ -428,6 +443,20 @@ nav ul {
 header {
 	background-color: #363636;
 }
+#mobileLogo {
+	display:none;
+}
+#headerLogo {
+	float:left;
+	padding-top:26px;
+	display:inline;
+}
+#headerLogo span {
+	font-family: 'Roboto',sans-serif;
+	font-size: 1.5em;
+	color:white;
+}
+
 nav li {
     border-bottom: none;
     height: 75px;
@@ -436,7 +465,7 @@ nav li {
     padding: 0 25px; 
   }
 
-  nav a {
+ nav a {
     border-bottom: none;
   }
 
@@ -475,6 +504,12 @@ nav li {
     display: block;
     padding-left:15px;
   }
+ #headerLogo {
+	padding-left:15px;
+}
+#wrapper {
+	padding-left:10px;
+}
 /*
 ===============================
 ========= Desktop =============

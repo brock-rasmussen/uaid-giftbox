@@ -363,17 +363,9 @@ button[type="button"] {
 =======================================
 */
 #leftcolumn, #rightcolumn {
-    float: left;
-    min-height: 350px;
-}
-#leftcolumn {
-     width: 33%;
+    width: 100%;
 }
 
-#rightcolumn {
-     width: 65%;
-     padding-left:1%;
-}
 .fullSizeImage {
 	width: 100%;
 }
@@ -386,6 +378,23 @@ button[type="button"] {
 .wrapper {
 	min-width:601px;
 	margin:0 auto;
+}
+/*
+=======================================
+========= Persona Template ============
+=======================================
+*/
+#leftcolumn, #rightcolumn {
+    float: left;
+    min-height: 350px;
+}
+#leftcolumn {
+     width: 33%;
+}
+
+#rightcolumn {
+     width: 65%;
+     padding-left:1%;
 }
 /*
 ===============================
@@ -459,7 +468,7 @@ nav li {
     display: block;
   }
   nav li ul li:hover {
-  	background-color:#f3553d
+  	background-color:#f3553d;
   }
 
   nav li ul li {

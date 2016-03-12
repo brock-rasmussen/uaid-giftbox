@@ -21,7 +21,6 @@
 <script src="ng-file-upload-shim.min.js"></script>
 <script src="ng-file-upload.min.js"></script>
 
-
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -81,6 +80,59 @@
     	<h1>Applicant Information</h1>
 
         <form ng-submit="uaid.log()"  class="form" name="ApplicantInfo" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Referrer Information</legend>
+			  	
+				<fieldset>
+					<legend>Agency Information</legend>
+					<p></p>
+					<label>
+						<span>Agency Name:</span>
+						<input ng-model="uaid.agencyName" type="text" name="agencyName" value="" placeholder="Agency Name">
+					</label>
+					<label>
+						<span>Location:</span>
+						<input ng-model="uaid.agencyLocation" type="text" name="agencyLocation" value="" placeholder="Agency Location">
+					</label>
+					<label>
+					  	<span>Phone Number:</span>
+				  		<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}">
+				  	</label>
+				</fieldset>
+			  
+			  	<fieldset>
+			  		<legend>Primary Contact</legend>
+				  	<label>
+				  		<span>Name:</span>
+					  	<input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}"  required>
+				  	</label>
+				  	<label>
+				  		<span>Phone Number:</span>
+					  	<input ng-model="uaid.contactPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
+				  	</label>
+				  	<label>
+						<span>E-mail:</span>
+						<input ng-model="uaid.contactEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com"  required>
+					</label>
+				  	<label>
+						<span>Relationship to Applicant:</span>
+						<input ng-model="uaid.contactRelationship" type="text" name="relationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
+					</label>
+			  	</fieldset>
+                
+			  	<fieldset>
+			  		<legend>Secondary Contact</legend>
+			  		<label>
+						<span>Phone Number:</span>
+						<input ng-model="uaid.contactSecPhone" type="text" name="secondaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9().-]{10,20}"  required>
+					</label>
+				  	<label>
+						<span>Relationship to Applicant:</span>
+						<input ng-model="uaid.contactSecRelationship" type="text" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
+					</label>
+			  	</fieldset>
+            </fieldset>
+		  
         	<fieldset>
             	<legend>Recipient Information</legend>
                 <label>
@@ -91,69 +143,229 @@
                 	<span>Last Name:</span>
                     <input ng-model="uaid.lname" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}"  required>
                 </label>
-                <label><span>Age:</span>
-                	<input ng-model="uaid.age"  type="text" name="age" value="" placeholder="Age" pattern="[0-9]{1,3}"  required>
+                <label>
+					<span>Age:</span>
+                	<input ng-model="uaid.age"  type="number" name="age" value="" placeholder="Age" pattern="[0-9]{1,3}"  required>
                 </label>
             	<label>
                 	<span>Intellectual Age:</span>
-                	<input ng-model="uaid.intage"  type="text" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="[0-9]{1,3}"  required>
-                    </label>
-                <legend>Ethnicity/Race(Check One):</legend>
-
-                    <div class="form-checkbox"><input ng-model="uaid.ethnicity" ng-true-value="'caucasian'" type="checkbox" name="ethnicity" value="Caucasian" />Caucasian</div>
-                    <div class="form-checkbox"><input ng-model="uaid.ethnicity" ng-true-value="'native american'"  type="checkbox" name="ethnicity" value="Native American" />Native American</div>
-                    <div class="form-checkbox"><input ng-model="uaid.ethnicity" ng-true-value="'black/african-american'"  type="checkbox" name="ethnicity" value="Black/African-American" />Black/African-American</div>
-                    <div class="form-checkbox"><input ng-model="uaid.ethnicity" ng-true-value="'asian/pacific islander'"  type="checkbox" name="ethnicity" value="Asian/Pacic Islander" />Asian/Pacific Islander</div>
-                    <div class="form-checkbox"><input ng-model="uaid.ethnicity" ng-true-value="'hispanic/latino'" type="checkbox" name="ethnicity" value="Hispanic/Latino" />Hispanic/Latino</div>
-
+                	<input ng-model="uaid.intage"  type="number" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="[0-9]{1,3}"  required>
+                </label>
+		  		<fieldset>
+				  	<legend>Gender:</legend>
+				  	<label class="form-radio"><input ng-model="uaid.gender" ng-true-value="'female'" type="radio" name="gender" value="Female">Female</label>
+				  	<label class="form-radio"><input ng-model="uaid.gender" ng-true-value="'male'" type="radio" name="gender" value="Male">Male</label>
+		  		</fieldset>
+		  		<fieldset>
+                	<legend>Ethnicity / Race:</legend>
+                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'caucasian'" type="radio" name="ethnicity" value="Caucasian" />Caucasian</label>
+                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'native american'"  type="radio" name="ethnicity" value="Native American" />Native American</label>
+                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'black/african-american'"  type="radio" name="ethnicity" value="Black/African-American" />Black / African-American</label>
+                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'asian/pacific islander'"  type="radio" name="ethnicity" value="Asian/Pacic Islander" />Asian / Pacific Islander</label>
+                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'hispanic/latino'" type="radio" name="ethnicity" value="Hispanic/Latino" />Hispanic / Latino</label>
+		  		</fieldset>
+		  		<label>
+		  			<span>Photo / Drawing of Recipient:</span>
+				  	<input type="file" id="photo-raw" required>
+		  		</label>
+		  		<input type="hidden" id="photo" name="photo">
+		  		<canvas id="photo-editor" height="400" width="400"></canvas>
+		  
+		  		<p><small>Recipient agrees to allow their picture / drawing and first name to be placed on materials which can be given to individuals or corporate sponsors. All other personal information will be kept condential.</small></p>
+		  		
+		  		<label><input type="checkbox" id="agreement">I / Recipient agree(s) to the terms above</label>
             </fieldset>
-
-            <fieldset>
-            	<legend>Person Submitting Application:</legend>
-                <label>
-                	<span>Primary Contact:</span>
-                    <input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}"  required>
-                </label>
-                <label>
-                	<span>Primary Contact Phone:</span>
-                    <input ng-model="uaid.contactPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
-                </label>
-                <label>
-                	<span>Primary E-mail:</span>
-                    <input ng-model="uaid.contactEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com"  required>
-                </label>
-                <label>
-                	<span>Relationship to Applicant:</span>
-                	<input ng-model="uaid.contactRelationship" type="text" name="relationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
-                </label>
-                <label>
-                	<span>Secondary Contact Phone:</span>
-                	<input ng-model="uaid.contactSecPhone" type="text" name="secondaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9().-]{10,20}"  required>
-                </label>
-                <label>
-                	<span>Relationship to Applicant:</span>
-                    <input ng-model="uaid.contactSecRelationship" type="text" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
-                </label>
-                <label>
-                	<span>Agency Name:</span>
-                    <input ng-model="uaid.agencyName" type="text" name="agencyName" value="" placeholder="Agency Name" required>
-                </label>
-                <label>
-                	<span>Agency Location:</span>
-                	<input ng-model="uaid.agencyLocation" type="text" name="agencyLocation" value="" placeholder="Agency Location" required>
-                </label>
-                <label>
-                	<span>Agency Contact Phone Number:</span>
-                	<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
-                </label>
-								  <div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
-            </fieldset>
+	  		
+  			<fieldset>
+	  			<legend>Recipient Wish List</legend>
+			  	<p>Each donor will buy approximately $75 in gifts. Please indicate below which items are needed by the recipient. Please call <a href="tel:18016548449">+801 654-8449</a> if you have any questions.</p>
+			  	<fieldset>
+			  		<legend>Please select 2 items:</legend>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup1" ng-true-value="tShirt" type="checkbox" name="group1" value="t-shirt">T-Shirt</label>
+				  		<label>Size:
+						  	<select>
+						  		<option value="xs">Extra Small</option>
+							  	<option value="s">Small</option>
+							  	<option value="l">Large</option>
+							  	<option value="xl">Extra Large</option>
+							  	<option value="2xl">2x Large</option>
+							  	<option value="3xl">3x Large</option>
+							  	<option value="4xl">4x Large</option>
+							  	<option value="5xl">5x Large</option>
+							  	<option value="6xl">6x Large</option>
+						  	</select>
+				  		</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup1" ng-true-value="sweatPants" type="checkbox" name="group1" value="sweat-pants">Sweat Pants</label>
+				  		<label>Size:
+						  	<select>
+						  		<option value="xs">Extra Small</option>
+							  	<option value="s">Small</option>
+							  	<option value="l">Large</option>
+							  	<option value="xl">Extra Large</option>
+							  	<option value="2xl">2x Large</option>
+							  	<option value="3xl">3x Large</option>
+							  	<option value="4xl">4x Large</option>
+							  	<option value="5xl">5x Large</option>
+							  	<option value="6xl">6x Large</option>
+						  	</select>
+				  		</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup1" ng-true-value="sweatTop" type="checkbox" name="group1" value="sweat-pants">Sweat Top</label>
+				  		<label>Size:
+						  	<select>
+						  		<option value="xs">Extra Small</option>
+							  	<option value="s">Small</option>
+							  	<option value="l">Large</option>
+							  	<option value="xl">Extra Large</option>
+							  	<option value="2xl">2x Large</option>
+							  	<option value="3xl">3x Large</option>
+							  	<option value="4xl">4x Large</option>
+							  	<option value="5xl">5x Large</option>
+							  	<option value="6xl">6x Large</option>
+						  	</select>
+				  		</label>
+			  	</fieldset>
+			  
+			  	<fieldset>
+			  		<legend>Please select 1 item:</legend>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="sheets" type="radio" name="group2" value="sheets">Sheets</label>
+				  		<label>
+						  	<span>Size:</span>
+						  	<input type="text">
+				  		</label>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="bathTowel" type="radio" name="group2" value="bathTowel"></label>
+				  		<label>
+						  	<span>Size:</span>
+						  	<input type="text">
+				  		</label>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="blanket" type="radio" name="group2" value="blanket">Blanket</label>
+				  		<label>
+						  	<span>Size:</span>
+						  	<input type="text">
+				  		</label>
+			  	</fieldset>
+			  
+			  	<fieldset>
+			  		<legend>Please select 1 item:</legend>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="coat" type="radio" name="group3" value="coat"></label>
+				  		<fieldset>
+							<label class="form-radio"><input type="radio" name="coatSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" name="coatSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" name="coatSize" value="adult">Adult</label>
+							<label>
+								<span>Size:</span>
+								<input type="text">
+							</label>
+						</fieldset>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="shoes" type="radio" name="group3" value="shoes">Shoes</label>
+				  		<fieldset>
+							<label class="form-radio"><input type="radio" name="shoeSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" name="shoeSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" name="shoeSize" value="adult">Adult</label>
+							<label>
+								<span>Size:</span>
+								<input type="text">
+							</label>
+						</fieldset>
+				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="slipper" type="radio" name="group3" value="slipper">Slippers</label>
+				  		<fieldset>
+							<label class="form-radio"><input type="radio" name="slipperSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" name="slipperSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" name="slipperSize" value="adult">Adult</label>
+							<label>
+								<span>Size:</span>
+								<input type="text">
+							</label>
+						</fieldset>
+			  	</fieldset>
+			  
+			  	<fieldset>
+			  		<legend>Please select 2 items:</legend>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="costumeJewelry" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="makeup" type="checkbox" name="group4" value="makeup">Makeup</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="boardGames" type="checkbox" name="group4" value="boardGames">Board Games</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="puzzle" type="checkbox" name="group4" value="puzzle">Puzzle</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="artSupplies" type="checkbox" name="group4" value="artSupplies">Art Supplies</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="book" type="checkbox" name="group4" value="book">Book</label>
+				  		<label>
+				  			<span>Genre / Reading Level:</span>
+						  	<input type="text">
+				  		</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="cd" type="checkbox" name="group4" value="cd">CD</label>
+				  		<label>
+				  			<span>Artist (no explicit lyrics):</span>
+						  	<input type="text">
+				  		</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="movie" type="checkbox" name="group4" value="movie">Movie</label>
+				  		<fieldset>
+							<fieldset>
+								<legend>Please select the preferred format:</legend>
+								<label class="form-radio"><input type="radio" name="movieFormat" value="dvd">DVD</label>
+								<label class="form-radio"><input type="radio" name="movieFormat" value="vhs">VHS</label>
+							</fieldset>
+						  	<label>
+						  		<span>Title (Must be G, PG, or PG-13):</span>
+							  	<input type="text">
+						  	</label>
+						</fieldset>
+			  	</fieldset>
+			  
+			  	<fieldset>
+			  		<legend>Please select all items needed:</legend>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="socks" type="checkbox" name="group5" value="socks">Socks</label>
+				  		<label>
+				  			<span>Size:</span>
+						  	<input type="text">
+				  		</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="underwear" type="checkbox" name="group5" value="underwear">Underwear</label>
+				  		<fieldset>
+						  	<label class="form-checkbox"><input type="checkbox" name="underwearDisposable" value="disposable">Disposable</label>
+						  	<label>Size:
+								<select>
+									<option value="xs">Boys</option>
+									<option value="s">Girls</option>
+									<option value="l">Mens</option>
+									<option value="xl">Womens</option>
+								</select>
+							</label>
+				  			<label>
+								<select>
+									<option value="xs">Extra Small</option>
+									<option value="s">Small</option>
+									<option value="l">Large</option>
+									<option value="xl">Extra Large</option>
+									<option value="2xl">2x Large</option>
+									<option value="3xl">3x Large</option>
+									<option value="4xl">4x Large</option>
+									<option value="5xl">5x Large</option>
+									<option value="6xl">6x Large</option>
+								</select>
+							</label>
+				  		</fieldset>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="gloves" type="checkbox" name="group5" value="gloves">Gloves</label>
+				  		<fieldset>
+							<label class="form-radio"><input type="radio" name="gloveSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" name="gloveSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" name="gloveSize" value="adult">Adult</label>
+						</fieldset>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="mittens" type="checkbox" name="group5" value="mittens">Mittens</label>
+				  		<fieldset>
+							<label class="form-radio"><input type="radio" name="mittenSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" name="mittenSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" name="mittenSize" value="adult">Adult</label>
+						</fieldset>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="knitHat" type="checkbox" name="group5" value="knitHat">Knit Hat</label>
+				  		<fieldset>
+							<label class="form-radio"><input type="radio" name="knitHatSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" name="knitHatSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" name="knitHatSize" value="adult">Adult</label>
+						</fieldset>
+				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup5" ng-true-value="hygieneKit" type="checkbox" name="group5" value="hygieneKit">Hygiene Kit</label>
+			  	</fieldset>
+	  		</fieldset>		  
+            
+	  		<div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
             <button>Submit Form</button>
-
-            <p>** Applicant agrees to allow their picture and rst name to be placed on materials which can be given to individuals or corporate sponsors. All other personal
-information will be kept condential. Please attach 2 wallet sized(2x3) color photographs to be placed on ornaments. Each donor will buy approximately $75
-in gifts. Please indicate below which items are needed by following the guidelines for each box. Please call (801) 654-8449 if you have questions. **</p>
-            </form>
+		</form>
 
     </div>
     <!-- End Content -->
@@ -167,5 +379,8 @@ in gifts. Please indicate below which items are needed by following the guidelin
     <!-- End Footer -->
 </div>
 <!-- End of Container -->
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+<script src="scripts/photo-editor.js"></script>
 </body>
 </html>

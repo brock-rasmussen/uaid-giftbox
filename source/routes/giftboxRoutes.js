@@ -28,7 +28,7 @@ var routes = function(path, nodemailer, Firebase, request){
     res.sendFile(path.join(__dirname + './../index.html'));
   });
 
-  giftboxRouter.route('/recipients')
+  giftboxRouter.route('/home')
   .get(function (req, res){
     var users;
     fbApp.limitToFirst(8).once("value", function(snapshot) {
@@ -76,9 +76,14 @@ var routes = function(path, nodemailer, Firebase, request){
 
   });
 
-  giftboxRouter.route('/recipients/:recid')
+  giftboxRouter.route('/recipients/data/:recid')
   .get(function (req, res){
-    res.send(req.params.recid);
+    res.sendFile(path.join(__dirname + './../recipient.html'));
+  });
+
+  giftboxRouter.route('/recipients/?:recid')
+  .get(function (req, res){
+    res.sendFile(path.join(__dirname + './../recipient.html'));
   })
   .post(function (req, res){
     res.send('');

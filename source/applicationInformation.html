@@ -146,12 +146,12 @@
 		  			<span>Photo / Drawing of Recipient:</span>
 				  	<input type="file" id="photo-raw" required>
 		  		</label>
-		  		<input type="hidden" id="photo" name="photo" ng-model="uaid.photoURI">
+		  		<input type="hidden" id="photo" name="photo" ng-model="uaid.photo">
 		  		<canvas id="photo-editor" height="400" width="400"></canvas>
-					{{uaid.photoURI}}
+
 		  		<p><small>Recipient agrees to allow their picture / drawing and first name to be placed on materials which can be given to individuals or corporate sponsors. All other personal information will be kept condential.</small></p>
 
-		  		<label><input type="checkbox" id="agreement" ng-click="uaid.update()">I / Recipient agree(s) to the terms above</label>
+		  		<label><input type="checkbox" id="agreement" ng-click="uaid.addPhoto()">I / Recipient agree(s) to the terms above</label>
             </fieldset>
 
   			<fieldset>
@@ -159,7 +159,7 @@
 			  	<p>Each donor will buy approximately $75 in gifts. Please indicate below which items are needed by the recipient. Please call <a href="tel:18016548449">+801 654-8449</a> if you have any questions.</p>
 			  	<fieldset>
 			  		<legend>Please select 2 items:</legend>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup1" ng-true-value="'tShirt'" type="checkbox" name="group1" value="t-shirt">T-Shirt</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift1" ng-true-value="'tShirt'" type="checkbox" name="group1" value="t-shirt">T-Shirt</label>
 				  		<label>Size:
 						  	<select>
 						  		<option value="xs">Extra Small</option>
@@ -173,7 +173,7 @@
 							  	<option value="6xl">6x Large</option>
 						  	</select>
 				  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup1" ng-true-value="'sweatPants'" type="checkbox" name="group1" value="sweat-pants">Sweat Pants</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift2" ng-true-value="'sweatPants'" type="checkbox" name="group1" value="sweat-pants">Sweat Pants</label>
 				  		<label>Size:
 						  	<select>
 						  		<option value="xs">Extra Small</option>
@@ -187,7 +187,7 @@
 							  	<option value="6xl">6x Large</option>
 						  	</select>
 				  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup1" ng-true-value="'sweatTop'" type="checkbox" name="group1" value="sweat-pants">Sweat Top</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift3" ng-true-value="'sweatTop'" type="checkbox" name="group1" value="sweat-pants">Sweat Top</label>
 				  		<label>Size:
 						  	<select>
 						  		<option value="xs">Extra Small</option>

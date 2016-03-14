@@ -2,7 +2,10 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
   .controller('UAID-ApplyController', ['$http', 'vcRecaptchaService', 'Upload', '$scope', function($http, recaptcha, Upload, $scope){
     var self = this;
     self.log = function() {
-
+      if(self.gifts.group1.gift1 && self.gifts.group1.gift2 && self.gifts.group1.gift3){
+        alert('You have selected too many items');
+        return;
+      };
       //recaptcha
       var response = recaptcha.getResponse();
       $http.post('/apply', {
@@ -21,7 +24,9 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'agencyName': self.agencyName,
         'agencyLocation': self.agencyLocation,
         'agencyPhone': self.agencyPhone,
-        'photoURI': self.photoURI
+        'photo': self.photo
+
+
       }).then(function(response) {
         console.log('You have successfully added a user!' + response);
       }, function(response) {
@@ -46,8 +51,18 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
       )
     };
 
-    self.update = function() {
-      console.log(self.photoURI)
+
+
+
+    self.addPhoto = function() {
+      setTimeout(function(){
+         self.photo = document.getElementById('photo').value;
+        }, 1000)
+
+
+
     }
+
+
 
   }])

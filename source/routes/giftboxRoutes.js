@@ -1,9 +1,9 @@
 var express = require('express');
 
 
-var routes = function(path, nodemailer, Firebase, request){
+var routes = function(path, nodemailer, Firebase, request, cloudinary){
 
-  var giftboxRouter = express.Router(path, nodemailer, Firebase, request);
+  var giftboxRouter = express.Router(path, nodemailer, Firebase, request, cloudinary);
   var FirebaseTokenGenerator = require("firebase-token-generator");
   //DO NOT FORGET TO REMOVE KEY BEFORE PUSHING!!!!!
   var tokenGenerator = new FirebaseTokenGenerator("");
@@ -132,9 +132,10 @@ var routes = function(path, nodemailer, Firebase, request){
       'contactSecRelationship': req.body.contactSecRelationship,
       'agencyName': req.body.agencyName,
       'agencyLocation': req.body.agencyLocation,
-      'agencyPhone': req.body.agencyPhone
+      'agencyPhone': req.body.agencyPhone,
+      'photo': req.body.photo
     };
-    console.log(payload);
+    console.log('Payload recieved');
     console.log(req.body);
 
     //Verify Recaptcha

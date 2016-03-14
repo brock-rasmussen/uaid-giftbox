@@ -117,7 +117,7 @@
                 <!--Begin Personal Profile-->
                 <div class="profile" ng-repeat="recip in uaid.recipsArr | limitTo: uaid.limit">
                     <h3>{{recip.fname}}</h3>
-                    <img src="profile1.jpg" alt="" />
+                    <img src="{{recip.photo}}" alt="" />
                     <span><strong>Age: </strong>{{recip.age}}</span> <span><strong>Intellectual Age: </strong>{{recip.intage}}</span>
                     <ul>
                         <li>Items Needed 12</li>

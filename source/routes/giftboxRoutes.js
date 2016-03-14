@@ -38,7 +38,12 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
           securedUsers[x] = {
             'fname': users[x].fname,
             'age': users[x].age,
-            'intage': users[x].intage
+            'intage': users[x].intage,
+          };
+          if(!users[x].photo){
+            securedUsers[x].photo = "profile1.jpg";
+          }else{
+            securedUsers[x].photo = users[x].photo;
           }
         };
         console.log(securedUsers);
@@ -92,7 +97,12 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
           filteredData = {
               'fname': recData.fname,
               'age': recData.age,
-              'intage': recData.intage
+              'intage': recData.intage,
+          };
+          if(!recData.photo) {
+            filteredData.photo = '../profile1.jpg';
+          } else {
+            filteredData.photo = recData.photo;
           };
           console.log(filteredData);
           res.send(filteredData);
@@ -117,7 +127,6 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
 
   .post(function(req, res){
 
-
     var payload = {
       'fname': req.body.fname,
       'lname': req.body.lname,
@@ -135,29 +144,35 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       'agencyPhone': req.body.agencyPhone,
       'photo': req.body.photo
     };
+
+    cloudinary.uploader.upload(req.body.photo, function(result) {
+      payload.photo = result.url;
+      //Verify Recaptcha
+      request.post(
+      'https://www.google.com/recaptcha/api/siteverify',
+      {form: {
+        'secret': '',
+        'response': req.body.recapResponse,
+        'remoteip': req.connection.remoteAddress,
+      }},
+      function(error, response, body) {
+        var responseJson = JSON.parse(body);
+        if(!error && response.statusCode == 200 && responseJson.success === true) {
+        console.log("Recaptcha has been verified successfully!");
+        fbApp.push(payload);
+        res.send({'success': 'true'});
+        } else if (error){
+          console.log(error);
+          res.end();
+        }
+      }
+    );
+    });
+
     console.log('Payload recieved');
     console.log(req.body);
 
-    //Verify Recaptcha
-    request.post(
-    'https://www.google.com/recaptcha/api/siteverify',
-    {form: {
-      'secret': '',
-      'response': req.body.recapResponse,
-      'remoteip': req.connection.remoteAddress,
-    }},
-    function(error, response, body) {
-      var responseJson = JSON.parse(body);
-      if(!error && response.statusCode == 200 && responseJson.success === true) {
-      console.log("Recaptcha has been verified successfully!");
-      fbApp.push(payload);
-      res.send({'success': 'true'});
-      } else if (error){
-        console.log(error);
-        res.end();
-      }
-    }
-  );
+
 
 
   });

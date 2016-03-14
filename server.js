@@ -7,6 +7,9 @@ var nodemailer = require('nodemailer');
 var request = require('request');
 var Firebase = require('firebase');
 var cloudinary = require('cloudinary');
+cloudinary.config({
+
+});
 
 
 //Middleware

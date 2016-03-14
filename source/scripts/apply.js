@@ -2,11 +2,15 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
   .controller('UAID-ApplyController', ['$http', 'vcRecaptchaService', 'Upload', '$scope', function($http, recaptcha, Upload, $scope){
     var self = this;
     self.log = function() {
-      /*if(self.gifts.group1.gift1 && self.gifts.group1.gift2 && self.gifts.group1.gift3){
+      if(self.gifts.group1.gift1 && self.gifts.group1.gift2 && self.gifts.group1.gift3){
         alert('You have selected too many items');
         return;
       };
-      */
+      if(self.gifts.group2.gift1 && self.gifts.group2.gift2 || self.gifts.group2.gift1 && self.gifts.group2.gift3 || self.gifts.group2.gift2 && self.gifts.group2.gift3){
+        alert('You have selected too many items');
+        return;
+      };
+
       //recaptcha
       var response = recaptcha.getResponse();
       $http.post('/apply', {

@@ -160,8 +160,8 @@
 			  	<fieldset>
 			  		<legend>Please select 2 items:</legend>
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift1" ng-true-value="'tShirt'" type="checkbox" name="group1" value="t-shirt">T-Shirt</label>
-				  		<label>Size:
-						  	<select>
+				  		<label  ng-show="uaid.gifts.group1.gift1">Size:
+						  	<select ng-show="uaid.gifts.group1.gift1">
 						  		<option value="xs">Extra Small</option>
 							  	<option value="s">Small</option>
 							  	<option value="l">Large</option>
@@ -174,8 +174,8 @@
 						  	</select>
 				  		</label>
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift2" ng-true-value="'sweatPants'" type="checkbox" name="group1" value="sweat-pants">Sweat Pants</label>
-				  		<label>Size:
-						  	<select>
+				  		<label  ng-show="uaid.gifts.group1.gift2">Size:
+						  	<select  ng-show="uaid.gifts.group1.gift2">
 						  		<option value="xs">Extra Small</option>
 							  	<option value="s">Small</option>
 							  	<option value="l">Large</option>
@@ -188,8 +188,8 @@
 						  	</select>
 				  		</label>
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift3" ng-true-value="'sweatTop'" type="checkbox" name="group1" value="sweat-pants">Sweat Top</label>
-				  		<label>Size:
-						  	<select>
+				  		<label  ng-show="uaid.gifts.group1.gift3">Size:
+						  	<select ng-show="uaid.gifts.group1.gift3">
 						  		<option value="xs">Extra Small</option>
 							  	<option value="s">Small</option>
 							  	<option value="l">Large</option>
@@ -205,86 +205,81 @@
 
 			  	<fieldset>
 			  		<legend>Please select 1 item:</legend>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="'sheets'" type="radio" name="group2" value="sheets">Sheets</label>
+				  	<label class="form-radio"><input ng-model="uaid.gifts.group2.gift1" ng-true-value="'sheets'" type="radio" name="group2" value="sheets">Sheets</label>
 				  		<label>
-						  	<span>Size:</span>
-						  	<input type="text">
+						  	<span ng-show="uaid.gifts.group2.gift1">Size:</span>
+						  	<input type="text" ng-model="uaid.gifts.group2.gift1.size" ng-show="uaid.gifts.group2.gift1">
 				  		</label>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="'bathTowel'" type="radio" name="group2" value="bathTowel">Bath Towel</label>
+				  	<label class="form-radio"><input ng-model="uaid.gifts.group2.gift2" ng-true-value="'bathTowel'" type="radio" name="group2" value="bathTowel">Bath Towel</label>
 				  		<label>
-						  	<span>Size:</span>
-						  	<input type="text">
+						  	<span ng-show="uaid.gifts.group2.gift2">Size:</span>
+						  	<input type="text" ng-model="uaid.gifts.group2.gift2.size" ng-show="uaid.gifts.group2.gift2">
 				  		</label>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup2" ng-true-value="'blanket'" type="radio" name="group2" value="blanket">Blanket</label>
+				  	<label class="form-radio"><input ng-model="uaid.gifts.group2.gift3" ng-true-value="'blanket'" type="radio" name="group2" value="blanket">Blanket</label>
 				  		<label>
-						  	<span>Size:</span>
-						  	<input type="text">
+						  	<span ng-show="uaid.gifts.group2.gift3">Size:</span>
+						  	<input type="text" ng-model="uaid.gifts.group2.gift3.size" ng-show="uaid.gifts.group2.gift3">
 				  		</label>
 			  	</fieldset>
 
 			  	<fieldset>
 			  		<legend>Please select 1 item:</legend>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="'coat'" type="radio" name="group3" value="coat"></label>
-				  		<fieldset>
-							<label class="form-radio"><input type="radio" name="coatSize" value="toddler">Toddler</label>
-							<label class="form-radio"><input type="radio" name="coatSize" value="kids">Kids</label>
-							<label class="form-radio"><input type="radio" name="coatSize" value="adult">Adult</label>
+				  	<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1" ng-true-value="'coat'" type="radio" name="group3" value="coat">Coat</label>
+				  		<fieldset ng-show="uaid.gifts.group3.gift1">
+							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'toddler'" name="coatSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'kids'" name="coatSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'adult'" name="coatSize" value="adult">Adult</label>
 							<label>
 								<span>Size:</span>
-								<input type="text">
+								<input type="text" ng-model="uaid.gifts.group3.gift1.sizenum">
 							</label>
 						</fieldset>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="'shoes'" type="radio" name="group3" value="shoes">Shoes</label>
-				  		<fieldset>
-							<label class="form-radio"><input type="radio" name="shoeSize" value="toddler">Toddler</label>
-							<label class="form-radio"><input type="radio" name="shoeSize" value="kids">Kids</label>
-							<label class="form-radio"><input type="radio" name="shoeSize" value="adult">Adult</label>
+				  	<label class="form-radio"><input ng-model="uaid.gifts.group3.gift2" ng-true-value="'shoes'" type="radio" name="group3" value="shoes">Shoes</label>
+				  		<fieldset ng-show="uaid.gifts.group3.gift2">
+							<label class="form-radio"><input type="radio"  ng-model="uaid.gifts.group3.gift2.size" ng-true-value="'toddler'" name="shoeSize" value="toddler">Toddler</label>
+							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift2.size" ng-true-value="'kids'" name="shoeSize" value="kids">Kids</label>
+							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift2.size" ng-true-value="'adult'" name="shoeSize" value="adult">Adult</label>
 							<label>
 								<span>Size:</span>
-								<input type="text">
+								<input type="text" ng-model="uaid.gifts.group3.gift2.sizenum">
 							</label>
 						</fieldset>
-				  	<label class="form-radio"><input ng-model="uaid.giftgroup3" ng-true-value="'slipper'" type="radio" name="group3" value="slipper">Slippers</label>
-				  		<fieldset>
+				  	<label class="form-radio"><input ng-model="uaid.gifts.group3.gift3" ng-true-value="'slipper'" type="radio" name="group3" value="slipper">Slippers</label>
+				  		<fieldset  ng-show="uaid.gifts.group3.gift3">
 							<label class="form-radio"><input type="radio" name="slipperSize" value="toddler">Toddler</label>
 							<label class="form-radio"><input type="radio" name="slipperSize" value="kids">Kids</label>
 							<label class="form-radio"><input type="radio" name="slipperSize" value="adult">Adult</label>
 							<label>
 								<span>Size:</span>
-								<input type="text">
+								<input type="text" ng-model="uaid.gifts.group3.gift3.sizenum">
 							</label>
 						</fieldset>
 			  	</fieldset>
 
 			  	<fieldset>
 			  		<legend>Please select 2 items:</legend>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'costumeJewelry'" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'makeup'" type="checkbox" name="group4" value="makeup">Makeup</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'boardGames'" type="checkbox" name="group4" value="boardGames">Board Games</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'puzzle'" type="checkbox" name="group4" value="puzzle">Puzzle</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'artSupplies'" type="checkbox" name="group4" value="artSupplies">Art Supplies</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'book'" type="checkbox" name="group4" value="book">Book</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift1" ng-true-value="'costumeJewelry'" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift2" ng-true-value="'makeup'" type="checkbox" name="group4" value="makeup">Makeup</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift3" ng-true-value="'boardGames'" type="checkbox" name="group4" value="boardGames">Board Games</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift4" ng-true-value="'puzzle'" type="checkbox" name="group4" value="puzzle">Puzzle</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift5" ng-true-value="'artSupplies'" type="checkbox" name="group4" value="artSupplies">Art Supplies</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift6" ng-true-value="'book'" type="checkbox" name="group4" value="book">Book</label>
 				  		<label>
-				  			<span>Genre / Reading Level:</span>
-						  	<input type="text">
+				  			<span ng-show="uaid.gifts.group4.gift6">Genre / Reading Level:</span>
+						  	<input type="text" ng-model="uaid.gifts.group4.gift6.genre" ng-show="uaid.gifts.group4.gift6">
 				  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'cd'" type="checkbox" name="group4" value="cd">CD</label>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift7" ng-true-value="'cd'" type="checkbox" name="group4" value="cd">CD</label>
 				  		<label>
-				  			<span>Artist (no explicit lyrics):</span>
-						  	<input type="text">
+				  			<span ng-show="uaid.gifts.group4.gift7">Artist (no explicit lyrics):</span>
+						  	<input type="text" ng-model="uaid.gifts.group4.gift7.artist" ng-show="uaid.gifts.group4.gift7">
 				  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.giftgroup4" ng-true-value="'movie'" type="checkbox" name="group4" value="movie">Movie</label>
-				  		<fieldset>
-							<fieldset>
-								<legend>Please select the preferred format:</legend>
-								<label class="form-radio"><input type="radio" name="movieFormat" value="dvd">DVD</label>
-								<label class="form-radio"><input type="radio" name="movieFormat" value="vhs">VHS</label>
-							</fieldset>
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift8" ng-true-value="'movie'" type="checkbox" name="group4" value="movie">Movie</label>
+
 						  	<label>
-						  		<span>Title (Must be G, PG, or PG-13):</span>
-							  	<input type="text">
+						  		<span ng-show="uaid.gifts.group4.gift8">Title (Must be G, PG, or PG-13):</span>
+							  	<input type="text" ng-model="uaid.gifts.group4.gift8.title" ng-show="uaid.gifts.group4.gift8">
 						  	</label>
-						</fieldset>
+
 			  	</fieldset>
 
 			  	<fieldset>

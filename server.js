@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var request = require('request');
 var Firebase = require('firebase');
+var cloudinary = require('cloudinary');
 
 
 //Middleware
@@ -20,7 +21,7 @@ app.use(express.static('source/css/'));
 app.use(express.static('source/images/'));
 
 //Routes
-giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Firebase, request);
+giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Firebase, request, cloudinary);
 app.use('/', giftboxRouter);
 
 

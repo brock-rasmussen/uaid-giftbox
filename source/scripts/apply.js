@@ -40,24 +40,35 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
       });
 
     };
-
-    self.test = function() {
-      var response = recaptcha.getResponse();
-      $http.post('/apply',{
-        'recapResponse': response
-      }).then(
-        function(res) {
-          console.log(res.data);
-          console.log('success!');
-        }, function(res) {
-          console.log(res.data);
-          console.log('failure');
-        }
-      )
-    };
-
-
-
+    self.gifts = {};
+    self.gifts.sizes = [{
+      value: 'xs',
+      label: 'Extra Small'
+    },{
+      value: 's',
+      label: 'Small'
+    },{
+      value: 'l',
+      label: 'Large'
+    },{
+      value: 'xl',
+      label: 'Extra Large'
+    },{
+      value: '2xl',
+      label: '2x Large'
+    },{
+      value: '3xl',
+      label: '3x Large'
+    },{
+      value: '4xl',
+      label: '4x Large'
+    },{
+      value: '5xl',
+      label: '5x Large'
+    },{
+      value: '6xl',
+      label: '6x Large'
+    }];
 
     self.addPhoto = function() {
       setTimeout(function(){

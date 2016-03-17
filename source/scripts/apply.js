@@ -3,7 +3,10 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
     var self = this;
     self.log = function() {
 
-
+      if(self.group1Counter > 2 || self.group4Counter > 2) {
+        alert('You have selected too many gifts, please confirm how many gifts you have selected.');
+        return;
+      }
 
       //recaptcha
       var response = recaptcha.getResponse();
@@ -71,7 +74,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         }, 1000)
     };
 
-    self.testing = function() {
+    self.groupGift = function() {
       var giftsArr = [];
       var giftItem = {};
       for(var x in self.gifts) {
@@ -83,13 +86,25 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
             if(self.gifts[x][y].size) {
               giftItem.size = self.gifts[x][y].size;
             }
-            console.log(giftItem);
             giftsArr.push(giftItem);
             giftItem = {};
           }
       };
-      console.log(giftsArr);
+    };
+
+    self.group1Counter = 0;
+    self.group4Counter = 0;
+    self.giftCheck = function(model, counter, group) {
+        if(model){
+          counter += 1
+        } else {
+          counter -= 1
+        };
+      if(group === 1) {
+        self.group1Counter = counter;
+      };
+      if(group === 4) {
+        self.group4Counter = counter;
+      }
     }
-
-
   }])

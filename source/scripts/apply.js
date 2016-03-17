@@ -2,14 +2,8 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
   .controller('UAID-ApplyController', ['$http', 'vcRecaptchaService', 'Upload', '$scope', function($http, recaptcha, Upload, $scope){
     var self = this;
     self.log = function() {
-      if(self.gifts.group1.gift1 && self.gifts.group1.gift2 && self.gifts.group1.gift3){
-        alert('You have selected too many items');
-        return;
-      };
-      if(self.gifts.group2.gift1 && self.gifts.group2.gift2 || self.gifts.group2.gift1 && self.gifts.group2.gift3 || self.gifts.group2.gift2 && self.gifts.group2.gift3){
-        alert('You have selected too many items');
-        return;
-      };
+
+
 
       //recaptcha
       var response = recaptcha.getResponse();
@@ -29,7 +23,8 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'agencyName': self.agencyName,
         'agencyLocation': self.agencyLocation,
         'agencyPhone': self.agencyPhone,
-        'photo': self.photo
+        'photo': self.photo,
+
 
 
       }).then(function(response) {
@@ -76,7 +71,25 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         }, 1000)
     };
 
-
+    self.testing = function() {
+      var giftsArr = [];
+      var giftItem = {};
+      for(var x in self.gifts) {
+        for(var y in self.gifts[x])
+          if(self.gifts[x][y].name) {
+            giftItem = {
+              'gift': self.gifts[x][y].name,
+            };
+            if(self.gifts[x][y].size) {
+              giftItem.size = self.gifts[x][y].size;
+            }
+            console.log(giftItem);
+            giftsArr.push(giftItem);
+            giftItem = {};
+          }
+      };
+      console.log(giftsArr);
+    }
 
 
   }])

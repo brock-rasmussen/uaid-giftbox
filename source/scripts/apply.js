@@ -2,15 +2,12 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
   .controller('UAID-ApplyController', ['$http', 'vcRecaptchaService', 'Upload', '$scope', function($http, recaptcha, Upload, $scope){
     var self = this;
     self.log = function() {
-      if(self.gifts.group1.gift1 && self.gifts.group1.gift2 && self.gifts.group1.gift3){
-        alert('You have selected too many items');
-        return;
-      };
-      if(self.gifts.group2.gift1 && self.gifts.group2.gift2 || self.gifts.group2.gift1 && self.gifts.group2.gift3 || self.gifts.group2.gift2 && self.gifts.group2.gift3){
-        alert('You have selected too many items');
-        return;
-      };
 
+      if(self.group1Counter > 2 || self.group4Counter > 2) {
+        alert('You have selected too many gifts, please confirm how many gifts you have selected.');
+        return;
+      }
+      self.groupGift();
       //recaptcha
       var response = recaptcha.getResponse();
       $http.post('/apply', {
@@ -29,7 +26,9 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'agencyName': self.agencyName,
         'agencyLocation': self.agencyLocation,
         'agencyPhone': self.agencyPhone,
-        'photo': self.photo
+        'photo': self.photo,
+        'gifts': self.giftsArr
+
 
 
       }).then(function(response) {
@@ -76,7 +75,37 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         }, 1000)
     };
 
+    self.giftsArr = [];
+    self.groupGift = function() {
+      var giftItem = {};
+      for(var x in self.gifts) {
+        for(var y in self.gifts[x])
+          if(self.gifts[x][y].name) {
+            giftItem = {
+              'gift': self.gifts[x][y].name,
+            };
+            if(self.gifts[x][y].size) {
+              giftItem.size = self.gifts[x][y].size;
+            }
+            self.giftsArr.push(giftItem);
+            giftItem = {};
+          }
+      };
+    };
 
-
-
+    self.group1Counter = 0;
+    self.group4Counter = 0;
+    self.giftCheck = function(model, counter, group) {
+        if(model){
+          counter += 1
+        } else {
+          counter -= 1
+        };
+      if(group === 1) {
+        self.group1Counter = counter;
+      };
+      if(group === 4) {
+        self.group4Counter = counter;
+      }
+    }
   }])

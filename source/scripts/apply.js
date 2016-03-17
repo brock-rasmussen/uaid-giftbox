@@ -7,7 +7,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         alert('You have selected too many gifts, please confirm how many gifts you have selected.');
         return;
       }
-
+      self.groupGift();
       //recaptcha
       var response = recaptcha.getResponse();
       $http.post('/apply', {
@@ -27,6 +27,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'agencyLocation': self.agencyLocation,
         'agencyPhone': self.agencyPhone,
         'photo': self.photo,
+        'gifts': self.giftsArr
 
 
 
@@ -74,8 +75,8 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         }, 1000)
     };
 
+    self.giftsArr = [];
     self.groupGift = function() {
-      var giftsArr = [];
       var giftItem = {};
       for(var x in self.gifts) {
         for(var y in self.gifts[x])
@@ -86,7 +87,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
             if(self.gifts[x][y].size) {
               giftItem.size = self.gifts[x][y].size;
             }
-            giftsArr.push(giftItem);
+            self.giftsArr.push(giftItem);
             giftItem = {};
           }
       };

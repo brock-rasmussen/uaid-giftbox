@@ -98,6 +98,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
               'fname': recData.fname,
               'age': recData.age,
               'intage': recData.intage,
+              'gifts': recData.gifts
           };
           if(!recData.photo) {
             filteredData.photo = '../profile1.jpg';
@@ -142,7 +143,8 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       'agencyName': req.body.agencyName,
       'agencyLocation': req.body.agencyLocation,
       'agencyPhone': req.body.agencyPhone,
-      'photo': req.body.photo
+      'photo': req.body.photo,
+      'gifts': req.body.gifts
     };
 
     cloudinary.uploader.upload(req.body.photo, function(result) {

@@ -10,7 +10,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
       self.groupGift();
       //recaptcha
       var response = recaptcha.getResponse();
-      $http.post('/apply', {
+      var payload = {
         'recapResponse': response,
         'fname': self.fname,
         'lname': self.lname,
@@ -23,15 +23,20 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'contactRelationship': self.contactRelationship,
         'contactSecPhone': self.contactSecPhone,
         'contactSecRelationship': self.contactSecRelationship,
-        'agencyName': self.agencyName,
-        'agencyLocation': self.agencyLocation,
-        'agencyPhone': self.agencyPhone,
         'photo': self.photo,
         'gifts': self.giftsArr
+      };
+      if(self.agencyName){
+        payload.agencyName = self.agencyName
+      };
+      if(self.agencyLocation){
+        payload.agencyName = self.agencyLocation
+      };
+      if(self.agencyPhone){
+        payload.agencyName = self.agencyPhone
+      };
 
-
-
-      }).then(function(response) {
+      $http.post('/apply', payload).then(function(response) {
         console.log('You have successfully added a user!' + response);
       }, function(response) {
         console.log('There was an error, please try again later!');
@@ -41,31 +46,34 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
     };
     self.gifts = {};
     self.gifts.sizes = [{
-      value: 'xs',
+      value: 'XS',
       label: 'Extra Small'
     },{
-      value: 's',
+      value: 'S',
       label: 'Small'
     },{
-      value: 'l',
+      value: 'M',
+      label: 'Medium'
+    },{
+      value: 'L',
       label: 'Large'
     },{
-      value: 'xl',
+      value: 'XL',
       label: 'Extra Large'
     },{
-      value: '2xl',
+      value: '2XL',
       label: '2x Large'
     },{
-      value: '3xl',
+      value: '3XL',
       label: '3x Large'
     },{
-      value: '4xl',
+      value: '4XL',
       label: '4x Large'
     },{
-      value: '5xl',
+      value: '5XL',
       label: '5x Large'
     },{
-      value: '6xl',
+      value: '6XL',
       label: '6x Large'
     }];
 

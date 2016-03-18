@@ -140,15 +140,26 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       'contactRelationship': req.body.contactRelationship,
       'contactSecPhone': req.body.contactSecPhone,
       'contactSecRelationship': req.body.contactSecRelationship,
-      'agencyName': req.body.agencyName,
-      'agencyLocation': req.body.agencyLocation,
-      'agencyPhone': req.body.agencyPhone,
-      'photo': req.body.photo,
       'gifts': req.body.gifts
     };
 
+    if(req.body.photo){
+      payload.photo = req.body.photo
+    };
+    if(req.body.agencyName){
+      payload.agencynName = req.body.agencyName
+    };
+    if(req.body.agencyName){
+      payload.agencynLocation = req.body.agencyLocatoin
+    };
+    if(req.body.agencyPhone){
+      payload.agencynName = req.body.agencyPhone
+    };
+
     cloudinary.uploader.upload(req.body.photo, function(result) {
-      payload.photo = result.url;
+      if(result.url){
+        payload.photo = result.url;
+      };
       //Verify Recaptcha
       request.post(
       'https://www.google.com/recaptcha/api/siteverify',

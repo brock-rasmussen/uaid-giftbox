@@ -17,4 +17,16 @@ angular.module('UAID-Rec', [])
 
     self.getRecData(self.recId);
 
+    self.adopt = function() {
+      $http.post('/recipients', {
+        'recid': self.recId,
+        'adopterFName': self.adopterFName,
+        'adopterLName': self.adopterLName,
+        'adopterEmail': self.adopterEmail
+      }).then(function(res) {
+        console.log('Successfully adopted')
+        console.log(res.data);
+      })
+    };
+
   })

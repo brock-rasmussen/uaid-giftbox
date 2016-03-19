@@ -47,7 +47,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
         console.log(error);
         res.send('There has been an error, please verify your login credentials.');
       } else {
-        adminref.orderByChild('approved').equalTo(false).once("value", function(snapshot) {
+        adminref.orderByChild('approved').equalTo(0).once("value", function(snapshot) {
           recips = snapshot.val();
           console.log(recips);
           res.send(recips);
@@ -77,7 +77,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
         res.send('There has been an error, please verify your login credentials.');
       } else {
         console.log('approving!');
-        adminref.child(req.params.recid + '/approved').set(true);
+        adminref.child(req.params.recid + '/approved').set(1);
         res.send({'approved': true});
       }
     }, {
@@ -88,7 +88,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
   giftboxRouter.route('/home')
   .get(function (req, res){
     var users;
-    fbApp.orderByChild('approved').equalTo(true).limitToFirst(8).once("value", function(snapshot) {
+    fbApp.orderByChild('approved').equalTo(1).limitToFirst(8).once("value", function(snapshot) {
         console.log(snapshot);
         users = snapshot.val();
         securedUsers = {};
@@ -156,7 +156,8 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
               'fname': recData.fname,
               'age': recData.age,
               'intage': recData.intage,
-              'gifts': recData.gifts
+              'gifts': recData.gifts,
+              'approved': recData.approved
           };
           if(!recData.photo) {
             filteredData.photo = '../profile1.jpg';
@@ -174,9 +175,18 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
   giftboxRouter.route('/recipients/?:recid')
   .get(function (req, res){
     res.sendFile(path.join(__dirname + './../recipient.html'));
-  })
+  });
+
+  giftboxRouter.route('/recipients')
   .post(function (req, res){
-    res.send('');
+    var adopter = {
+      'fName': req.body.adopterFName,
+      'lName': req.body.adopterLName,
+      'email': req.body.adopterEmail
+    };
+    adminref.child(req.body.recid + '/adopter').set(adopter);
+    adminref.child(req.body.recid + '/approved').set(2);
+    res.send('Asuh Dude');
   });
 
   giftboxRouter.route('/apply')
@@ -198,7 +208,9 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       'contactRelationship': req.body.contactRelationship,
       'contactSecPhone': req.body.contactSecPhone,
       'contactSecRelationship': req.body.contactSecRelationship,
-      'gifts': req.body.gifts
+      'gifts': req.body.gifts,
+      'approved': 0,
+      'wrapped': req.body.wrapped
     };
 
     if(req.body.photo){

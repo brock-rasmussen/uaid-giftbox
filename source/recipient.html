@@ -77,9 +77,37 @@
             <ul ng-repeat="gift in uaid.recData.gifts">
                 <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}<span ng-show="gift.genre">Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
             </ul>
-            <a href="#"><button type="button">Adopt Me</button></a>
+            <hr>
+
         </div>
         <span class="clear"></span>
+        <h2 ng-show="uaid.recData.approved == 1">Adopt Me</h2>
+        <form ng-show="uaid.recData.approved == 1" ng-submit="uaid.adopt()"  class="form" name="AdopterInfo" enctype="multipart/form-data">
+              <fieldset>
+                  <legend>Contact Information</legend>
+                    <label>
+                      <span>First Name:</span>
+                        <input ng-model="uaid.adopterFName" type="text" name="firstName" value="" placeholder="First Name" pattern="[a-zA-Z]{3,99}"  required>
+                    </label>
+                    <label>
+                      <span>Last Name:</span>
+                        <input ng-model="uaid.adopterLName" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}" required>
+                    </label>
+                    <label>
+                      <span>Contact Phone:</span>
+                        <input ng-model="uaid.adopterPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
+                    </label>
+                    <label>
+                      <span>Contact E-mail:</span>
+                        <input ng-model="uaid.adopterEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com"  required>
+                    </label>
+
+                </fieldset>
+
+                <button>Adopt</button>
+
+                <p>** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non leo nec tortor malesuada molestie. Maecenas sed eros eu neque tristique porta eget id ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In porta consectetur odio, vitae malesuada ex molestie eget. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam enim tortor, aliquam at tincidunt quis, pellentesque id turpis. Nulla consequat aliquam fringilla. Ut a massa ut ante auctor rhoncus sed eget ex. Quisque convallis turpis sit amet justo euismod ultrices. Ut fermentum cursus tortor, in rhoncus dui placerat vitae. Ut vel magna sit amet tellus feugiat sollicitudin eget non orci. Aenean porttitor hendrerit faucibus. Pellentesque ut neque augue. **</p>
+            </form>
     </div>
     <!-- End Content -->
 </div>

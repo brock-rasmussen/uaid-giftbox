@@ -20,7 +20,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       console.log("Login Succeeded!", authData);
     }
   });
-
+  var adminref = new Firebase("https://giftboxtest.firebaseio.com/users");
 
 
   giftboxRouter.route('/')
@@ -28,10 +28,68 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     res.sendFile(path.join(__dirname + './../index.html'));
   });
 
+  giftboxRouter.route('/admin')
+
+  .get(function(req,res) {
+    res.sendFile(path.join(__dirname + './../adminLog.html'));
+  })
+
+  .post(function(req,res) {
+    var recips;
+    if(!req.body.email || !req.body.pass){
+      res.end();
+    };
+    adminref.authWithPassword({
+      email    : req.body.email,
+      password : req.body.pass
+    }, function(error, authData) {
+      if(error){
+        console.log(error);
+        res.send('There has been an error, please verify your login credentials.');
+      } else {
+        adminref.orderByChild('approved').equalTo(false).once("value", function(snapshot) {
+          recips = snapshot.val();
+          console.log(recips);
+          res.send(recips);
+        }, function (err) {
+          console.log("The read failed: " + err.code);
+          res.end();
+        });
+
+        console.log(authData);
+      }
+    }, {
+      remember: "sessionOnly"
+    });
+  });
+
+  giftboxRouter.route('/admin/approve/:recid')
+  .post(function(req, res){
+    if(!req.body.email || !req.body.pass){
+      res.end();
+    };
+    adminref.authWithPassword({
+      email    : req.body.email,
+      password : req.body.pass
+    }, function(error, authData) {
+      if(error){
+        console.log(error);
+        res.send('There has been an error, please verify your login credentials.');
+      } else {
+        console.log('approving!');
+        adminref.child(req.params.recid + '/approved').set(true);
+        res.send({'approved': true});
+      }
+    }, {
+      remember: "sessionOnly"
+    });
+  });
+
   giftboxRouter.route('/home')
   .get(function (req, res){
     var users;
-    fbApp.limitToFirst(8).once("value", function(snapshot) {
+    fbApp.orderByChild('approved').equalTo(true).limitToFirst(8).once("value", function(snapshot) {
+        console.log(snapshot);
         users = snapshot.val();
         securedUsers = {};
         for(x in users) {
@@ -140,15 +198,28 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       'contactRelationship': req.body.contactRelationship,
       'contactSecPhone': req.body.contactSecPhone,
       'contactSecRelationship': req.body.contactSecRelationship,
-      'agencyName': req.body.agencyName,
-      'agencyLocation': req.body.agencyLocation,
-      'agencyPhone': req.body.agencyPhone,
-      'photo': req.body.photo,
       'gifts': req.body.gifts
     };
 
-    cloudinary.uploader.upload(req.body.photo, function(result) {
-      payload.photo = result.url;
+    if(req.body.photo){
+      payload.photo = req.body.photo
+    };
+    if(req.body.agencyName){
+      payload.agencynName = req.body.agencyName
+    };
+    if(req.body.agencyLocation){
+      payload.agencynLocation = req.body.agencyLocation
+    };
+    if(req.body.agencyPhone){
+      payload.agencynName = req.body.agencyPhone
+    };
+
+    cloudinary.uploader.upload(payload.photo, function(result) {
+      console.log(result);
+      if(result.url){
+        payload.photo = result.url;
+        console.log('Photo changed, storing URI');
+      };
       //Verify Recaptcha
       request.post(
       'https://www.google.com/recaptcha/api/siteverify',
@@ -177,6 +248,10 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
 
 
 
+  });
+  giftboxRouter.route('*')
+  .get(function(req, res) {
+    res.redirect('/')
   });
 
 

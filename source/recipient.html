@@ -75,7 +75,7 @@
             <hr>
             <p>Wish List:</p>
             <ul ng-repeat="gift in uaid.recData.gifts">
-                <li>{{gift.gift}}  <span ng-show="gift.size">Size:<span>        {{gift.size}}</li>
+                <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}<span ng-show="gift.genre">Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
             </ul>
             <a href="#"><button type="button">Adopt Me</button></a>
         </div>

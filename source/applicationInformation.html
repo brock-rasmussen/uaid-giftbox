@@ -139,7 +139,7 @@
                     <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'caucasian'" type="radio" name="ethnicity" value="Caucasian" />Caucasian</label>
                     <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'native american'"  type="radio" name="ethnicity" value="Native American" />Native American</label>
                     <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'black/african-american'"  type="radio" name="ethnicity" value="Black/African-American" />Black / African-American</label>
-                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'asian/pacific islander'"  type="radio" name="ethnicity" value="Asian/Pacic Islander" />Asian / Pacific Islander</label>
+                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'asian/pacific-islander'"  type="radio" name="ethnicity" value="Asian/Pacific-Islander" />Asian / Pacific Islander</label>
                     <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'hispanic/latino'" type="radio" name="ethnicity" value="Hispanic/Latino" />Hispanic / Latino</label>
 		  		</fieldset>
 		  		<label>
@@ -244,13 +244,13 @@
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift7.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift7.name, uaid.group4Counter, 4)" ng-true-value="'CD'" type="checkbox" name="group4" value="CD">CD</label>
 				  		<label>
 				  			<span ng-show="uaid.gifts.group4.gift7.name == 'CD'">Artist (no explicit lyrics):</span>
-						  	<input type="text" ng-model="uaid.gifts.group4.gift7.artist" ng-show="uaid.gifts.group4.gift7.name == 'CD'">
+						  	<input type="text" ng-model="uaid.gifts.group4.gift7.genre" ng-show="uaid.gifts.group4.gift7.name == 'CD'">
 				  		</label>
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift8.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift8.name, uaid.group4Counter, 4)" ng-true-value="'Movie'" type="checkbox" name="group4" value="Movie">Movie</label>
 
 						  	<label>
 						  		<span ng-show="uaid.gifts.group4.gift8.name == 'Movie'">Title (Must be G, PG, or PG-13):</span>
-							  	<input type="text" ng-model="uaid.gifts.group4.gift8.title" ng-show="uaid.gifts.group4.gift8.name == 'Movie'">
+							  	<input type="text" ng-model="uaid.gifts.group4.gift8.genre" ng-show="uaid.gifts.group4.gift8.name == 'Movie'">
 						  	</label>
 
 			  	</fieldset>
@@ -265,7 +265,7 @@
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift2.name" ng-true-value="'Underwear'" type="checkbox" name="group5" value="Underwear">Underwear</label>
 				  		<fieldset ng-show="uaid.gifts.group5.gift2.name == 'Underwear'">
 						  	<label>Gender:
-								<select ng-model="uaid.gifts.group5.gift2.gender">
+								<select ng-model="uaid.gifts.group5.gift2.size">
 									<option value="Boys">Boys</option>
 									<option value="Girls">Girls</option>
 									<option value="Mens">Mens</option>
@@ -273,10 +273,10 @@
 								</select>
 							</label>
 				  			<label>Size:
-								<select ng-model="uaid.gifts.group5.gift2.size" ng-options="item.value as item.label for item in uaid.gifts.sizes">
+								<select ng-model="uaid.gifts.group5.gift2.sizenum" ng-options="item.value as item.label for item in uaid.gifts.sizes">
 								</select>
 							</label>
-							<label class="form-checkbox"><input type="checkbox" ng-model="uaid.gifts.group5.gift2.disposable" name="underwearDisposable" value="Disposable">Disposable</label>
+							<label class="form-checkbox"><input type="checkbox" ng-model="uaid.gifts.group5.gift2.genre" name="underwearDisposable" value="Disposable">Disposable</label>
 				  		</fieldset>
 				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift3.name" ng-true-value="'Gloves'" type="checkbox" name="group5" value="Gloves">Gloves</label>
 				  		<fieldset ng-show="uaid.gifts.group5.gift3.name == 'Gloves'">

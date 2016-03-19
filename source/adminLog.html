@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="UAID-Admin">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="../giftbox.css">
+
+  </head>
+  <body ng-controller="UAID-AdminController as uaid">
+    <span ng-show="uaid.authed !== true">
+      <input ng-model="uaid.email" type="text" value="" placeholder="Email" required>
+      <input ng-model="uaid.pass" type="password" value="" placeholder="Password" required>
+      <button ng-click="uaid.validate();">Login</button><br>
+    </span>
+    <div  style="clear: right;"><img ng-src="{{recip.photo}}">{{recip.fname}}<br></div>
+
+    <div style="width: 800px; margin: auto">
+    <div ng-repeat="recip in uaid.recipsArr">
+      <div id="leftcolumn">
+          <img src="{{recip.photo}}" class="fullSizeImage">
+      </div>
+
+      <div id="rightcolumn" style="border-bottom: 2px solid">
+          <h2>{{recip.fname}}</h2>
+          <hr>
+          <p style="padding:0;">Age: {{recip.age}}</p>
+          <p style="padding:0;">Intellectual Age: {{recip.intage}}</p>
+          <hr>
+          <p>Wish List:</p>
+          <ul ng-repeat="gift in recip.gifts">
+              <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}<span ng-show="gift.genre">Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
+          </ul>
+          <a><button ng-show="!recip.approved" ng-click="uaid.approve(uaid.recipsIds[$index], $index);" type="button">Approve</button></a>
+          <p ng-show="recip.approved" style="color: green;">Successfully Approved!</p>
+      </div>
+    </div>
+    </div>
+
+    <p ng-show="uaid.noUsers">There are currently no users awaiting approval.</p>
+
+  </body>
+  <script src="../angular.js"></script>
+  <script src="../admin.js"></script>
+</html>

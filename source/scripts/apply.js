@@ -92,11 +92,17 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
             giftItem = {
               'gift': self.gifts[x][y].name,
             };
-            if(self.gifts[x][y].size) {
-              giftItem.size = self.gifts[x][y].size;
-            }
-            self.giftsArr.push(giftItem);
-            giftItem = {};
+          if(self.gifts[x][y].size) {
+            giftItem.size = self.gifts[x][y].size;
+          };
+          if(self.gifts[x][y].sizenum){
+            giftItem.sizenum = self.gifts[x][y].sizenum;
+          };
+          if(self.gifts[x][y].genre){
+            giftItem.genre = self.gifts[x][y].genre;
+          };
+          self.giftsArr.push(giftItem);
+          giftItem = {};
           }
       };
     };

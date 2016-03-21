@@ -12,7 +12,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     {admin: true}
   );
   //
-    var transporter = nodemailer.createTransport();
+    var transporter = nodemailer.createTransport('');
   //Instantiates Firebase Reference
   var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {
@@ -189,7 +189,21 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     adminref.child(req.body.recid + '/adopter').set(adopter);
     adminref.child(req.body.recid + '/approved').set(2);
 
-    var emailContent = "Thanks for joining the UAID Gift Box program!<br> Please have all gifts delivered to the drop off zone by December 15th at 100 Fake Address Lane.<br><br>" + req.body.recData.fname + "'s Wishlist: " + req.body.recData.gifts[0].gift;
+    var formattedGifts = "";
+    for(var x in req.body.recData.gifts) {
+      formattedGifts += req.body.recData.gifts[x].gift + "   ";
+      if(req.body.recData.gifts[x].size) {
+        formattedGifts += "Size: " + req.body.recData.gifts[x].size + "  ";
+      };
+      if(req.body.recData.gifts[x].sizenum) {
+        formattedGifts += req.body.recData.gifts[x].sizenum + " ";
+      };
+      if(req.body.recData.gifts[x].genre) {
+        formattedGifts += ": " + req.body.recData.gifts[x].genre + "  ";
+      };
+      formattedGifts += "<br><br>";
+    };
+    var emailContent = "Thanks for joining the UAID Gift Box program!<br> Please have all gifts delivered to the drop off zone by December 15th at 100 Fake Address Lane.<br><br>" + req.body.recData.fname + "'s Wishlist: <br><br>" + formattedGifts;
 
     var mailOptions = {
       from: 'UAID Test <test@gmail.com>',

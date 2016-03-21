@@ -11,6 +11,8 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     {uid: "1"},
     {admin: true}
   );
+  //
+    var transporter = nodemailer.createTransport();
   //Instantiates Firebase Reference
   var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {
@@ -119,9 +121,9 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
 
   /* SEND THE CODE BELOW TO THE CONTROLLER EVENTUALLY
   ----------------------------------------------------- */
-    var transporter = nodemailer.createTransport('smtps://email%40gmail.com:pass@smtp.gmail.com');
+
     var mailOptions = {
-      from: 'Name <email@gmail.com>',
+      from: 'UAID Test <test@gmail.com>',
       to: req.body.email,
       subject: 'test',
       text: req.body.name
@@ -186,7 +188,27 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     };
     adminref.child(req.body.recid + '/adopter').set(adopter);
     adminref.child(req.body.recid + '/approved').set(2);
-    res.send('Asuh Dude');
+
+    var emailContent = "Thanks for joining the UAID Gift Box program!<br> Please have all gifts delivered to the drop off zone by December 15th at 100 Fake Address Lane.<br><br>" + req.body.recData.fname + "'s Wishlist: " + req.body.recData.gifts[0].gift;
+
+    var mailOptions = {
+      from: 'UAID Test <test@gmail.com>',
+      to: req.body.adopterEmail,
+      subject: 'test',
+      text: emailContent,
+      html: emailContent
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        return console.log(error);
+        res.send('The server encountered an error sending an email.')
+      }
+      console.log('Message sent: ' + info.response);
+      res.send('Asuh Dude');
+    });
+
+
   });
 
   giftboxRouter.route('/apply')

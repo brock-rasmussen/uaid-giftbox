@@ -22,7 +22,8 @@ angular.module('UAID-Rec', [])
         'recid': self.recId,
         'adopterFName': self.adopterFName,
         'adopterLName': self.adopterLName,
-        'adopterEmail': self.adopterEmail
+        'adopterEmail': self.adopterEmail,
+        'recData': self.recData
       }).then(function(res) {
         console.log('Successfully adopted')
         console.log(res.data);

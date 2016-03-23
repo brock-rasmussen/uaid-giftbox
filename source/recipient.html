@@ -44,6 +44,12 @@
         <header>
             <!-- Begin Navigation -->
             <nav class="wrapper">
+              <div id="headerLogo">
+                  <a href="/"><span>UAID</span></a>
+              </div>
+              <div id="mobileLogo">
+                  <a href="/"><span>UAID</span></a>
+              </div>
                 	<button class="nav-button">Toggle Navigation</button>
                     <ul class="primary-nav">
                         <li><a href="/">Home</a></li>
@@ -81,6 +87,7 @@
 
         </div>
         <span class="clear"></span>
+        <div ng-show="uaid.subApp == false">
         <h2 ng-show="uaid.recData.approved == 1">Adopt Me</h2>
         <form ng-show="uaid.recData.approved == 1" ng-submit="uaid.adopt()"  class="form" name="AdopterInfo" enctype="multipart/form-data">
               <fieldset>
@@ -108,6 +115,8 @@
 
                 <p>** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non leo nec tortor malesuada molestie. Maecenas sed eros eu neque tristique porta eget id ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In porta consectetur odio, vitae malesuada ex molestie eget. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam enim tortor, aliquam at tincidunt quis, pellentesque id turpis. Nulla consequat aliquam fringilla. Ut a massa ut ante auctor rhoncus sed eget ex. Quisque convallis turpis sit amet justo euismod ultrices. Ut fermentum cursus tortor, in rhoncus dui placerat vitae. Ut vel magna sit amet tellus feugiat sollicitudin eget non orci. Aenean porttitor hendrerit faucibus. Pellentesque ut neque augue. **</p>
             </form>
+          </div>
+            <p ng-show="uaid.subApp == true" style="color: green;">Thanks for adopting! An email has been sent with more information - if you don't see the email, please check your spam folder.</p>
     </div>
     <!-- End Content -->
 </div>

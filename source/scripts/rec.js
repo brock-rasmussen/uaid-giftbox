@@ -4,6 +4,8 @@ angular.module('UAID-Rec', [])
 
     var self = this;
     self.recData;
+    self.subApp = false;
+    self.recLink = window.location.href;
     self.recId = window.location.pathname.replace('/recipients/', '');
     console.log(self.recId);
     self.getRecData = function(recId) {
@@ -23,10 +25,13 @@ angular.module('UAID-Rec', [])
         'adopterFName': self.adopterFName,
         'adopterLName': self.adopterLName,
         'adopterEmail': self.adopterEmail,
-        'recData': self.recData
+        'recData': self.recData,
+        'recLink': self.recLink
       }).then(function(res) {
-        console.log('Successfully adopted')
-        console.log(res.data);
+        console.log('Successfully adopted');
+        if(res.data.adopted == true) {
+          self.subApp = true;
+        }
       })
     };
 

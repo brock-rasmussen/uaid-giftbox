@@ -12,7 +12,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     {admin: true}
   );
   //
-    var transporter = nodemailer.createTransport('');
+    var transporter = nodemailer.createTransport();
   //Instantiates Firebase Reference
   var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {
@@ -203,7 +203,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       };
       formattedGifts += "<br><br>";
     };
-    var emailContent = "Thanks for joining the UAID Gift Box program!<br> Please have all gifts delivered to the drop off zone by December 15th at 100 Fake Address Lane.<br><br>" + req.body.recData.fname + "'s Wishlist: <br><br>" + formattedGifts;
+    var emailContent = "Thanks for joining the UAID Gift Box program!<br> Please have all gifts delivered to the drop off zone by December 15th at 100 Fake Address Lane.<br><br>" + req.body.recData.fname + "'s Wishlist: <br><br>" + formattedGifts + "<br><br>" + req.body.recLink;
 
     var mailOptions = {
       from: 'UAID Test <test@gmail.com>',
@@ -219,7 +219,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
         res.send('The server encountered an error sending an email.')
       }
       console.log('Message sent: ' + info.response);
-      res.send('Asuh Dude');
+      res.send({'adopted': true});
     });
 
 

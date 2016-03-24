@@ -47,7 +47,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     }, function(error, authData) {
       if(error){
         console.log(error);
-        res.send('There has been an error, please verify your login credentials.');
+        res.status(403).send('There has been an error, please verify your login credentials.');
       } else {
         adminref.orderByChild('approved').equalTo(0).once("value", function(snapshot) {
           recips = snapshot.val();
@@ -76,7 +76,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     }, function(error, authData) {
       if(error){
         console.log(error);
-        res.send('There has been an error, please verify your login credentials.');
+        res.status(404).send('There has been an error, please verify your login credentials.');
       } else {
         console.log('approving!');
         adminref.child(req.params.recid + '/approved').set(1);
@@ -85,6 +85,49 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     }, {
       remember: "sessionOnly"
     });
+  });
+
+  giftboxRouter.route('/admin/export')
+  .post(function(req,res) {
+
+    if(!req.body.email || !req.body.pass){
+      res.end();
+    };
+    var db;
+    adminref.authWithPassword({
+      email    : req.body.email,
+      password : req.body.pass
+    }, function(error, authData) {
+      if(error){
+        console.log(error);
+        res.status(404).send('There has been an error, please verify your login credentials.');
+      } else {
+        console.log('Retrieving DB');
+        adminref.once("value", function(snapshot) {
+          db = snapshot.val();
+          var sortedDb = 'LastName, FirstName, Age, IntellectualAge, Agency, AgencyLocation, AgencyPhonenumber, PrimaryContact, PrimaryContactEmail, PrimaryContactPhonenumber, PrimaryContactRelationship, SecondaryContactPhonenumber, SecondaryContactRelationship, Ethnicity';
+          for(var x in db) {
+            sortedDb += '\n' + db[x].lname + ", " + db[x].fname + ", " + db[x].age + ", " + db[x].intage;
+            if(db[x].agencyName) {
+              sortedDb += ", " + db[x].agencyName;
+            };
+            if(db[x].agencyLocation) {
+             sortedDb += ", " + db[x].agencyLocation;
+            };
+            if(db[x].agencyPhone) {
+              sortedDb += ", " + db[x].agencyPhone;
+            };
+            sortedDb += ", " + db[x].contactName + ", " + db[x].contactEmail + ", " + db[x].contactPhone + ", " + db[x].contactRelationship + ", " + db[x].contactSecPhone + ", " + db[x].contactSecRelationship + ", " + db[x].ethnicity;
+
+          };
+          res.send(sortedDb);
+        });
+
+      }
+    }, {
+      remember: "sessionOnly"
+    });
+
   });
 
   giftboxRouter.route('/home')
@@ -201,16 +244,15 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       if(req.body.recData.gifts[x].genre) {
         formattedGifts += ": " + req.body.recData.gifts[x].genre + "  ";
       };
-      formattedGifts += "<br><br>";
+      formattedGifts += "<br>";
     };
-    var emailContent = "Thanks for joining the UAID Gift Box program!<br> Please have all gifts delivered to the drop off zone by December 15th at 100 Fake Address Lane.<br><br>" + req.body.recData.fname + "'s Wishlist: <br><br>" + formattedGifts + "<br><br>" + req.body.recLink;
-
+    var eContent = "<p>Thank you, " + req.body.adopterFName + "!</p><p>We greatly appreciate your aid in helping individuals with intellectual disabilities, and we know " + req.body.recData.fname + " will appreciate it too.</p><p>There are a few options for you to fulfill their wishlist.<ul><li>1. Find when and where to drop off your gifts on our webpage at http://www.uaidutah.org/holiday-gift-box/ .</li><li>2. If you plan on shopping online, you can mail the gifts to the address given in the link above. Note, that if you shop on smile.amazon.com with UAID set as your benefiting charity, a part of what you spend will be donated to UAID too. Double donations!</li></ul>Again, we greatly appreciate your help." + req.body.recData.fname + "'s wishlist can be found below. It is recommended that you spend $75 on gifts.</p>" + req.body.recLink + "<br>" + formattedGifts + "<p>If you find that you are unable to fulfill the wishlist, please contact us at 801-654-8449 as soon as possible.</p><p>Thanks a million!<br>UAID</p>"
     var mailOptions = {
       from: 'UAID Test <test@gmail.com>',
       to: req.body.adopterEmail,
       subject: 'test',
-      text: emailContent,
-      html: emailContent
+      text: eContent,
+      html: eContent
     };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -253,13 +295,13 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       payload.photo = req.body.photo
     };
     if(req.body.agencyName){
-      payload.agencynName = req.body.agencyName
+      payload.agencyName = req.body.agencyName
     };
     if(req.body.agencyLocation){
-      payload.agencynLocation = req.body.agencyLocation
+      payload.agencyLocation = req.body.agencyLocation
     };
     if(req.body.agencyPhone){
-      payload.agencynName = req.body.agencyPhone
+      payload.agencyPhone = req.body.agencyPhone
     };
 
     cloudinary.uploader.upload(payload.photo, function(result) {

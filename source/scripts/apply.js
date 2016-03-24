@@ -31,10 +31,10 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         payload.agencyName = self.agencyName
       };
       if(self.agencyLocation){
-        payload.agencyName = self.agencyLocation
+        payload.agencyLocation = self.agencyLocation
       };
       if(self.agencyPhone){
-        payload.agencyName = self.agencyPhone
+        payload.agencyPhone = self.agencyPhone
       };
 
       $http.post('/apply', payload).then(function(response) {

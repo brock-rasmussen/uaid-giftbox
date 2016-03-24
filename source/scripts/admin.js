@@ -44,5 +44,28 @@ angular.module('UAID-Admin', [])
       })
     };
 
+    self.retrieveCsv = function() {
+      $http.post('/admin/export', {
+        'email': self.email,
+        'pass': self.pass
+      }).then(function(res) {
+        console.log(res.data);
+        self.csv = res.data;
+        window.URL = window.webkitURL || window.URL;
+        var contentType = 'text/csv';
+        var csvFile = new Blob([self.csv], {type: contentType});
+        var a = document.createElement('a');
+        a.download = 'uaidGiftBox.csv';
+        a.href = window.URL.createObjectURL(csvFile);
+        a.textContent = 'Download CSV';
+
+        a.dataset.downloadurl = [contentType, a.download, a.href].join(':');
+
+        document.body.appendChild(a);
+      }, function(err) {
+        console.log(err)
+      })
+    };
+
 
   });

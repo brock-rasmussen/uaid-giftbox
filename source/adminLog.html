@@ -38,6 +38,7 @@
       <input ng-model="uaid.pass" type="password" value="" placeholder="Password" required>
       <button ng-click="uaid.validate();">Login</button><br>
     </span>
+    <button ng-show="uaid.authed == true" ng-click="uaid.retrieveCsv();">Retrieve excel database</button><br>
     <div  style="clear: right;"><img ng-src="{{recip.photo}}">{{recip.fname}}<br></div>
 
     <div style="width: 800px; margin: auto">

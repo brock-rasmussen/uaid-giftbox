@@ -2,154 +2,155 @@
 <html lang="en-US" ng-app="UAID-Giftbox">
 <head>
 <meta charset="utf-8">
-<title>UAID Gift Box Event</title>
-
-<!-- TELLS PHONES NOT TO LIE ABOUT THEIR WIDTH -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>UAID Gift Box</title>
+<!-- CSS -->
+<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A300%2C400%2C700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="flexslider.css">
+<link rel="stylesheet" href="style.css">
 
 <!-- Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
-<!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
-<!-- CSS -->
-<link rel="stylesheet" type="text/css" href="css/giftbox.css">
-<link rel="stylesheet" type="text/css" href="css/flexslider.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/mobilemenu.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="functions.min.js"></script>
 
 <!-- Scripts -->
 <script src="angular.js"></script>
 <script src="app.js"></script>
 
-
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<![endif]-->
-
-<!-- Mobile Menu -->
-	<script>
-		$(document).ready(function(){
-			$(".nav-button").click(function () {
-			$(".nav-button,.primary-nav").toggleClass("open");
-			});
-		});
-	</script>
-<!-- End Mobile Menu -->
-
-<!-- FlexSlider -->
-<script src="jquery.flexslider.js"></script>
-
-<script type="text/javascript" charset="utf-8">
+<script src="flexslider.min.js"></script>
+<script type="text/javascript">
   $(window).load(function() {
-    $('.flexslider').flexslider();
+    $('.flexslider').flexslider({
+			animation: "fade",
+			easing: "swing",
+			direction: "horizontal",
+			reverse: "false",
+			animationLoop: true,
+			smoothHeight: false,
+			startAt: 0,
+			slideshow: true,
+			slideshowSpeed: 7000,
+			animationSpeed: 600,
+			initDelay: 0,
+			randomize: false,
+			fadeFirstSlide: true,
+			pauseOnAction: true,
+			pauseOnHover: false,
+			pauseInvisible: true,
+			useCSS: true,
+			touch: true
+		});
   });
 </script>
-<!-- End Slider -->
-
-
 </head>
 
 <body ng-controller="UAID-Controller as uaid">
-    <!-- Begin Header Wrapper -->
-        <header>
-            <!-- Begin Navigation -->
-						<nav class="wrapper">
-							<div id="headerLogo">
-									<a href="/"><span>UAID</span></a>
+	<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+	<div id="page">
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="navbar-header">
+								<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<div id="logo">
+									<p class="site-name">
+										<a class="navbar-brand" href="//uaidutah.org/" title="UAID">UAID</a>
+									</p>
+								</div>
 							</div>
-							<div id="mobileLogo">
-									<a href="/"><span>UAID</span></a>
+							<div class="collapse navbar-collapse">
+								<ul class="nav navbar-nav">
+									<li><a href="//uaidutah.org">Home</a></li>
+									<li class="active"><a href="/">Gift Box</a></li>
+									<li><a href="../../apply">Application</a></li>
+								</ul>
 							</div>
-						    	<button class="nav-button">Toggle Navigation</button>
-						        <ul class="primary-nav">
-						            <li><a href="./">Home</a></li>
-						            <li><a href="/apply">Gift Box Application</a></li>
-						        </ul>
-						    <div class="clear"></div>
-						</nav>
-            <!-- End Navigation -->
-        </header>
-    <!-- End of Header Wrapper -->
-
-
-<!-- Begin of Container -->
-<div id="container">
-
-    <!-- Begin Content -->
-    <div class="wrapper">
-
-			<!-- Flex Slider -->
-					<div class="flexslider">
-						<ul class="slides">
-							<li>
-								<img src="image1.jpg" />
-							</li>
-							<li>
-								<img src="image2.jpg" />
-							</li>
-							<li>
-								<img src="image3.jpg" />
-							</li>
-							<li>
-								<img src="image4.jpg" />
-							</li>
-						</ul>
+						</div>
 					</div>
-					<!-- End Slider Div -->
-
-        <p>Volunteering at UAID is the perfect way to afford opportunities to those with intellectual disabilities. There are many benefits to volunteering with UAID. This organization was founded by volunteers and is driven by volunteers. Volunteers are needed to continue to support us as we grow and develop new and innovative programs . We are looking for the next generation of volunteers to help us take our mission, purpose, and services to the next level.</p><br>
-
-        <button class="button">Volunteer</button>
-
-    	<h1>Holiday Gift Box</h1>
-
-        <!-- Begin Display Profiles -->
-        <div class="displayProfile">
-        <h2>Adopt Us!</h2>
-        	<!-- Begin Persona Wrapper -->
-            <div class="personaWrapper">
-                <!--Begin Personal Profile-->
-                <div class="profile" ng-repeat="recip in uaid.recipsArr | limitTo: uaid.limit">
-                    <h3>{{recip.fname}}</h3>
-                    <img src="{{recip.photo}}" alt="" />
-                    <span><strong>Age: </strong>{{recip.age}}</span> <span><strong>Intellectual Age: </strong>{{recip.intage}}</span>
-                    <a ng-href="/recipients/{{uaid.recipsIds[$index]}}"><button >Adopt Me</button></a>
-                </div>
-                <!--End Personal Profile-->
-
-                <button type="button" ng-click="uaid.seeMoreRecips()">See More</button>
-                <div class="clear"></div>
-            </div>
-
-        <!-- End Display Profiles -->
-        
-        <p>This program is a year long project resulting in holiday gifts for individuals with intellectual disabilities who are low income, live in group homes, and receive meager benefits from SSI. It brings joy to many who are otherwise overlooked during the holidays.</p>
-
-        <p>A man with an intellectual disability may be physically 64 years of age, yet have an intellectual age of around 6. He expects and anxiously awaits the magic of the Holiday season. Yet, he does not have much in the way of family, nor does enough money to shop for himself. That is where UAID steps in with the Holiday Gift Box program.</p>
-
-        <p>As the largest program offered by UAID, Holiday Gift Box impacts the lives of nearly 1,400 people with intellectual disabilities each year from all corners of the state. The program provides basic need resources like shoes, coats, sheets, disposable undergarments, and personal hygiene items. Simliar in design to programs like Angel Tree or Sub for Santa, Holiday Gift Box is the only program that supports both adults and children with disabilities. Many of the children that are accepted into Holiday Gift Box program are refered to UAID by the Angel Tree program or Sub for Santa because they have exhausted their resources and cannot serve these individuals.</p>
-
-        <p>The program follows a very intentional timeline to stage the project each year. In early August, UAID works with local realtors to find a donated space to house the staging of the event for two and half months. During this time, UAID works closely with service providers, support service coordinators, and independent living centers to refer and identify low income, intellectually or developmentally disabled individuals in need of resources. Outreach includes individuals with disabilities from rural communities and Native American reservations. The faces of children and adults with a list of their individual wishes are created in the form of a holiday ornament. Ornaments are adopted by individuals, groups and organizations who supply the requested items either through direct purchase or cash contributions.</p>
-
-        <p>In late October, hundreds of volunteers come to move, unpack, and begin staging the event, while other volunteers begin creating ornaments. Through a mix of individual donors and local business, nearly half of the individuals are sponsored. Yet each year, UAID fulfills the wishes of the remaining unsponsored individuals; if an application is accepted, no person will be turned away.</p>
-
-
-
-
+				</div>
+			</nav>
+		</header>
+		<div id="content">
+			<div class="top-section">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<img src="image1.jpg">
+						</li>
+						<li>
+							<img src="image2.jpg">
+						</li>
+						<li>
+							<img src="image3.jpg">
+						</li>
+						<li>
+							<img src="image4.jpg">
+						</li>
+					</ul>
+				</div>
+				<div class="cfa">
+					<div class="container">
+						<div class="col-sm-8">
+							<span class="cfa-text">Help us provide opportunities to those with intellectual disabilities.</span>
+						</div>
+						<div class="col-sm-4">
+							<a class="btn btn-lg cfa-button" href="//uaidutah.org/way-to-help/">Be a Supporter</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<main class="container main-content-area">
+				<div class="row post-inner-content" role="main">
+					<article class="hentry">
+						<header class="page-header" style="text-align: center;">
+							<h1 class="entry-title">Holiday Gift Box</h1>
+						</header>
+						<div class="entry-content">
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<p>UAID's Holiday Gift Box impacts the lives of nearly 1,400 people with intellectual disabilities each year from all corners of the state. The program provides basic need resources like shoes, coats, sheets, disposable undergarments, and personal hygiene items. Simliar in design to programs like Angel Tree or Sub for Santa, Holiday Gift Box is the only program that supports both adults and children with disabilities.</p>
+								</div>
+							</div>
+						</div>
+					</article>
+				</div>
+				
+				<div class="row main-content-area profiles">
+					<div class="profile post-inner-content" ng-repeat="recip in uaid.recipsArr | limitTo: uaid.limit">
+						<img src="profile1.jpg" alt="">
+						<div class="profile-info">
+							<h3 class="profile-name">{{ recip.fname }}</h3>
+							<hr>
+							<p class="profile-age">{{ recip.age }} years old</p>
+							<hr>
+							<p class="profile-intage">Intellectually {{ recip.intage }} years old</p>
+							<button class="btn-block profile-adopt">Adopt Me</button>
+						</div>
+					</div>
+					<button ng-if="uaid.recipsArr > 4" class="btn-lg btn-block" ng-click="uaid.seeMoreRecips()">See More</button>
+				</div>
+			</main>
 		</div>
-        <!-- End Persona Wrapper -->
-    </div>
-    <!-- End Content -->
-</div>
-<!-- End of Container -->
-<!-- Begin Footer -->
-<footer>
-	<div class="wrapper">
-		<p>Copyright 2016. All Rights Reserved.</p>
-  </div>
-</footer>
-<!-- End Footer -->
+		
+		<div id="footer-area">
+			<footer id="colophon">
+				<div class="site-info container">
+					<p>&copy; Utah Association for Intellectual Disabilities</p>
+				</div>
+				<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div>
+			</footer>
+		</div>
+	</div>
 </body>
 </html>

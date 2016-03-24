@@ -7,6 +7,32 @@
 
   </head>
   <body ng-controller="UAID-AdminController as uaid">
+    <header>
+        <!-- Begin Navigation -->
+        <nav class="wrapper">
+          <div id="headerLogo">
+              <a href="/"><span>UAID</span></a>
+          </div>
+          <div id="mobileLogo">
+              <a href="/"><span>UAID</span></a>
+          </div>
+              <button class="nav-button">Toggle Navigation</button>
+                <ul class="primary-nav">
+                    <li><a href="./">Home</a></li>
+                    <li><a href="/apply">Gift Box Application</a></li>
+                </ul>
+            <div class="clear"></div>
+        </nav>
+        <!-- End Navigation -->
+    </header>
+<!-- End of Header Wrapper -->
+
+
+<!-- Begin of Container -->
+<div id="container">
+
+<!-- Begin Content -->
+<div class="wrapper">
     <span ng-show="uaid.authed !== true">
       <input ng-model="uaid.email" type="text" value="" placeholder="Email" required>
       <input ng-model="uaid.pass" type="password" value="" placeholder="Password" required>
@@ -35,7 +61,8 @@
       </div>
     </div>
     </div>
-
+</div>
+</div>
     <p ng-show="uaid.noUsers">There are currently no users awaiting approval.</p>
 
   </body>

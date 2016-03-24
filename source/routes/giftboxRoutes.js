@@ -12,7 +12,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     {admin: true}
   );
   //
-    var transporter = nodemailer.createTransport();
+    var transporter = nodemailer.createTransport('');
   //Instantiates Firebase Reference
   var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {

@@ -187,6 +187,12 @@ nav ul li {
 a {
 	text-decoration: none;
 }
+a:link {
+    color: #DA4453;
+}
+a:visited { 
+    color: #444;
+}
 button {
 	text-transform: uppercase;
 	font-size: 18px;
@@ -252,14 +258,16 @@ button:hover {
 }
 
 .form label>span {
-	width: 10%;
+	width: 15%;
 	text-align: right;
 	padding-right: 10px;
 	margin-top: 10px;
 	color: #888;
 }
-
-.form input[type="text"],.form input[type="email"],.form textarea,.form select {
+#photo-raw {
+    padding: 10px;
+}
+.form input[type="text"],.form input[type="email"],.form input[type="number"],.form textarea,.form select {
 	border: 1px solid #dadada;
 	color: #888;
 	height: 30px;
@@ -312,19 +320,28 @@ button:hover {
 	background: #CF7A7A;
 }
 
+/*
 .form input[type="checkbox"] {
 	display: block;
 	float: left;
 }
-
-.form-checkbox {
+*/
+#entertainment_selection {
+	padding-bottom:40px;
+}
+.entertainment_item {
 	float: left;
-	padding: 0 80px 0 5px;
+	padding-right: 15px;
 }
 
 fieldset {
 	border: 1px solid #dadada;
 	padding: 15px 5px;
+	margin-bottom: 15px;
+}
+.instructions {
+	font-weight: bolder;
+    font-size: 1.2em;
 }
 
 legend {

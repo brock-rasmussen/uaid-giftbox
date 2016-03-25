@@ -12,7 +12,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     {admin: true}
   );
   //
-    var transporter = nodemailer.createTransport('');
+    var transporter = nodemailer.createTransport();
   //Instantiates Firebase Reference
   var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {
@@ -110,12 +110,18 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
             sortedDb += '\n' + db[x].lname + ", " + db[x].fname + ", " + db[x].age + ", " + db[x].intage;
             if(db[x].agencyName) {
               sortedDb += ", " + db[x].agencyName;
+            }else{
+              sortedDb += ", ";
             };
             if(db[x].agencyLocation) {
              sortedDb += ", " + db[x].agencyLocation;
+            }else{
+             sortedDb += ", ";
             };
             if(db[x].agencyPhone) {
               sortedDb += ", " + db[x].agencyPhone;
+            }else{
+              sortedDb += ", ";
             };
             sortedDb += ", " + db[x].contactName + ", " + db[x].contactEmail + ", " + db[x].contactPhone + ", " + db[x].contactRelationship + ", " + db[x].contactSecPhone + ", " + db[x].contactSecRelationship + ", " + db[x].ethnicity;
 
@@ -277,6 +283,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     var payload = {
       'fname': req.body.fname,
       'lname': req.body.lname,
+      'address': req.body.address,
       'age': req.body.age,
       'intage': req.body.intage,
       'ethnicity': req.body.ethnicity,

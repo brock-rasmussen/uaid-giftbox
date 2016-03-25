@@ -14,6 +14,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'recapResponse': response,
         'fname': self.fname,
         'lname': self.lname,
+        'address': self.address,
         'age': self.age,
         'intage': self.intage,
         'ethnicity': self.ethnicity,

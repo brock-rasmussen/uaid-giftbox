@@ -11,8 +11,8 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 <!-- CSS -->
-<link rel="stylesheet" type="text/css" href="css/giftbox.css">
-<link rel="stylesheet" type="text/css" href="css/mobilemenu.css">
+<link rel="stylesheet" type="text/css" href="giftbox.css">
+<link rel="stylesheet" type="text/css" href="mobilemenu.css">
 
 <!-- Scripts -->
 <script src="angular.js"></script>
@@ -68,23 +68,6 @@
 			<fieldset>
 				<legend>Referrer Information</legend>
 
-				<fieldset>
-					<legend>Agency Information</legend>
-					<p></p>
-					<label>
-						<span>Agency Name:</span>
-						<input ng-model="uaid.agencyName" type="text" name="agencyName" value="" placeholder="Agency Name">
-					</label>
-					<label>
-						<span>Location:</span>
-						<input ng-model="uaid.agencyLocation" type="text" name="agencyLocation" value="" placeholder="Agency Location">
-					</label>
-					<label>
-					  	<span>Phone Number:</span>
-				  		<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}">
-				  	</label>
-				</fieldset>
-
 			  	<fieldset>
 			  		<legend>Primary Contact</legend>
 				  	<label>
@@ -107,7 +90,7 @@
 
 			  	<fieldset>
 			  		<legend>Secondary Contact</legend>
-			  		<!-- secondary name missing? 
+			  		<!-- secondary name missing?
 					<label>
 				  		<span>Name:</span>
 					  	<input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}"  required>
@@ -125,6 +108,23 @@
 			  	</fieldset>
             </fieldset>
 
+						<fieldset>
+							<legend>Agency Information (Optional)</legend>
+							<p></p>
+							<label>
+								<span>Agency Name:</span>
+								<input ng-model="uaid.agencyName" type="text" name="agencyName" value="" placeholder="Agency Name">
+							</label>
+							<label>
+								<span>Address:</span>
+								<input ng-model="uaid.agencyLocation" type="text" name="agencyLocation" value="" placeholder="Agency Location">
+							</label>
+							<label>
+									<span>Phone Number:</span>
+									<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}">
+								</label>
+						</fieldset>
+
         	<fieldset>
             	<legend>Recipient Information</legend>
                 <label>
@@ -135,8 +135,12 @@
                 	<span>Last Name:</span>
                     <input ng-model="uaid.lname" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}"  required>
                 </label>
+								<label>
+									<span>Address:</span>
+										<input ng-model="uaid.address" type="text"  placeholder="Address" required></input>
+								</label>
                 <label>
-					<span>Age:</span>
+									<span>Age:</span>
                 	<input ng-model="uaid.age"  type="number" name="age" value="" placeholder="Age" pattern="[0-9]{1,3}"  required>
                 </label>
             	<label>
@@ -221,7 +225,7 @@
 			  	<fieldset>
 			  		<legend>Please select 1 item:</legend>
 			  		<span class="instructions">Please select one of the following items.</span>
-				  	
+
 				  		<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Coat'">
 				  			<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Coat'" type="radio" name="group3" value="Coat">Coat</label>
 							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Toddler'" name="coatSize" value="Toddler">Toddler</label>
@@ -233,7 +237,7 @@
 							</label>
 						</fieldset>
 
-				  	
+
 				  		<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Shoes'">
 				  			<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Shoes'" type="radio" name="group3" value="Shoes">Shoes</label>
 							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Toddler'" name="shoeSize" value="Toddler">Toddler</label>
@@ -245,7 +249,7 @@
 							</label>
 						</fieldset>
 
-				  	
+
 				  		<fieldset  ng-show="uaid.gifts.group3.gift1.name == 'Slipper'">
 				  			<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Slipper'" type="radio" name="group3" value="Slipper">Slippers</label>
 							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" name="slipperSize" value="Toddler">Toddler</label>
@@ -270,7 +274,7 @@
 				  	</div>
 				  	<div class="clear"></div>
 
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift6.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift6.name, uaid.group4Counter, 4)" ng-true-value="'Book'" type="checkbox" name="group4" value="book">Book</label>	
+				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift6.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift6.name, uaid.group4Counter, 4)" ng-true-value="'Book'" type="checkbox" name="group4" value="book">Book</label>
 				  		<label>
 				  			<span ng-show="uaid.gifts.group4.gift6.name == 'Book'">Genre / Reading Level:</span>
 						  	<input type="text" ng-model="uaid.gifts.group4.gift6.genre" ng-show="uaid.gifts.group4.gift6.name == 'Book'">
@@ -301,12 +305,12 @@
 						  	</label>
 				  		</fieldset>
 
-				  	
-				  		
-				  		<fieldset ng-show="uaid.gifts.group5.gift2.name == 'Underwear'">
+
+
+				  		<fieldset>
 				  			<span class="instructions">Please select size of underwear. If your not sure, please refer to the size chart <a href="http://shop.fruit.com/info/sizeGuide" target="_blank">here</a>.</span>
 				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift2.name" ng-true-value="'Underwear'" type="checkbox" name="group5" value="Underwear">Underwear</label>
-						  	<label>
+						  	<label  ng-show="uaid.gifts.group5.gift2.name == 'Underwear'">
 						  		<span>Gender:</span>
 								<select ng-model="uaid.gifts.group5.gift2.size">
 									<option value="">-Please Select-</option>
@@ -316,42 +320,48 @@
 									<option value="Womens">Womens</option>
 								</select>
 							</label>
-				  			<label>
+				  			<label  ng-show="uaid.gifts.group5.gift2.name == 'Underwear'">
 				  				<span>Size:</span>
 								<select ng-model="uaid.gifts.group5.gift2.sizenum" ng-options="item.value as item.label for item in uaid.gifts.sizes">
 								</select>
 							</label>
-							<label class="form-checkbox"><input type="checkbox" ng-model="uaid.gifts.group5.gift2.genre" name="underwearDisposable" value="Disposable">Check if they need to be disposable</label>
+							<label class="form-checkbox"   ng-show="uaid.gifts.group5.gift2.name == 'Underwear'"><input type="checkbox" ng-model="uaid.gifts.group5.gift2.genre" name="underwearDisposable" value="Disposable">Check if they need to be disposable</label>
 				  		</fieldset>
 
-				  	
-				  		<fieldset ng-show="uaid.gifts.group5.gift3.name == 'Gloves'">
+
+				  		<fieldset>
 				  			<span class="instructions">Please select size of Gloves. If your not sure, please refer to the size chart <a href="http://www.glove.org/Modern/glovemeasure.php" target="_blank">here</a>.</span>
 				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift3.name" ng-true-value="'Gloves'" type="checkbox" name="group5" value="Gloves">Gloves</label>
-				  			<!-- Make this a dropdown option-->
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift3.size" type="radio" name="gloveSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift3.size" type="radio" name="gloveSize" value="Kids">Kids</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift3.size" type="radio" name="gloveSize" value="Adult">Adult</label>
+							<select ng-model="uaid.gifts.group5.gift3.size" ng-show="uaid.gifts.group5.gift3.name == 'Gloves'">
+								<option value="">-Please Select-</option>
+								<option value="Toddler">Toddler</option>
+								<option value="Kids">Kids</option>
+								<option value="Adult">Adult</option>
+							</select>
 						</fieldset>
 
-				  	
-				  		<fieldset ng-show="uaid.gifts.group5.gift4.name == 'Mittens'">
+
+				  		<fieldset>
 				  			<span class="instructions">Please select size of Mittens. If your not sure, please refer to the size chart <a href="http://www.glove.org/Modern/glovemeasure.php" target="_blank">here</a>.</span>
 				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift4.name" ng-true-value="'Mittens'" type="checkbox" name="group5" value="Mittens">Mittens</label>
-				  			<!-- Make this a dropdown option-->
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift4.size" type="radio" name="mittenSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift4.size" type="radio" name="mittenSize" value="Kids">Kids</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift4.size" type="radio" name="mittenSize" value="Adult">Adult</label>
+							<select ng-model="uaid.gifts.group5.gift4.size" ng-show="uaid.gifts.group5.gift4.name == 'Mittens'">
+								<option value="">-Please Select-</option>
+								<option value="Toddler">Toddler</option>
+								<option value="Kids">Kids</option>
+								<option value="Adult">Adult</option>
+							</select>
 						</fieldset>
 
-				  	
-				  		<fieldset ng-show="uaid.gifts.group5.gift5.name">
+
+				  		<fieldset>
 				  			<span class="instructions">Please select size of Knit Hat. If your not sure, please refer to the size chart <a href="http://tutorials.knitpicks.com/wptutorials/hat-size-charts/" target="_blank">here</a>.</span>
 				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift5.name" ng-true-value="'Knit Hat'" type="checkbox" name="group5" value="Knit Hat">Knit Hat</label>
-				  			<!-- Make this a dropdown option-->
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift5.size" type="radio" name="knitHatSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift5.size" type="radio" name="knitHatSize" value="Kids">Kids</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift5.size" type="radio" name="knitHatSize" value="Adult">Adult</label>
+							<select ng-model="uaid.gifts.group5.gift5.size" ng-show="uaid.gifts.group5.gift5.name">
+								<option value="">-Please Select-</option>
+								<option value="Toddler">Toddler</option>
+								<option value="Kids">Kids</option>
+								<option value="Adult">Adult</option>
+							</select>
 						</fieldset>
 
 						<fieldset>

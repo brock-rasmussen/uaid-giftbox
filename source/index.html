@@ -109,7 +109,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<main class="container main-content-area">
 				<div class="row post-inner-content" role="main">
 					<article class="hentry">
@@ -125,24 +125,24 @@
 						</div>
 					</article>
 				</div>
-				
+
 				<div class="row main-content-area profiles">
 					<div class="profile post-inner-content" ng-repeat="recip in uaid.recipsArr | limitTo: uaid.limit">
-						<img src="profile1.jpg" alt="">
+						<img ng-src="{{recip.photo}}" alt="">
 						<div class="profile-info">
 							<h3 class="profile-name">{{ recip.fname }}</h3>
 							<hr>
 							<p class="profile-age">{{ recip.age }} years old</p>
 							<hr>
 							<p class="profile-intage">Intellectually {{ recip.intage }} years old</p>
-							<button class="btn-block profile-adopt">Adopt Me</button>
+							<a ng-href="/recipients/{{uaid.recipsIds[$index]}}"><button class="btn-block profile-adopt">Adopt Me</button></a>
 						</div>
 					</div>
 					<button ng-if="uaid.recipsArr > 4" class="btn-lg btn-block" ng-click="uaid.seeMoreRecips()">See More</button>
 				</div>
 			</main>
 		</div>
-		
+
 		<div id="footer-area">
 			<footer id="colophon">
 				<div class="site-info container">

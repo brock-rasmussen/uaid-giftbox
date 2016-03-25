@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Admin</title>
     <link rel="stylesheet" type="text/css" href="../giftbox.css">
+    <link rel="stylesheet" type="text/css" href="../mobilemenu.css">
 
   </head>
   <body ng-controller="UAID-AdminController as uaid">
@@ -52,6 +53,7 @@
           <hr>
           <p style="padding:0;">Age: {{recip.age}}</p>
           <p style="padding:0;">Intellectual Age: {{recip.intage}}</p>
+          <p style="padding:0;">Address: {{recip.address}}</p>
           <hr>
           <p>Wish List:</p>
           <ul ng-repeat="gift in recip.gifts">

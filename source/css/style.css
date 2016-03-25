@@ -1368,27 +1368,7 @@ button[type=submit],
 
 /* =UAID team
 ----------------------------------------------- */
-/* CHANGE COLOR */
-.post-navigation .nav-links a,
-.paging-navigation a {
-  color: #f3553d;
-}
-
-/* CHANGE HOVER COLOR
- * 1. CTA button
- * 2. Scroll to top button
- * 3 & 4. Post navigation buttons
- * 5. Tag cloud
- */
-.cfa-button:hover,
-.scroll-to-top:hover,
-.post-navigation .nav-links a:hover,
-.paging-navigation a:hover,
-.entry-meta .tagcloud a:hover {
-  background-color: #f3553d;
-  color: #fff;
-}
-
+/* Gift Box Home */
 .profiles {
 	display: flex;
 	flex-wrap: wrap;
@@ -1436,4 +1416,14 @@ button[type=submit],
 }
 .profile-info .profile-adopt {
 	margin: 2em 0 0;
+}
+
+/* Application */
+fieldset {
+	clear: both;
+	margin: 2em 0;
+}
+
+#photo-editor {
+	border: 1px solid #363636;
 }

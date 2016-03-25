@@ -2,384 +2,541 @@
 <html lang="en-US" ng-app="UAID-Apply">
 <head>
 <meta charset="utf-8">
-<title>UAID Gift Box Application</title>
-
-<!-- TELLS PHONES NOT TO LIE ABOUT THEIR WIDTH -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
+<title>UAID Gift Box Application</title>
 <!-- CSS -->
-<link rel="stylesheet" type="text/css" href="css/giftbox.css">
-<link rel="stylesheet" type="text/css" href="css/mobilemenu.css">
+<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A300%2C400%2C700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="flexslider.css">
+<link rel="stylesheet" href="style.css">
+
+<!-- Jquery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="functions.min.js"></script>
 
 <!-- Scripts -->
 <script src="angular.js"></script>
 <script src="apply.js"></script>
-<script type="text/javascript" src="angular-recaptcha.js"></script>
+<script src="angular-recaptcha.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
 <script src="ng-file-upload-shim.min.js"></script>
 <script src="ng-file-upload.min.js"></script>
-
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<![endif]-->
 </head>
 
 <body ng-controller="UAID-ApplyController as uaid">
-
-<!-- Begin of Container -->
-<div id="container">
-
-    <!-- Begin Header Wrapper -->
-	<div id="headerWrapper">
-        <header>
-					<!-- Begin Navigation -->
-					<nav class="wrapper">
-						<div id="headerLogo">
-								<a href="/"><span>UAID</span></a>
+	<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+	<div id="page">
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="navbar-header">
+								<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<div id="logo">
+									<p class="site-name">
+										<a class="navbar-brand" href="//uaidutah.org/" title="UAID">UAID</a>
+									</p>
+								</div>
+							</div>
+							<div class="collapse navbar-collapse">
+								<ul class="nav navbar-nav">
+									<li><a href="//uaidutah.org">Home</a></li>
+									<li><a href="/">Gift Box</a></li>
+									<li class="active"><a href="../../apply">Application</a></li>
+								</ul>
+							</div>
 						</div>
-						<div id="mobileLogo">
-								<a href="/"><span>UAID</span></a>
-						</div>
-								<button class="nav-button">Toggle Navigation</button>
-									<ul class="primary-nav">
-											<li><a href="/">Home</a></li>
-											<li><a href="../../apply">Gift Box Application</a></li>
-									</ul>
-							<div class="clear"></div>
-					</nav>
-					<!-- End Navigation -->
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div id="content">
+			<main class="container">
+				<div class="main-content-area">
+					<div class="row post-inner-content" role="main">
+						<article class="hentry">
+							<header class="page-header" style="text-align: center;">
+								<h1 class="entry-title">UAID Gift Box Application</h1>
+							</header>
+							<div class="entry-content">
+								<div class="row">
+									<div class="col-md-8 col-md-offset-2">
+										<form ng-submit="uaid.log()" class="form" name="ApplicantInfo" enctype="multipart/form-data">
+											<fieldset>
+												<h2>Referrer Information</h2>
 
-        </header>
+												<fieldset>
+													<legend>Primary Contact</legend>
+													<div class="form-group  col-md-6">
+														<label for="primaryContactName">Name:</label>
+														<input ng-model="uaid.contactName" class="form-control" type="text" id="primaryContactName" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-z\s]{3,99}" required>
+													</div>
+													<div class="form-group  col-md-6">
+														<label for="primaryContactPhone">Phone Number:</label>
+														<input ng-model="uaid.contactPhone" class="form-control" type="text" id="primaryContactPhone" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}" required>
+													</div>
+													<div class="form-group  col-md-6">
+														<label for="primaryContactEmail">E-mail:</label>
+														<input ng-model="uaid.contactEmail" class="form-control" type="email" id="primaryContactEmail" name="primaryContactEmail" value="" placeholder="JohnSmith@gmail.com" required>
+													</div>
+													<div class="form-group  col-md-6">
+														<label for="relationship">Relationship to Applicant:</label>
+														<input ng-model="uaid.contactRelationship" class="form-control" type="text" id="relationship" name="relationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}" required>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Secondary Contact</legend>
+													<!-- secondary name missing? 
+													<div class="form-group  col-md-6">
+														<label for="primaryContactName">Name:</label>
+														<input ng-model="uaid.contactName" class="form-control" type="text" id="primaryContactName" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}" required>
+													</div>
+													-->
+													<div class="form-group  col-md-6">
+														<label for="secondaryContactPhone">Phone Number:</label>
+														<input ng-model="uaid.contactSecPhone" class="form-control" type="text" id="secondaryContactPhone" name="secondaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9().-]{10,20}" required>
+													</div>
+													<div class="form-group  col-md-6">
+														<label for="secondaryRelationship">Relationship to Applicant:</label>
+														<input ng-model="uaid.contactSecRelationship" class="form-control" type="text" id="secondaryRelationship" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}" required>
+													</div>
+												</fieldset>
+												
+												<fieldset>
+													<legend>Agency Information (Optional)</legend>
+													<div class="form-group col-md-6">
+														<label for="agencyName">Agency Name:</label>
+														<input ng-model="uaid.agencyName" class="form-control" type="text" id="agencyName" name="agencyName" value="" placeholder="Agency Name">
+													</div>
+													<div class="form-group  col-md-6">
+														<label for="agencyLocation">Address:</label>
+														<input ng-model="uaid.agencyLocation" class="form-control" type="text" id="agencyLocation" name="agencyLocation" value="" placeholder="Agency Location">
+													</div>
+													<div class="form-group  col-md-6">
+														<label for="agencyPhone">Phone Number:</label>
+														<input ng-model="uaid.agencyPhone" class="form-control" type="text" id="agencyPhone" name="agencyPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}">
+													</div>
+												</fieldset>
+
+											</fieldset>
+
+											<fieldset>
+												<h2>Recipient Information</h2>
+												
+												<div class="form-group  col-md-6">
+													<label for="firstName">First Name:</label>
+													<input ng-model="uaid.fname" class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name" pattern="[a-zA-Z]{3,99}" required>
+												</div>
+												<div class="form-group  col-md-6">
+													<label for="lastName">Last Name:</label>
+													<input ng-model="uaid.lname" class="form-control" type="text" id="lastName" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}" required>
+												</div>
+												<div class="form-group col-md-6">
+													<label for="address">Address:</label>
+													<input ng-model="uaid.address" class="form-control" type="text" id="address" placeholder="Address" required>
+												</div>
+												<div class="form-group  col-md-6">
+													<label for="age">Age:</label>
+													<input ng-model="uaid.age" class="form-control" type="text" id="age" name="age" value="" placeholder="Age" pattern="[0-9]{1,3}" required>
+												</div>
+												<div class="form-group  col-md-6">
+													<label for="intellectualAge">Intellectual Age:</label>
+													<input ng-model="uaid.intage" class="form-control" type="text" id="intellectualAge" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="[0-9]{1,3}" required>
+												</div>
+
+												<fieldset>
+													<legend>Gender:</legend>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gender" ng-true-value="'female'" type="radio" name="gender" value="Female">Female
+														</label>
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gender" ng-true-value="'male'" type="radio" name="gender" value="Male">Male
+														</label>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Ethnicity / Race:</legend>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.ethnicity" ng-true-value="'caucasian'" type="radio" name="ethnicity" value="Caucasian">Caucasian
+														</label>
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.ethnicity" ng-true-value="'native american'" type="radio" name="ethnicity" value="Native American">Native American
+														</label>
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.ethnicity" ng-true-value="'black/african-american'" type="radio" name="ethnicity" value="Black/African-American">Black / African-American
+														</label>
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.ethnicity" ng-true-value="'asian/pacific-islander'" type="radio" name="ethnicity" value="Asian/Pacific-Islander">Asian / Pacific Islander
+														</label>
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.ethnicity" ng-true-value="'hispanic/latino'" type="radio" name="ethnicity" value="Hispanic/Latino">Hispanic / Latino
+														</label>
+													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Profile Picture</legend>
+													<div class="form-group">
+														<label for="photo-raw">Photo or Drawing</label>
+														<input type="file" id="photo-raw">
+														<p class="help-block">Please select a photo or drawing of the recipient. Resize the image in the tool below to the desired cropped size. This image will be used on the Gift Box website as the recipient's profile picture.</p>
+													</div>
+													<input type="hidden" id="photo" name="photo" ng-model="uaid.photo">
+													<canvas id="photo-editor" height="400" width="400"></canvas>
+												</fieldset>
+											</fieldset>
+
+											<fieldset>
+												<h2>Recipient Wish List</h2>
+												<p>Each donor will buy approximately $75 in gifts. Please indicate below which items are needed by the recipient. Please call <a href="tel:18016548449">+801 654-8449</a> if you have any questions.</p>
+
+												<fieldset>
+													<legend>Please select 2 items:</legend>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group1.gift1.name" ng-click="uaid.giftCheck(uaid.gifts.group1.gift1.name, uaid.group1Counter, 1)" ng-true-value="'T-Shirt'" type="checkbox" name="group1" value="t-shirt">T-Shirt
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group1.gift1.name" class="form-group col-md-12">
+														<label for="shirtSize">Size:</label>
+														<select id="shirtSize" ng-model="uaid.gifts.group1.gift1.size" ng-options="item.value as item.label for item in uaid.gifts.sizes" class="form-control"></select>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group1.gift2.name" ng-click="uaid.giftCheck(uaid.gifts.group1.gift2.name, uaid.group1Counter, 1)" ng-true-value="'Sweat Pants'" type="checkbox" name="group1" value="sweat-pants">Sweat Pants
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group1.gift2.name" class="form-group col-md-12">
+														<label for="sweatPantSize">Size:</label>
+														<select id="sweatPantSize" ng-options="item.value as item.label for item in uaid.gifts.sizes" ng-model="uaid.gifts.group1.gift2.size" class="form-control"></select>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group1.gift3.name" ng-click="uaid.giftCheck(uaid.gifts.group1.gift3.name, uaid.group1Counter, 1)" ng-true-value="'Sweat Top'" type="checkbox" name="group1" value="sweat-pants">Sweat Top
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group1.gift3.name" class="form-group col-md-12">
+														<label for="sweatTopSize">Size:</label>
+														<select id="sweatTopSize" ng-options="item.value as item.label for item in uaid.gifts.sizes" ng-model="uaid.gifts.group1.gift3.size" class="form-control"></select>
+													</div>
+												</fieldset>
+												
+												<fieldset>
+													<legend>Please select 1 item:</legend>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group2.gift1.name" ng-true-value="'Sheets'" type="radio" name="group2" value="Sheets">Sheets
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group2.gift1.name == 'Sheets'" class="form-group col-md-12">
+														<label>Size:</label>
+														<input class="form-control" type="text" ng-model="uaid.gifts.group2.gift1.size">
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group2.gift1.name" ng-true-value="'Bath Towel'" type="radio" name="group2" value="Bath Towel">Bath Towel
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group2.gift1.name == 'Bath Towel'" class="form-group col-md-12">
+														<label>Size:</label>
+														<input class="form-control" type="text" ng-model="uaid.gifts.group2.gift1.size">
+													</div>
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group2.gift1.name" ng-true-value="'Blanket'" type="radio" name="group2" value="Blanket">Blanket
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group2.gift1.name == 'Blanket'" class="form-group col-md-12">
+														<label>Size:</label>
+														<input class="form-control" type="text" ng-model="uaid.gifts.group2.gift1.size">
+													</div>
+												</fieldset>
+												
+												<fieldset>
+													<legend>Please select 1 item:</legend>
+													
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Coat'" type="radio" name="group3" value="Coat">Coat
+														</label>
+													</div>
+													<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Coat'">
+														<div class="form-group col-md-12">
+															<label for="coatAge">Age Group:</label>
+															<select class="form-control" id="coatAge" ng-model="uaid.gifts.group3.gift1.size">
+																<option value="Toddler">Toddler</option>
+																<option value="Kids">Kids</option>
+																<option value="Adult">Adult</option>
+															</select>
+														</div>
+														<div class="form-group col-md-12">
+															<label for="coatSize">Size:</label>
+															<input class="form-control" id="coatSize" type="text" ng-model="uaid.gifts.group3.gift1.sizenum">
+														</div>
+													</fieldset>
+
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Shoes'" type="radio" name="group3" value="Shoes">Shoes
+														</label>
+													</div>
+													<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Shoes'">
+														<div class="form-group col-md-12">
+															<label for="shoeAge">Age Group:</label>
+															<select class="form-control" id="shoeAge" ng-model="uaid.gifts.group3.gift1.size">
+																<option value="Toddler">Toddler</option>
+																<option value="Kids">Kids</option>
+																<option value="Adult">Adult</option>
+															</select>
+														</div>
+														<div class="form-group col-md-12">
+															<label for="shoeSize">Size:</label>
+															<input class="form-control" id="shoeSize" type="text" ng-model="uaid.gifts.group3.gift1.sizenum">
+														</div>
+													</fieldset>
+
+													<div class="radio col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Slipper'" type="radio" name="group3" value="Slipper">Slippers
+														</label>
+													</div>
+													<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Slipper'">
+														<div class="form-group col-md-12">
+															<label for="slipperAge">Age Group:</label>
+															<select class="form-control" id="slipperAge" ng-model="uaid.gifts.group3.gift1.size">
+																<option value="Toddler">Toddler</option>
+																<option value="Kids">Kids</option>
+																<option value="Adult">Adult</option>
+															</select>
+														</div>
+														<div class="form-group col-md-12">
+															<label for="slipperSize">Size:</label>
+															<input class="form-control" type="text" id="slipperSize" ng-model="uaid.gifts.group3.gift1.sizenum">
+														</div>
+													</fieldset>
+												</fieldset>
+												
+												<fieldset>
+													<legend>Please select 2 items:</legend>
+													
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift1.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift1.name, uaid.group4Counter, 4)" ng-true-value="'Costume Jewelry'" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry
+														</label>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift2.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift2.name, uaid.group4Counter, 4)" ng-true-value="'Makeup'" type="checkbox" name="group4" value="makeup">Makeup
+														</label>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift3.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift3.name, uaid.group4Counter, 4)" ng-true-value="'Board Games'" type="checkbox" name="group4" value="boardGames">Board Games
+														</label>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift4.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift4.name, uaid.group4Counter, 4)" ng-true-value="'Puzzle'" type="checkbox" name="group4" value="puzzle">Puzzle
+														</label>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift5.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift5.name, uaid.group4Counter, 4)" ng-true-value="'Art Supplies'" type="checkbox" name="group4" value="artSupplies">Art Supplies
+														</label>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift6.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift6.name, uaid.group4Counter, 4)" ng-true-value="'Book'" type="checkbox" name="group4" value="book">Book
+														</label>
+													</div>
+													<div ng-show="uaid.gifts.group4.gift6.name == 'Book'" class="form-group col-md-12">
+														<label for="genre">Genre / Reading Level:</label>
+														<input class="form-control" type="text" id="genre" ng-model="uaid.gifts.group4.gift6.genre">
+													</div>
+													<div class="checkbox col-md-12" style="margin-top:-5px;">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift7.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift7.name, uaid.group4Counter, 4)" ng-true-value="'CD'" type="checkbox" name="group4" value="CD">CD
+														</label>
+													</div>
+													<div class="form-group col-md-12" ng-show="uaid.gifts.group4.gift7.name == 'CD'">
+														<label for="artist">Artist (no explicit lyrics):</label>
+														<input class="form-control" type="text" id="artist" ng-model="uaid.gifts.group4.gift7.genre">
+													</div>
+													<div class="checkbox col-md-12" style="margin-top:-5px;">
+														<label>
+															<input ng-model="uaid.gifts.group4.gift8.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift8.name, uaid.group4Counter, 4)" ng-true-value="'Movie'" type="checkbox" name="group4" value="Movie">Movie
+														</label>
+													</div>
+													<div class="form-group col-md-12" ng-show="uaid.gifts.group4.gift8.name == 'Movie'">
+														<label for="movieTitle">Title (Must be G, PG, or PG-13):</label>
+														<input class="form-control" id="movieTitle" type="text" ng-model="uaid.gifts.group4.gift8.genre">
+													</div>
+												</fieldset>
+												
+												<fieldset>
+			 										<legend>Please select all items needed:</legend>
+														
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group5.gift1.name" ng-true-value="'Socks'" type="checkbox" name="group5" value="Socks">Socks
+														</label>
+													</div>
+													<div class="form-group col-md-12" ng-show="uaid.gifts.group5.gift1.name == 'Socks'">
+														<label for="sockSize">Size:</label>
+														<input class="form-control" type="text" id="sockSize" ng-model="uaid.gifts.group5.gift1.size">
+														<p class="help-block"><a href="http://www.nike.com/us/en_us/c/size-fit-guide/socks-sizing-chart" target="_blank">Sock sizing chart</a></p>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input ng-model="uaid.gifts.group5.gift2.name" ng-true-value="'Underwear'" type="checkbox" name="group5" value="Underwear">Underwear
+														</label>
+													</div>
+													<fieldset ng-show="uaid.gifts.group5.gift2.name == 'Underwear'">
+														<div class="form-group col-md-12">
+															<label for="underwearGender">Gender and Age Group:</label>
+															<select class="form-control" id="underwearGender" ng-model="uaid.gifts.group5.gift2.size">
+																<option value="Boys">Boys</option>
+																<option value="Girls">Girls</option>
+																<option value="Mens">Mens</option>
+																<option value="Womens">Womens</option>
+															</select>
+														</div>
+														<div class="form-group col-md-12">
+															<label for="underwearSize">Size:</label>
+															<select class="form-control" id="underwearSize" ng-model="uaid.gifts.group5.gift2.sizenum" ng-options="item.value as item.label for item in uaid.gifts.sizes">
+															</select>
+															<p class="help-block"><a href="http://shop.fruit.com/info/sizeGuide" target="_blank">Underwear sizing chart</a></p>
+														</div>
+														<div class="checkbox col-md-12">
+															<label>
+																<input ng-model="uaid.gifts.group5.gift2.genre" name="underwearDisposable" value="Disposable" type="checkbox">Check if they need to be disposable
+															</label>
+														</div>
+													</fieldset>
+													<div class="checkbox col-md-12">
+														<label>
+															<input type="checkbox" ng-model="uaid.gifts.group5.gift3.name" ng-true-value="'Gloves'" name="group5" value="Gloves">Gloves
+														</label>
+													</div>
+													<div class="form-group col-md-12" ng-show="uaid.gifts.group5.gift3.name == 'Gloves'">
+														<label for="gloveSize">Age Group:</label>
+														<select class="form-control" id="gloveSize" ng-model="uaid.gifts.group5.gift3.size">
+															<option value="Toddler">Toddler</option>
+															<option value="Kids">Kids</option>
+															<option value="Adult">Adult</option>
+														</select>
+														<p class="help-block"><a href="http://www.glove.org/Modern/glovemeasure.php" target="_blank">Glove sizing chart</a></p>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input type="checkbox" ng-model="uaid.gifts.group5.gift4.name" ng-true-value="'Mittens'" name="group5" value="Mittens">Mittens
+														</label>
+													</div>
+													<div class="form-group col-md-12" ng-show="uaid.gifts.group5.gift4.name == 'Mittens'">
+														<label for="mittenSize">Age Group:</label>
+														<select class="form-control" id="mittenSize" ng-model="uaid.gifts.group5.gift4.size">
+															<option value="Toddler">Toddler</option>
+															<option value="Kids">Kids</option>
+															<option value="Adult">Adult</option>
+														</select>
+														<p class="help-block"><a href="http://www.glove.org/Modern/glovemeasure.php" target="_blank">Mitten sizing chart</a></p>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input type="checkbox" ng-model="uaid.gifts.group5.gift5.name" ng-true-value="'Knit Hat'" name="group5" value="Knit Hat">Knit Hat
+														</label>
+													</div>
+													<div class="form-group col-md-12" ng-show="uaid.gifts.group5.gift5.name">
+														<label for="hatSize">Age Group:</label>
+														<select class="form-control" id="hatSize" ng-model="uaid.gifts.group5.gift5.size">
+															<option value="Toddler">Toddler</option>
+															<option value="Kids">Kids</option>
+															<option value="Adult">Adult</option>
+														</select>
+														<p class="help-block"><a href="http://tutorials.knitpicks.com/wptutorials/hat-size-charts/" target="_blank">Knit hat sizing chart</a></p>
+													</div>
+													<div class="checkbox col-md-12">
+														<label>
+															<input type="checkbox" ng-model="uaid.gifts.group5.gift6.name" ng-true-value="'Hygiene Kit'" name="group5" value="Hygiene Kit">Hygiene Kit
+														</label>
+														<p class="help-block">Personal hygiene kit includes:</p>
+														<ul class="help-block">
+															<li>Item</li>
+															<li>Item</li>
+															<li>Item</li>
+															<li>Item</li>
+															<li>Item</li>
+															<li>Item</li>
+															<li>Item</li>
+														</ul>
+													</div>
+												</fieldset>
+												
+												<fieldset>
+													<legend>Gift Wrapping</legend>
+													
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" ng-model="uaid.wrapped" name="wrapped">Check if you want the gifts wrapped
+														</label>
+													</div>
+												</fieldset>
+												
+												<fieldset>
+													<legend>Agreement</legend>
+													
+													<p>Recipient has agreed to allow their picture or drawing, first name, age, intellectual age, and wishlist to be placed on UAID websites or materials which can be given to individuals or corporate sponsors. All other personal information will be kept confidential.</p>
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" id="agreement" ng-click="uaid.addPhoto()">I / Recipient agree(s) to the terms above
+														</label>
+													</div>
+													
+													<div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
+												</fieldset>
+											</fieldset>
+											
+											<button class="btn-lg">Submit Form</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</main>
+		</div>
+		<div id="footer-area">
+			<footer id="colophon">
+				<div class="site-info container">
+					<p>&copy; Utah Association for Intellectual Disabilities</p>
+				</div>
+				<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div>
+			</footer>
+		</div>
 	</div>
-    <!-- End of Header Wrapper -->
-
-
-
-
-    <!-- Begin Content -->
-    <div class="wrapper">
-    	<h1>Applicant Information</h1>
-
-        <form ng-submit="uaid.log()"  class="form" name="ApplicantInfo" enctype="multipart/form-data">
-			<fieldset>
-				<legend>Referrer Information</legend>
-
-				<fieldset>
-					<legend>Agency Information</legend>
-					<p></p>
-					<label>
-						<span>Agency Name:</span>
-						<input ng-model="uaid.agencyName" type="text" name="agencyName" value="" placeholder="Agency Name">
-					</label>
-					<label>
-						<span>Location:</span>
-						<input ng-model="uaid.agencyLocation" type="text" name="agencyLocation" value="" placeholder="Agency Location">
-					</label>
-					<label>
-					  	<span>Phone Number:</span>
-				  		<input ng-model="uaid.agencyPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}">
-				  	</label>
-				</fieldset>
-
-			  	<fieldset>
-			  		<legend>Primary Contact</legend>
-				  	<label>
-				  		<span>Name:</span>
-					  	<input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}"  required>
-				  	</label>
-				  	<label>
-				  		<span>Phone Number:</span>
-					  	<input ng-model="uaid.contactPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
-				  	</label>
-				  	<label>
-						<span>E-mail:</span>
-						<input ng-model="uaid.contactEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com"  required>
-					</label>
-				  	<label>
-						<span>Relationship to Applicant:</span>
-						<input ng-model="uaid.contactRelationship" type="text" name="relationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
-					</label>
-			  	</fieldset>
-
-			  	<fieldset>
-			  		<legend>Secondary Contact</legend>
-			  		<!-- secondary name missing? 
-					<label>
-				  		<span>Name:</span>
-					  	<input ng-model="uaid.contactName" type="text" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}"  required>
-				  	</label>
-			  		-->
-
-			  		<label>
-						<span>Phone Number:</span>
-						<input ng-model="uaid.contactSecPhone" type="text" name="secondaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9().-]{10,20}"  required>
-					</label>
-				  	<label>
-						<span>Relationship to Applicant:</span>
-						<input ng-model="uaid.contactSecRelationship" type="text" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}"  required>
-					</label>
-			  	</fieldset>
-            </fieldset>
-
-        	<fieldset>
-            	<legend>Recipient Information</legend>
-                <label>
-                	<span>First Name:</span>
-                    <input ng-model="uaid.fname" type="text"  placeholder="First Name" pattern="[a-zA-Z]{3,99}"  required></input>
-                </label>
-                <label>
-                	<span>Last Name:</span>
-                    <input ng-model="uaid.lname" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}"  required>
-                </label>
-                <label>
-					<span>Age:</span>
-                	<input ng-model="uaid.age"  type="number" name="age" value="" placeholder="Age" pattern="[0-9]{1,3}"  required>
-                </label>
-            	<label>
-                	<span>Intellectual Age:</span>
-                	<input ng-model="uaid.intage"  type="number" name="intellectualAge" value="" placeholder="Intellectual Age" pattern="[0-9]{1,3}"  required>
-                </label>
-		  		<fieldset>
-				  	<legend>Gender:</legend>
-				  	<label class="form-radio"><input ng-model="uaid.gender" ng-true-value="'female'" type="radio" name="gender" value="Female">Female</label>
-				  	<label class="form-radio"><input ng-model="uaid.gender" ng-true-value="'male'" type="radio" name="gender" value="Male">Male</label>
-		  		</fieldset>
-		  		<fieldset>
-                	<legend>Ethnicity / Race:</legend>
-                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'caucasian'" type="radio" name="ethnicity" value="Caucasian" />Caucasian</label>
-                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'native american'"  type="radio" name="ethnicity" value="Native American" />Native American</label>
-                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'black/african-american'"  type="radio" name="ethnicity" value="Black/African-American" />Black / African-American</label>
-                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'asian/pacific-islander'"  type="radio" name="ethnicity" value="Asian/Pacific-Islander" />Asian / Pacific Islander</label>
-                    <label class="form-radio"><input ng-model="uaid.ethnicity" ng-true-value="'hispanic/latino'" type="radio" name="ethnicity" value="Hispanic/Latino" />Hispanic / Latino</label>
-		  		</fieldset>
-		  		<fieldset>
-		  			<legend>Upload A Photo</legend>
-		  			<span>Please select a photo to upload of the recipient. This image will be thier profile picture.</span>
-		  			<label>
-		  				<span>Photo / Drawing</span>
-				  		<input type="file" id="photo-raw">
-		  			</label>
-		  			<input type="hidden" id="photo" name="photo" ng-model="uaid.photo">
-		  			<canvas id="photo-editor" height="400" width="400"></canvas>
-		  		</fieldset>
-
-		  		<p><small>Recipient agrees to allow their picture / drawing and first name to be placed on materials which can be given to individuals or corporate sponsors. All other personal information will be kept condential.</small></p>
-
-		  		<label><input type="checkbox" id="agreement" ng-click="uaid.addPhoto()">I / Recipient agree(s) to the terms above</label>
-            </fieldset>
-
-  			<fieldset>
-	  			<legend>Recipient Wish List</legend>
-			  	<p>Each donor will buy approximately $75 in gifts. Please indicate below which items are needed by the recipient. Please call <a href="tel:18016548449">+801 654-8449</a> if you have any questions.</p>
-			  	<fieldset>
-			  		<legend>Please select 2 items:</legend>
-			  		<span class="instructions">Please select two of the following clothing items.</span>
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift1.name" ng-click="uaid.giftCheck(uaid.gifts.group1.gift1.name, uaid.group1Counter, 1)" ng-true-value="'T-Shirt'" type="checkbox" name="group1" value="t-shirt">T-Shirt</label>
-			  		<label  ng-show="uaid.gifts.group1.gift1.name">
-			  			<span>Size:</span>
-					  	<select ng-show="uaid.gifts.group1.gift1.name" ng-model="uaid.gifts.group1.gift1.size" ng-options="item.value as item.label for item in uaid.gifts.sizes">
-					  	</select>
-			  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift2.name" ng-click="uaid.giftCheck(uaid.gifts.group1.gift2.name, uaid.group1Counter, 1)" ng-true-value="'Sweat Pants'" type="checkbox" name="group1" value="sweat-pants">Sweat Pants</label>
-			  		<label ng-show="uaid.gifts.group1.gift2.name">
-			  			<span>Size:</span>
-					  	<select  ng-show="uaid.gifts.group1.gift2.name" ng-options="item.value as item.label for item in uaid.gifts.sizes" ng-model="uaid.gifts.group1.gift2.size">
-					  	</select>
-			  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group1.gift3.name" ng-click="uaid.giftCheck(uaid.gifts.group1.gift3.name, uaid.group1Counter, 1)" ng-true-value="'Sweat Top'" type="checkbox" name="group1" value="sweat-pants">Sweat Top</label>
-			  		<label  ng-show="uaid.gifts.group1.gift3.name">
-			  		<span>Size:</span>
-					  	<select ng-show="uaid.gifts.group1.gift3.name" ng-options="item.value as item.label for item in uaid.gifts.sizes" ng-model="uaid.gifts.group1.gift3.size">
-					  	</select>
-			  		</label>
-			  	</fieldset>
-
-			  	<fieldset>
-			  		<legend>Please select 1 item:</legend>
-			  		<span class="instructions">Please select one of the following items.</span>
-				  	<label class="form-radio"><input ng-model="uaid.gifts.group2.gift1.name" ng-true-value="'Sheets'" type="radio" name="group2" value="Sheets">Sheets</label>
-				  		<label>
-						  	<span ng-show="uaid.gifts.group2.gift1.name == 'Sheets'">Size:</span>
-						  	<input type="text" ng-model="uaid.gifts.group2.gift1.size" ng-show="uaid.gifts.group2.gift1.name == 'Sheets'">
-				  		</label>
-				  	<label class="form-radio"><input ng-model="uaid.gifts.group2.gift1.name" ng-true-value="'Bath Towel'" type="radio" name="group2" value="Bath Towel">Bath Towel</label>
-				  		<label>
-						  	<span ng-show="uaid.gifts.group2.gift1.name == 'Bath Towel'">Size:</span>
-						  	<input type="text" ng-model="uaid.gifts.group2.gift1.size" ng-show="uaid.gifts.group2.gift1.name == 'Bath Towel'">
-				  		</label>
-				  	<label class="form-radio"><input ng-model="uaid.gifts.group2.gift1.name" ng-true-value="'Blanket'" type="radio" name="group2" value="Blanket">Blanket</label>
-				  		<label>
-						  	<span ng-show="uaid.gifts.group2.gift1.name == 'Blanket'">Size:</span>
-						  	<input type="text" ng-model="uaid.gifts.group2.gift1.size" ng-show="uaid.gifts.group2.gift1.name == 'Blanket'">
-				  		</label>
-			  	</fieldset>
-
-			  	<fieldset>
-			  		<legend>Please select 1 item:</legend>
-			  		<span class="instructions">Please select one of the following items.</span>
-				  	
-				  		<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Coat'">
-				  			<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Coat'" type="radio" name="group3" value="Coat">Coat</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Toddler'" name="coatSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Kids'" name="coatSize" value="Kids">Kids</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Adult'" name="coatSize" value="Adult">Adult</label>
-							<label>
-								<span>Size:</span>
-								<input type="text" ng-model="uaid.gifts.group3.gift1.sizenum">
-							</label>
-						</fieldset>
-
-				  	
-				  		<fieldset ng-show="uaid.gifts.group3.gift1.name == 'Shoes'">
-				  			<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Shoes'" type="radio" name="group3" value="Shoes">Shoes</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Toddler'" name="shoeSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Kids'" name="shoeSize" value="Kids">Kids</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" ng-true-value="'Adult'" name="shoeSize" value="Adult">Adult</label>
-							<label>
-								<span>Size:</span>
-								<input type="text" ng-model="uaid.gifts.group3.gift1.sizenum">
-							</label>
-						</fieldset>
-
-				  	
-				  		<fieldset  ng-show="uaid.gifts.group3.gift1.name == 'Slipper'">
-				  			<label class="form-radio"><input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Slipper'" type="radio" name="group3" value="Slipper">Slippers</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" name="slipperSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" name="slipperSize" value="Kids">Kids</label>
-							<label class="form-radio"><input type="radio" ng-model="uaid.gifts.group3.gift1.size" name="slipperSize" value="Adult">Adult</label>
-							<label>
-								<span>Size:</span>
-								<input type="text" ng-model="uaid.gifts.group3.gift1.sizenum">
-							</label>
-						</fieldset>
-			  	</fieldset>
-
-			  	<fieldset>
-			  		<legend>Please select 2 items:</legend>
-			  		<span class="instructions">Please select two entertainment items.</span>
-			  		<div id="entertainment_selection">
-					  	<div class="entertainment_item"><input ng-model="uaid.gifts.group4.gift1.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift1.name, uaid.group4Counter, 4)" ng-true-value="'Costume Jewelry'" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry</div>
-					  	<div class="entertainment_item"><input ng-model="uaid.gifts.group4.gift2.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift2.name, uaid.group4Counter, 4)" ng-true-value="'Makeup'" type="checkbox" name="group4" value="makeup">Makeup</div>
-					  	<div class="entertainment_item"><input ng-model="uaid.gifts.group4.gift3.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift3.name, uaid.group4Counter, 4)" ng-true-value="'Board Games'" type="checkbox" name="group4" value="boardGames">Board Games</div>
-					  	<div class="entertainment_item"><input ng-model="uaid.gifts.group4.gift4.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift4.name, uaid.group4Counter, 4)" ng-true-value="'Puzzle'" type="checkbox" name="group4" value="puzzle">Puzzle</div>
-					  	<div class="entertainment_item"><input ng-model="uaid.gifts.group4.gift5.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift5.name, uaid.group4Counter, 4)" ng-true-value="'Art Supplies'" type="checkbox" name="group4" value="artSupplies">Art Supplies</div>
-				  	</div>
-				  	<div class="clear"></div>
-
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift6.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift6.name, uaid.group4Counter, 4)" ng-true-value="'Book'" type="checkbox" name="group4" value="book">Book</label>	
-				  		<label>
-				  			<span ng-show="uaid.gifts.group4.gift6.name == 'Book'">Genre / Reading Level:</span>
-						  	<input type="text" ng-model="uaid.gifts.group4.gift6.genre" ng-show="uaid.gifts.group4.gift6.name == 'Book'">
-				  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift7.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift7.name, uaid.group4Counter, 4)" ng-true-value="'CD'" type="checkbox" name="group4" value="CD">CD</label>
-				  		<label>
-				  			<span ng-show="uaid.gifts.group4.gift7.name == 'CD'">Artist (no explicit lyrics):</span>
-						  	<input type="text" ng-model="uaid.gifts.group4.gift7.genre" ng-show="uaid.gifts.group4.gift7.name == 'CD'">
-				  		</label>
-				  	<label class="form-checkbox"><input ng-model="uaid.gifts.group4.gift8.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift8.name, uaid.group4Counter, 4)" ng-true-value="'Movie'" type="checkbox" name="group4" value="Movie">Movie</label>
-
-						  	<label>
-						  		<span ng-show="uaid.gifts.group4.gift8.name == 'Movie'">Title (Must be G, PG, or PG-13):</span>
-							  	<input type="text" ng-model="uaid.gifts.group4.gift8.genre" ng-show="uaid.gifts.group4.gift8.name == 'Movie'">
-						  	</label>
-
-			  	</fieldset>
-
-			  	<fieldset>
-			  		<legend>Please select all items needed:</legend>
-
-				  		<fieldset>
-				  			<span class="instructions">Please select size of socks. If your not sure, please refer to the size chart <a href="http://www.nike.com/us/en_us/c/size-fit-guide/socks-sizing-chart" target="_blank">here</a>.</span>
-						  	<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift1.name" ng-true-value="'Socks'" type="checkbox" name="group5" value="Socks">Socks</label>
-						  	<label ng-show="uaid.gifts.group5.gift1.name == 'Socks'">
-						  		<span>Size:</span>
-								  <input type="text" ng-model="uaid.gifts.group5.gift1.size">
-						  	</label>
-				  		</fieldset>
-
-				  	
-				  		
-				  		<fieldset ng-show="uaid.gifts.group5.gift2.name == 'Underwear'">
-				  			<span class="instructions">Please select size of underwear. If your not sure, please refer to the size chart <a href="http://shop.fruit.com/info/sizeGuide" target="_blank">here</a>.</span>
-				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift2.name" ng-true-value="'Underwear'" type="checkbox" name="group5" value="Underwear">Underwear</label>
-						  	<label>
-						  		<span>Gender:</span>
-								<select ng-model="uaid.gifts.group5.gift2.size">
-									<option value="">-Please Select-</option>
-									<option value="Boys">Boys</option>
-									<option value="Girls">Girls</option>
-									<option value="Mens">Mens</option>
-									<option value="Womens">Womens</option>
-								</select>
-							</label>
-				  			<label>
-				  				<span>Size:</span>
-								<select ng-model="uaid.gifts.group5.gift2.sizenum" ng-options="item.value as item.label for item in uaid.gifts.sizes">
-								</select>
-							</label>
-							<label class="form-checkbox"><input type="checkbox" ng-model="uaid.gifts.group5.gift2.genre" name="underwearDisposable" value="Disposable">Check if they need to be disposable</label>
-				  		</fieldset>
-
-				  	
-				  		<fieldset ng-show="uaid.gifts.group5.gift3.name == 'Gloves'">
-				  			<span class="instructions">Please select size of Gloves. If your not sure, please refer to the size chart <a href="http://www.glove.org/Modern/glovemeasure.php" target="_blank">here</a>.</span>
-				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift3.name" ng-true-value="'Gloves'" type="checkbox" name="group5" value="Gloves">Gloves</label>
-				  			<!-- Make this a dropdown option-->
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift3.size" type="radio" name="gloveSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift3.size" type="radio" name="gloveSize" value="Kids">Kids</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift3.size" type="radio" name="gloveSize" value="Adult">Adult</label>
-						</fieldset>
-
-				  	
-				  		<fieldset ng-show="uaid.gifts.group5.gift4.name == 'Mittens'">
-				  			<span class="instructions">Please select size of Mittens. If your not sure, please refer to the size chart <a href="http://www.glove.org/Modern/glovemeasure.php" target="_blank">here</a>.</span>
-				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift4.name" ng-true-value="'Mittens'" type="checkbox" name="group5" value="Mittens">Mittens</label>
-				  			<!-- Make this a dropdown option-->
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift4.size" type="radio" name="mittenSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift4.size" type="radio" name="mittenSize" value="Kids">Kids</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift4.size" type="radio" name="mittenSize" value="Adult">Adult</label>
-						</fieldset>
-
-				  	
-				  		<fieldset ng-show="uaid.gifts.group5.gift5.name">
-				  			<span class="instructions">Please select size of Knit Hat. If your not sure, please refer to the size chart <a href="http://tutorials.knitpicks.com/wptutorials/hat-size-charts/" target="_blank">here</a>.</span>
-				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift5.name" ng-true-value="'Knit Hat'" type="checkbox" name="group5" value="Knit Hat">Knit Hat</label>
-				  			<!-- Make this a dropdown option-->
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift5.size" type="radio" name="knitHatSize" value="Toddler">Toddler</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift5.size" type="radio" name="knitHatSize" value="Kids">Kids</label>
-							<label class="form-radio"><input ng-model="uaid.gifts.group5.gift5.size" type="radio" name="knitHatSize" value="Adult">Adult</label>
-						</fieldset>
-
-						<fieldset>
-							<span class="instructions">Please select if they need a Hygiene Kit. Personal hygiene kit includes:</span>
-				  			<label class="form-checkbox"><input ng-model="uaid.gifts.group5.gift6.name" ng-true-value="'Hygiene Kit'" type="checkbox" name="group5" value="Hygiene Kit">Hygiene Kit</label>
-				  		</fieldset>
-
-			  	</fieldset>
-
-			  	<label><input ng-model="uaid.wrapped" type="checkbox" name="wrapped">Check if you want UAID to wrap the gifts.</label>
-	  		</fieldset>
-
-	  		<div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
-            <button>Submit Form</button>
-		</form>
-
-    </div>
-    <!-- End Content -->
-
-    <!-- Begin Footer -->
-		<footer>
-			<div class="wrapper">
-				<p>Copyright 2016. All Rights Reserved.</p>
-		    </div>
-		</footer>
-    <!-- End Footer -->
-</div>
-<!-- End of Container -->
 
 <!-- TESTING BINDINGS -->
 Group 1 Gift 1: {{uaid.gifts.group1.gift1}} Size: {{uaid.gifts.group1.gift1.size}}<br>

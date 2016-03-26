@@ -95,7 +95,7 @@
 
 												<fieldset>
 													<legend>Secondary Contact</legend>
-													<!-- secondary name missing? 
+													<!-- secondary name missing?
 													<div class="form-group  col-md-6">
 														<label for="primaryContactName">Name:</label>
 														<input ng-model="uaid.contactName" class="form-control" type="text" id="primaryContactName" name="primaryContactName" value="" placeholder="Primary Contact" pattern="[a-zA-Z\s]{3,99}" required>
@@ -110,7 +110,7 @@
 														<input ng-model="uaid.contactSecRelationship" class="form-control" type="text" id="secondaryRelationship" name="secondaryRelationship" value="" placeholder="Relationship to Applicant" pattern="[a-zA-Z -._]{3,99}" required>
 													</div>
 												</fieldset>
-												
+
 												<fieldset>
 													<legend>Agency Information (Optional)</legend>
 													<div class="form-group col-md-6">
@@ -131,7 +131,7 @@
 
 											<fieldset>
 												<h2>Recipient Information</h2>
-												
+
 												<div class="form-group  col-md-6">
 													<label for="firstName">First Name:</label>
 													<input ng-model="uaid.fname" class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name" pattern="[a-zA-Z]{3,99}" required>
@@ -242,7 +242,7 @@
 														<select id="sweatTopSize" ng-options="item.value as item.label for item in uaid.gifts.sizes" ng-model="uaid.gifts.group1.gift3.size" class="form-control"></select>
 													</div>
 												</fieldset>
-												
+
 												<fieldset>
 													<legend>Please select 1 item:</legend>
 													<div class="radio col-md-12">
@@ -273,10 +273,10 @@
 														<input class="form-control" type="text" ng-model="uaid.gifts.group2.gift1.size">
 													</div>
 												</fieldset>
-												
+
 												<fieldset>
 													<legend>Please select 1 item:</legend>
-													
+
 													<div class="radio col-md-12">
 														<label>
 															<input ng-model="uaid.gifts.group3.gift1.name" ng-true-value="'Coat'" type="radio" name="group3" value="Coat">Coat
@@ -337,10 +337,10 @@
 														</div>
 													</fieldset>
 												</fieldset>
-												
+
 												<fieldset>
 													<legend>Please select 2 items:</legend>
-													
+
 													<div class="checkbox col-md-12">
 														<label>
 															<input ng-model="uaid.gifts.group4.gift1.name" ng-click="uaid.giftCheck(uaid.gifts.group4.gift1.name, uaid.group4Counter, 4)" ng-true-value="'Costume Jewelry'" type="checkbox" name="group4" value="costumeJewelry">Costume Jewelry
@@ -394,10 +394,10 @@
 														<input class="form-control" id="movieTitle" type="text" ng-model="uaid.gifts.group4.gift8.genre">
 													</div>
 												</fieldset>
-												
+
 												<fieldset>
 			 										<legend>Please select all items needed:</legend>
-														
+
 													<div class="checkbox col-md-12">
 														<label>
 															<input ng-model="uaid.gifts.group5.gift1.name" ng-true-value="'Socks'" type="checkbox" name="group5" value="Socks">Socks
@@ -493,31 +493,31 @@
 														</ul>
 													</div>
 												</fieldset>
-												
+
 												<fieldset>
 													<legend>Gift Wrapping</legend>
-													
+
 													<div class="checkbox">
 														<label>
 															<input type="checkbox" ng-model="uaid.wrapped" name="wrapped">Check if you want the gifts wrapped
 														</label>
 													</div>
 												</fieldset>
-												
+
 												<fieldset>
 													<legend>Agreement</legend>
-													
+
 													<p>Recipient has agreed to allow their picture or drawing, first name, age, intellectual age, and wishlist to be placed on UAID websites or materials which can be given to individuals or corporate sponsors. All other personal information will be kept confidential.</p>
 													<div class="checkbox">
 														<label>
 															<input type="checkbox" id="agreement" ng-click="uaid.addPhoto()">I / Recipient agree(s) to the terms above
 														</label>
 													</div>
-													
+
 													<div vc-recaptcha key="'6Lc9eRgTAAAAAAhFIDfthEsOLH12g5S06hDidbWr'"></div>
 												</fieldset>
 											</fieldset>
-											
+
 											<button class="btn-lg">Submit Form</button>
 										</form>
 									</div>
@@ -531,7 +531,7 @@
 		<div id="footer-area">
 			<footer id="colophon">
 				<div class="site-info container">
-					<p>&copy; Utah Association for Intellectual Disabilities</p>
+					<p>&copy; Utah Association for Intellectual Disabilities  - <a href="/admin">Admin</a></p>
 				</div>
 				<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div>
 			</footer>

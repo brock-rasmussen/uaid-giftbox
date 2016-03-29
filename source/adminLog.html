@@ -73,13 +73,16 @@
           <p style="padding:0;">Age: {{recip.age}}</p>
           <p style="padding:0;">Intellectual Age: {{recip.intage}}</p>
           <p style="padding:0;">Address: {{recip.address}}</p>
+          <p style="padding:0;">Email: {{recip.contactEmail}}</p>
           <hr>
           <p>Wish List:</p>
           <ul ng-repeat="gift in recip.gifts">
               <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}<span ng-show="gift.genre">Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
           </ul>
-          <a><button ng-show="!recip.approved" ng-click="uaid.approve(uaid.recipsIds[$index], $index);" type="button">Approve</button></a>
+          <a><button ng-show="!recip.approved || !recip.denied" ng-click="uaid.approve(uaid.recipsIds[$index], $index);" type="button">Approve</button></a>
+          <a><button ng-show="!recip.approved || !recip.denied" ng-click="uaid.deny(uaid.recipsIds[$index], $index);" type="button">Deny</button></a>
           <p ng-show="recip.approved" style="color: green;">Successfully Approved!</p>
+          <p ng-show="recip.denied" style="color: red;">Recipient has been denied.</p>
       </div>
     </div>
     </div>

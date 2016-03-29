@@ -87,6 +87,28 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     });
   });
 
+  giftboxRouter.route('/admin/deny/:recid')
+  .post(function(req, res){
+    if(!req.body.email || !req.body.pass){
+      res.end();
+    };
+    adminref.authWithPassword({
+      email    : req.body.email,
+      password : req.body.pass
+    }, function(error, authData) {
+      if(error){
+        console.log(error);
+        res.status(404).send('There has been an error, please verify your login credentials.');
+      } else {
+        console.log('Denying');
+        adminref.child(req.params.recid + '/approved').set('RECIPIENT DENIED');
+        res.send({'denied': true});
+      }
+    }, {
+      remember: "sessionOnly"
+    });
+  });
+
   giftboxRouter.route('/admin/export')
   .post(function(req,res) {
 
@@ -105,9 +127,12 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
         console.log('Retrieving DB');
         adminref.once("value", function(snapshot) {
           db = snapshot.val();
-          var sortedDb = 'LastName, FirstName, Age, IntellectualAge, Agency, AgencyLocation, AgencyPhonenumber, PrimaryContact, PrimaryContactEmail, PrimaryContactPhonenumber, PrimaryContactRelationship, SecondaryContactPhonenumber, SecondaryContactRelationship, Ethnicity';
+          var sortedDb = 'LastName, FirstName, Age, IntellectualAge, Address, Agency, AgencyLocation, AgencyPhonenumber, PrimaryContact, PrimaryContactEmail, PrimaryContactPhonenumber, PrimaryContactRelationship, SecondaryContactPhonenumber, SecondaryContactRelationship, Ethnicity';
           for(var x in db) {
             sortedDb += '\n' + db[x].lname + ", " + db[x].fname + ", " + db[x].age + ", " + db[x].intage;
+            if(db[x].address) {
+              sortedDb += ", " + db[x].address.replace(/[,]/g, ' ')
+            };
             if(db[x].agencyName) {
               sortedDb += ", " + db[x].agencyName;
             }else{

@@ -44,6 +44,21 @@ angular.module('UAID-Admin', [])
       })
     };
 
+    self.deny = function(x, index) {
+      var ext = x;
+      $http.post('/admin/deny/' + ext, {
+        'email': self.email,
+        'pass': self.pass
+      }).then(function(response) {
+        console.log(response);
+        if(response.data.denied == true) {
+          self.recipsArr[index].denied= true;
+        };
+      }, function(err) {
+        console.log(err);
+      })
+    };
+
     self.retrieveCsv = function() {
       $http.post('/admin/export', {
         'email': self.email,

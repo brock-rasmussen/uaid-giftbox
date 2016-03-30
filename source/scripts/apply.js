@@ -40,8 +40,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
 
       $http.post('/apply', payload).then(function(response) {
         console.log('You have successfully added a user!' + response);
-        alert('You have successfully applied to the gift box program and are pending approval!');
-        window.location = "/";
+        window.location = "/apply/thanks";
       }, function(response) {
         console.log('There was an error, please try again later!');
         console.log(response);

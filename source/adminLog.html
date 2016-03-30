@@ -49,10 +49,10 @@
 
 
 <!-- Begin of Container -->
-<div id="container">
+<main class="container main-content-area">
+  <div class="row post-inner-content" role="main">
 
 <!-- Begin Content -->
-<div class="wrapper">
     <span ng-show="uaid.authed !== true">
       <input ng-model="uaid.email" type="text" value="" placeholder="Email" required>
       <input ng-model="uaid.pass" type="password" value="" placeholder="Password" required>
@@ -77,7 +77,7 @@
           <hr>
           <p>Wish List:</p>
           <ul ng-repeat="gift in recip.gifts">
-              <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}<span ng-show="gift.genre">Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
+              <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}  <span ng-show="gift.genre"> Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
           </ul>
           <a><button ng-show="!recip.approved || !recip.denied" ng-click="uaid.approve(uaid.recipsIds[$index], $index);" type="button">Approve</button></a>
           <a><button ng-show="!recip.approved || !recip.denied" ng-click="uaid.deny(uaid.recipsIds[$index], $index);" type="button">Deny</button></a>
@@ -86,9 +86,10 @@
       </div>
     </div>
     </div>
+      <p ng-show="uaid.noUsers">There are currently no users awaiting approval.</p>
 </div>
-</div>
-    <p ng-show="uaid.noUsers">There are currently no users awaiting approval.</p>
+</main>
+
 
   </body>
   <script src="../angular.js"></script>

@@ -298,6 +298,11 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
 
   });
 
+  giftboxRouter.route('/apply/thanks')
+  .get(function(req, res) {
+    res.sendFile(path.join(__dirname + './../thank.html'));
+  });
+
   giftboxRouter.route('/apply')
   .get(function(req, res){
     res.sendFile(path.join(__dirname + './../applicationInformation.html'));

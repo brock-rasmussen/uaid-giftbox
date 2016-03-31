@@ -6,3 +6,4 @@ _notes/
 sftp-config.json
 *.db
 *.log
+secrets.js

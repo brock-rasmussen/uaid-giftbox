@@ -7,9 +7,8 @@ var nodemailer = require('nodemailer');
 var request = require('request');
 var Firebase = require('firebase');
 var cloudinary = require('cloudinary');
-cloudinary.config({
-
-});
+var secrets = require('./secrets.js');
+cloudinary.config(secrets.cloud);
 
 
 //Middleware
@@ -24,10 +23,10 @@ app.use(express.static('source/css/'));
 app.use(express.static('source/images/'));
 
 //Routes
-giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Firebase, request, cloudinary);
+giftboxRouter = require('./source/routes/giftboxRoutes.js')(path, nodemailer, Firebase, request, cloudinary, secrets);
 app.use('/', giftboxRouter);
 
 
-app.listen(process.env.PORT || 8000, function () {
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8000, process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1', function () {
   console.log("server started on port 8000");
 });

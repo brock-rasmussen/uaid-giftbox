@@ -1,18 +1,18 @@
 var express = require('express');
 
 
-var routes = function(path, nodemailer, Firebase, request, cloudinary){
+var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
 
-  var giftboxRouter = express.Router(path, nodemailer, Firebase, request, cloudinary);
+  var giftboxRouter = express.Router(path, nodemailer, Firebase, request, cloudinary, secrets);
   var FirebaseTokenGenerator = require("firebase-token-generator");
   //DO NOT FORGET TO REMOVE KEY BEFORE PUSHING!!!!!
-  var tokenGenerator = new FirebaseTokenGenerator("");
+  var tokenGenerator = new FirebaseTokenGenerator(secrets.firebase);
   var token = tokenGenerator.createToken(
     {uid: "1"},
     {admin: true}
   );
   //
-    var transporter = nodemailer.createTransport();
+    var transporter = nodemailer.createTransport(secrets.mailTransport);
   //Instantiates Firebase Reference
   var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {
@@ -165,7 +165,6 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
   .get(function (req, res){
     var users;
     fbApp.orderByChild('approved').equalTo(1).limitToFirst(8).once("value", function(snapshot) {
-        console.log(snapshot);
         users = snapshot.val();
         securedUsers = {};
         for(x in users) {
@@ -351,7 +350,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
       request.post(
       'https://www.google.com/recaptcha/api/siteverify',
       {form: {
-        'secret': '',
+        'secret': secrets.recaptcha,
         'response': req.body.recapResponse,
         'remoteip': req.connection.remoteAddress,
       }},
@@ -370,7 +369,6 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary){
     });
 
     console.log('Payload recieved');
-    console.log(req.body);
 
 
 

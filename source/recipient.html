@@ -2,133 +2,132 @@
 <html lang="en-US" ng-app="UAID-Rec">
 <head>
 <meta charset="utf-8">
-<title>UAID Persona Description</title>
-
-<!-- TELLS PHONES NOT TO LIE ABOUT THEIR WIDTH -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>UAID Gift Box</title>
+<!-- CSS -->
+<link rel="stylesheet" href="../bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A300%2C400%2C700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="../style.css">
 
 <!-- Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
-<!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
-<!-- CSS -->
-<link rel="stylesheet" type="text/css" href="../giftbox.css">
-<link rel="stylesheet" type="text/css" href="../mobilemenu.css">
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="../bootstrap.min.js"></script>
+<script src="../functions.min.js"></script>
 
 <!-- Scripts -->
 <script src="../angular.js"></script>
 <script src="../rec.js"></script>
 
-<!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<![endif]-->
-
-<!-- Mobile Menu -->
-    <script>
-        $(document).ready(function(){
-            $(".nav-button").click(function () {
-            $(".nav-button,.primary-nav").toggleClass("open");
-            });
-        });
-    </script>
-<!-- End Mobile Menu -->
-
-
 </head>
 
 <body ng-controller="UAID-RecController as uaid">
-    <!-- Begin Header Wrapper -->
-        <header>
-            <!-- Begin Navigation -->
-            <nav class="wrapper">
-              <div id="headerLogo">
-                  <a href="/"><span>UAID</span></a>
-              </div>
-              <div id="mobileLogo">
-                  <a href="/"><span>UAID</span></a>
-              </div>
-                	<button class="nav-button">Toggle Navigation</button>
-                    <ul class="primary-nav">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/">Giftbox</a></li>
-                        <li><a href="../../apply">Application</a></li>
-                    </ul>
-                <div class="clear"></div>
-            </nav>
-            <!-- End Navigation -->
-        </header>
-    <!-- End of Header Wrapper -->
-
-
-<!-- Begin of Container -->
-<div id="container">
-
-    <!-- Begin Content -->
-    <div class="wrapper">
-        <a href="/" style="display: block;"><button>Back</button></a>
-        <div id="leftcolumn">
-            <img src="{{uaid.recData.photo}}" class="fullSizeImage">
-        </div>
-
-        <div id="rightcolumn">
-            <h1 style="margin: 0;">UAID Gift Box Recipient</h1>
-            <h2>{{uaid.recData.fname}}</h2>
-            <hr>
-            <p style="padding:0;">Age: {{uaid.recData.age}}</p>
-            <p style="padding:0;">Intellectual Age: {{uaid.recData.intage}}</p>
-            <hr>
-            <p>Wish List:</p>
-            <ul ng-repeat="gift in uaid.recData.gifts">
-                <li>{{gift.gift}}  <span ng-show="gift.size">Size:</span>        {{gift.size}}<span ng-show="gift.genre"> Genre:</span>         {{gift.sizenum}}{{gift.genre}}</li>
-            </ul>
-            <hr>
-
-        </div>
-        <span class="clear"></span>
-        <div ng-show="uaid.subApp == false">
-        <h2 ng-show="uaid.recData.approved == 1">Adopt Me</h2>
-        <form ng-show="uaid.recData.approved == 1" ng-submit="uaid.adopt()"  class="form" name="AdopterInfo" enctype="multipart/form-data">
-              <fieldset>
-                  <legend>Contact Information</legend>
-                    <label>
-                      <span>First Name:</span>
-                        <input ng-model="uaid.adopterFName" type="text" name="firstName" value="" placeholder="First Name" pattern="[a-zA-Z]{3,99}"  required>
-                    </label>
-                    <label>
-                      <span>Last Name:</span>
-                        <input ng-model="uaid.adopterLName" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}" required>
-                    </label>
-                    <label>
-                      <span>Contact Phone:</span>
-                        <input ng-model="uaid.adopterPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}"  required>
-                    </label>
-                    <label>
-                      <span>Contact E-mail:</span>
-                        <input ng-model="uaid.adopterEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com"  required>
-                    </label>
-
-                </fieldset>
-
-                <button>Adopt</button>
-
-                <p>** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non leo nec tortor malesuada molestie. Maecenas sed eros eu neque tristique porta eget id ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In porta consectetur odio, vitae malesuada ex molestie eget. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam enim tortor, aliquam at tincidunt quis, pellentesque id turpis. Nulla consequat aliquam fringilla. Ut a massa ut ante auctor rhoncus sed eget ex. Quisque convallis turpis sit amet justo euismod ultrices. Ut fermentum cursus tortor, in rhoncus dui placerat vitae. Ut vel magna sit amet tellus feugiat sollicitudin eget non orci. Aenean porttitor hendrerit faucibus. Pellentesque ut neque augue. **</p>
-            </form>
-          </div>
-            <p ng-show="uaid.subApp == true" style="color: green;">Thanks for adopting! An email has been sent with more information - if you don't see the email, please check your spam folder.</p>
-    </div>
-    <!-- End Content -->
-</div>
-<!-- End of Container -->
-<!-- Begin Footer -->
-<footer>
-	<div class="wrapper">
-		<p>Copyright 2016. All Rights Reserved.  - <a href="/admin">Admin</a></p>
-    </div>
-</footer>
-<!-- End Footer -->
+	<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+	<div id="page">
+		<header>
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="navbar-header">
+								<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<div id="logo">
+									<p class="site-name">
+										<a class="navbar-brand" href="//uaidutah.org/" title="UAID">UAID</a>
+									</p>
+								</div>
+							</div>
+							<div class="collapse navbar-collapse">
+								<ul class="nav navbar-nav">
+									<li><a href="//uaidutah.org">Home</a></li>
+									<li class="active"><a href="/">Gift Box</a></li>
+									<li><a href="../../apply">Application</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div id="content">
+			<main class="container">
+				<div class="main-content-area">
+					<div class="row post-inner-content" role="main">
+						<article class="hentry">
+							<header class="page-header" style="text-align: center;">
+								<h1 class="entry-title">{{ uaid.recData.fname }}</h1>
+								<a class="button" href="/">Back</a>
+							</header>
+							<div class="entry-content">
+								<div class="row">
+									<div class="col-sm-12 col-md-4">
+										<img src="{{ uaid.recData.photo }}">
+									</div>
+									<div class="col-sm-12 col-md-8">
+										<p class="profile-age">{{ uaid.recData.age }} years old</p>
+										<hr>
+										<p class="profile-intage">Intellectually {{ uaid.recData.intage }} years old</p>
+										<hr>
+										<h3>Wish List</h3>
+										<ul ng-repeat="gift in uaid.recData.gifts">
+											<li>{{ gift.gift }} <span ng-if="gift.size">Size: {{ gift.size }} {{ gift.sizenum }}</span><span ng-if="gift.genre">Genre: {{ gift.genre }}</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div  ng-show="uaid.subApp == false">
+											<div ng-if="uaid.recData.approved == 1">
+												<h2>Adopt Me</h2>
+												<form ng-submit="uaid.adopt()" name="AdopterInfo" enctype="multipart/form-data">
+													<fieldset>
+														<legend>Contact Information</legend>
+														<div class="form-group col-md-6">
+															<label for="firstName">First Name:</label>
+															<input class="form-control" ng-model="uaid.adopterFName" type="text" name="firstName" value="" placeholder="First Name" pattern="[a-zA-Z]{3,99}" required>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="lastName">Last Name:</label>
+															<input class="form-control" ng-model="uaid.adopterLName" type="text" name="lastName" value="" placeholder="Last Name" pattern="[a-zA-Z -._]{3,99}" required>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="phone">Phone:</label>
+															<input class="form-control" ng-model="uaid.adopterPhone" type="text" name="primaryContactPhone" value="" placeholder="801-575-7777" pattern="[0-9()-]{10,20}" required>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="email">E-mail:</label>
+															<input class="form-control" ng-model="uaid.adopterEmail" type="email" name="email" value="" placeholder="JohnSmith@gmail.com" required>
+														</div>
+													</fieldset>
+													<button class="btn-lg">Adopt</button>
+												</form>
+											</div>
+										</div>
+										<div ng-show="uaid.subApp == true">
+											<h2>Thank You!</h2>
+											<p>Thank you for adopting! An email has been sent to you with more information. If you don't see the email, please check your spam folder.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</main>
+		</div>
+		<div id="footer-area">
+			<footer id="colophon">
+				<div class="site-info container">
+					<p>&copy; Utah Association for Intellectual Disabilities - <a href="/admin">Admin</a></p>
+				</div>
+				<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div>
+			</footer>
+		</div>
+	</div>
 </body>
 </html>

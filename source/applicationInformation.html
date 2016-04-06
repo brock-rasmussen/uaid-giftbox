@@ -205,6 +205,11 @@
 													</div>
 													<input type="hidden" id="photo" name="photo" ng-model="uaid.photo">
 													<canvas id="photo-editor" height="400" width="400"></canvas>
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" id="agreement" ng-click="uaid.addPhoto()">I / Recipient agree(s) to allow UAID to use my picture on my application.
+														</label>
+													</div>
 												</fieldset>
 											</fieldset>
 
@@ -517,7 +522,7 @@
 													<p>Recipient has agreed to allow their picture or drawing, first name, age, intellectual age, and wishlist to be placed on UAID websites or materials which can be given to individuals or corporate sponsors. All other personal information will be kept confidential.</p>
 													<div class="checkbox">
 														<label>
-															<input type="checkbox" id="agreement" ng-click="uaid.addPhoto()">I / Recipient agree(s) to the terms above
+															<input type="checkbox" id="agreement" required>I / Recipient agree(s) to the terms above
 														</label>
 													</div>
 

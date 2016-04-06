@@ -481,6 +481,7 @@
 														<label>
 															<input type="checkbox" ng-model="uaid.gifts.group5.gift6.name" ng-true-value="'Hygiene Kit'" name="group5" value="Hygiene Kit">Hygiene Kit
 														</label>
+														<!--
 														<p class="help-block">Personal hygiene kit includes:</p>
 														<ul class="help-block">
 															<li>Item</li>
@@ -491,6 +492,7 @@
 															<li>Item</li>
 															<li>Item</li>
 														</ul>
+													-->
 													</div>
 												</fieldset>
 
@@ -502,6 +504,11 @@
 															<input type="checkbox" ng-model="uaid.wrapped" name="wrapped">Check if you want the gifts wrapped
 														</label>
 													</div>
+												</fieldset>
+
+												<fieldset>
+													<legend>Notes</legend>
+														<input ng-model="uaid.notes" class="form-control" type="text" id="notes" name="notes" placeholder="Notes">
 												</fieldset>
 
 												<fieldset>

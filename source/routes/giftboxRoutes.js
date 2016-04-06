@@ -127,7 +127,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
         console.log('Retrieving DB');
         adminref.once("value", function(snapshot) {
           db = snapshot.val();
-          var sortedDb = 'LastName, FirstName, Age, IntellectualAge, Address, Agency, AgencyLocation, AgencyPhonenumber, PrimaryContact, PrimaryContactEmail, PrimaryContactPhonenumber, PrimaryContactRelationship, SecondaryContactPhonenumber, SecondaryContactRelationship, Ethnicity';
+          var sortedDb = 'LastName, FirstName, Age, IntellectualAge, Address, Agency, AgencyLocation, AgencyPhonenumber, PrimaryContact, PrimaryContactEmail, PrimaryContactPhonenumber, PrimaryContactRelationship, SecondaryContactPhonenumber, SecondaryContactRelationship, Ethnicity, Notes';
           for(var x in db) {
             sortedDb += '\n' + db[x].lname + ", " + db[x].fname + ", " + db[x].age + ", " + db[x].intage;
             if(db[x].address) {
@@ -139,7 +139,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
               sortedDb += ", ";
             };
             if(db[x].agencyLocation) {
-             sortedDb += ", " + db[x].agencyLocation;
+             sortedDb += ", " + db[x].agencyLocation.replace(/[,]/g, ' ');
             }else{
              sortedDb += ", ";
             };
@@ -149,6 +149,11 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
               sortedDb += ", ";
             };
             sortedDb += ", " + db[x].contactName + ", " + db[x].contactEmail + ", " + db[x].contactPhone + ", " + db[x].contactRelationship + ", " + db[x].contactSecPhone + ", " + db[x].contactSecRelationship + ", " + db[x].ethnicity;
+            if(db[x].notes) {
+              sortedDb += ", " + db[x].notes.replace(/[,]/g, ' ');
+            }else{
+              sortedDb += ", ";
+            };
 
           };
           res.send(sortedDb);
@@ -232,6 +237,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
               'age': recData.age,
               'intage': recData.intage,
               'gifts': recData.gifts,
+              'notes': recData.notes,
               'approved': recData.approved
           };
           if(!recData.photo) {
@@ -276,7 +282,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
       };
       formattedGifts += "<br>";
     };
-    var eContent = "<p>Thank you, " + req.body.adopterFName + "!</p><p>We greatly appreciate your aid in helping individuals with intellectual disabilities, and we know " + req.body.recData.fname + " will appreciate it too.</p><p>There are a few options for you to fulfill their wishlist.<ul><li>1. Find when and where to drop off your gifts on our webpage at http://www.uaidutah.org/holiday-gift-box/ .</li><li>2. If you plan on shopping online, you can mail the gifts to the address given in the link above. Note, that if you shop on smile.amazon.com with UAID set as your benefiting charity, a part of what you spend will be donated to UAID too. Double donations!</li></ul>Again, we greatly appreciate your help." + req.body.recData.fname + "'s wishlist can be found below. It is recommended that you spend $75 on gifts.</p>" + req.body.recLink + "<br>" + formattedGifts + "<p>If you find that you are unable to fulfill the wishlist, please contact us at 801-654-8449 as soon as possible.</p><p>Thanks a million!<br>UAID</p>"
+    var eContent = "<p>Thank you, " + req.body.adopterFName + "!</p><p>We greatly appreciate your aid in helping individuals with intellectual disabilities, and we know " + req.body.recData.fname + " will appreciate it too.</p><p>There are a few options for you to fulfill their wishlist.<ul><li>1. Find when and where to drop off your gifts on our webpage at http://www.uaidutah.org/holiday-gift-box/ .</li><li>2. If you plan on shopping online, you can mail the gifts to the address given in the link above. Note, that if you shop on smile.amazon.com with UAID set as your benefiting charity, a part of what you spend will be donated to UAID too. Double donations!</li></ul>Again, we greatly appreciate your help." + req.body.recData.fname + "'s wishlist can be found below. It is recommended that you spend $75 on gifts.</p>" + req.body.recLink + "<br>" + formattedGifts + "Notes:  " + req.body.recData.notes + "<br><p>If you find that you are unable to fulfill the wishlist, please contact us at 801-654-8449 as soon as possible.</p><p>Thanks a million!<br>UAID</p>"
     var mailOptions = {
       from: 'UAID Test <test@gmail.com>',
       to: req.body.adopterEmail,
@@ -323,6 +329,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
       'contactSecPhone': req.body.contactSecPhone,
       'contactSecRelationship': req.body.contactSecRelationship,
       'gifts': req.body.gifts,
+      'notes': req.body.notes,
       'approved': 0,
       'wrapped': req.body.wrapped
     };

@@ -14,7 +14,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
   //
     var transporter = nodemailer.createTransport(secrets.mailTransport);
   //Instantiates Firebase Reference
-  var fbApp = new Firebase("https://giftboxtest.firebaseio.com/users");
+  var fbApp = new Firebase("https://uaid-giftbox.firebaseio.com/users");
   fbApp.authWithCustomToken(token, function(error, authData) {
     if (error) {
       console.log("Login Failed!", error);
@@ -22,7 +22,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
       console.log("Login Succeeded!", authData);
     }
   });
-  var adminref = new Firebase("https://giftboxtest.firebaseio.com/users");
+  var adminref = new Firebase("https://uaid-giftbox.firebaseio.com/users");
 
 
   giftboxRouter.route('/')
@@ -222,7 +222,7 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
   giftboxRouter.route('/recipients/data/:recid')
   .get(function (req, res){
 
-    recRef = new Firebase("https://giftboxtest.firebaseio.com/users/" + req.params.recid);
+    recRef = new Firebase("https://uaid-giftbox.firebaseio.com/users/" + req.params.recid);
     recRef.authWithCustomToken(token, function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);

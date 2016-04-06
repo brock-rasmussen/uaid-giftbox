@@ -329,11 +329,12 @@ var routes = function(path, nodemailer, Firebase, request, cloudinary, secrets){
       'contactSecPhone': req.body.contactSecPhone,
       'contactSecRelationship': req.body.contactSecRelationship,
       'gifts': req.body.gifts,
-      'notes': req.body.notes,
       'approved': 0,
       'wrapped': req.body.wrapped
     };
-
+    if(req.body.notes){
+      payload.notes = req.body.notes
+    };
     if(req.body.photo){
       payload.photo = req.body.photo
     };

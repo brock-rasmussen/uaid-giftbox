@@ -26,6 +26,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
         'contactSecRelationship': self.contactSecRelationship,
         'photo': self.photo,
         'gifts': self.giftsArr,
+        'notes': self.notes,
         'wrapped': self.wrapped
       };
       if(self.agencyName){

@@ -20,6 +20,14 @@ angular.module('UAID-Rec', [])
     self.getRecData(self.recId);
 
     self.adopt = function() {
+      $http.get('/recipients/data/' + recId)
+        .then(function(res) {
+          self.recData = res.data;
+          if(self.recData.approved !== 1){
+            alert("This user has already been adopted, please pick another.");
+            return
+          }
+        });
       $http.post('/recipients', {
         'recid': self.recId,
         'adopterFName': self.adopterFName,

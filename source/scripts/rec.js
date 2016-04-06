@@ -20,7 +20,7 @@ angular.module('UAID-Rec', [])
     self.getRecData(self.recId);
 
     self.adopt = function() {
-      $http.get('/recipients/data/' + recId)
+      $http.get('/recipients/data/' + self.recId)
         .then(function(res) {
           self.recData = res.data;
           if(self.recData.approved !== 1){

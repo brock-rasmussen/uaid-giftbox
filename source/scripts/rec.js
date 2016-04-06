@@ -26,21 +26,23 @@ angular.module('UAID-Rec', [])
           if(self.recData.approved !== 1){
             alert("This user has already been adopted, please pick another.");
             return
+          } else {
+            $http.post('/recipients', {
+              'recid': self.recId,
+              'adopterFName': self.adopterFName,
+              'adopterLName': self.adopterLName,
+              'adopterEmail': self.adopterEmail,
+              'recData': self.recData,
+              'recLink': self.recLink
+            }).then(function(res) {
+              console.log('Successfully adopted');
+              if(res.data.adopted == true) {
+                self.subApp = true;
+              }
+            })
           }
         });
-      $http.post('/recipients', {
-        'recid': self.recId,
-        'adopterFName': self.adopterFName,
-        'adopterLName': self.adopterLName,
-        'adopterEmail': self.adopterEmail,
-        'recData': self.recData,
-        'recLink': self.recLink
-      }).then(function(res) {
-        console.log('Successfully adopted');
-        if(res.data.adopted == true) {
-          self.subApp = true;
-        }
-      })
+
     };
 
   })

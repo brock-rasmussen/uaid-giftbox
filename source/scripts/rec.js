@@ -20,19 +20,29 @@ angular.module('UAID-Rec', [])
     self.getRecData(self.recId);
 
     self.adopt = function() {
-      $http.post('/recipients', {
-        'recid': self.recId,
-        'adopterFName': self.adopterFName,
-        'adopterLName': self.adopterLName,
-        'adopterEmail': self.adopterEmail,
-        'recData': self.recData,
-        'recLink': self.recLink
-      }).then(function(res) {
-        console.log('Successfully adopted');
-        if(res.data.adopted == true) {
-          self.subApp = true;
-        }
-      })
+      $http.get('/recipients/data/' + self.recId)
+        .then(function(res) {
+          self.recData = res.data;
+          if(self.recData.approved !== 1){
+            alert("This user has already been adopted, please pick another.");
+            return
+          } else {
+            $http.post('/recipients', {
+              'recid': self.recId,
+              'adopterFName': self.adopterFName,
+              'adopterLName': self.adopterLName,
+              'adopterEmail': self.adopterEmail,
+              'recData': self.recData,
+              'recLink': self.recLink
+            }).then(function(res) {
+              console.log('Successfully adopted');
+              if(res.data.adopted == true) {
+                self.subApp = true;
+              }
+            })
+          }
+        });
+
     };
 
   })

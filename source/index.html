@@ -101,11 +101,12 @@
 				<div class="cfa">
 					<div class="container">
 						<div class="col-sm-8">
-							<span class="cfa-text">Help us provide opportunities to those with intellectual disabilities.</span>
+							<span class="cfa-text">Help us provide for those with intellectual disabilities.</span>
 						</div>
 						<div class="col-sm-4">
-							<a class="btn btn-lg cfa-button" href="//uaidutah.org/way-to-help/">Be a Supporter</a>
+							<a class="btn btn-lg cfa-button" ng-click="uaid.gotoRecips();">Adopt an Applicant</a>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -127,7 +128,7 @@
 						</article>
 					</div>
 				</div>
-
+        <a name="applicants"></a>
 				<div class="row main-content-area profiles">
 					<div class="profile post-inner-content" ng-repeat="recip in uaid.recipsArr | limitTo: uaid.limit">
 						<img ng-src="{{recip.photo}}" alt="">

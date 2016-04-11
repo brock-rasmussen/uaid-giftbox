@@ -1,6 +1,6 @@
 angular.module('UAID-Giftbox', [])
 
-  .controller('UAID-Controller',  function($http, $location){
+  .controller('UAID-Controller',  function($http, $location, $anchorScroll){
 
     getRecipients();
     var self = this;
@@ -30,5 +30,9 @@ angular.module('UAID-Giftbox', [])
       $location.url('recipients/' + recId);
     };
 
+    self.gotoRecips = function() {
+      $location.hash('applicants');
+      $anchorScroll();
+    };
 
   });

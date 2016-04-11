@@ -372,7 +372,7 @@ hr.section-divider {
 .post-inner-content {
   padding: 45px 50px;
   background-color: #fff;
-  border: 1px solid #dadada;  
+  border: 1px solid #dadada;
 }
 .entry-title {
   margin-top: 0;
@@ -651,7 +651,7 @@ object {
 
 /* =Buttons
 ----------------------------------------------- */
-.btn-default, .label-default, .woocommerce #respond input#submit, 
+.btn-default, .label-default, .woocommerce #respond input#submit,
 .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt,
 .woocommerce button.button.alt, .woocommerce input.button.alt {
@@ -669,14 +669,14 @@ object {
 .btn-default:active,
 .btn-default.active,
 #image-navigation .nav-previous a:hover,
-#image-navigation .nav-next a:hover, .woocommerce #respond input#submit:hover, 
+#image-navigation .nav-next a:hover, .woocommerce #respond input#submit:hover,
 .woocommerce #respond input#submit.alt:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,
 .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover{
   background-color: #363636;
   border-color: #363636;
   color: #FFF;
 }
-.btn.btn-default, .woocommerce #respond input#submit, .woocommerce a.button, 
+.btn.btn-default, .woocommerce #respond input#submit, .woocommerce a.button,
 .woocommerce button.button, .woocommerce input.button {
   color: #FFF;
   text-transform: uppercase;

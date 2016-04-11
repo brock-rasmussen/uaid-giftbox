@@ -6,10 +6,16 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
       if(self.group1Counter > 2 || self.group4Counter > 2) {
         alert('You have selected too many gifts, please confirm how many gifts you have selected.');
         return;
-      }
-      self.groupGift();
-      //recaptcha
+      };
+
       var response = recaptcha.getResponse();
+      if(response == false) {
+        alert('Please verify that you are human by clicking the "I am not a robot" button.');
+        return;
+      };
+
+      self.groupGift();
+
       var payload = {
         'recapResponse': response,
         'fname': self.fname,
@@ -87,6 +93,7 @@ angular.module('UAID-Apply', ['vcRecaptcha', 'ngFileUpload'])
          self.photo = document.getElementById('photo').value;
         }, 1000)
     };
+
 
     self.giftsArr = [];
     self.groupGift = function() {

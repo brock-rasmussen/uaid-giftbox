@@ -1412,6 +1412,7 @@ button[type=submit],
 }
 .profile-info .profile-age,
 .profile-info .profile-intage {
+	color: #23527c;
 	margin: 1em 0;
 }
 .profile-info .profile-adopt {

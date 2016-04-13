@@ -1,6 +1,11 @@
 # uaid-giftbox
-## Changes to the Strategy
+UAID’s mission is “to support individuals with intellectual and developmental disabilities and their families by providing opportunities that enhance their quality of life.”
 
+UAID’s most work-intensive undertaking is their semi annual Gift Box program, which helps provide basic needs items to individuals with intellectual disabilities who may be low income, live in group homes, and/or receive meager benefits from SSI.
+
+Each holiday season UAID receives over 1500 recipient applications and over 80% of them are adopted. Each application and each adoption form was received on paper, and each had to be manually entered into excel spreadsheets.
+
+The UAID Giftbox web application aims to make the application and adoption process much more convenient for applicants and adopters, and a gigantic time-saver for UAID and its volunteers.
 
 ## Changes to the Scope
 We originally anticipated building the Giftbox web application using PHP and extending UAID's current WordPress site to accomodate it. As the development process began we realized it would be much easier to develop and maintain if we completely separated the Giftbox web application from the WordPress site (except a link between them) and used JavaScript instead of PHP. The table below will list changes to the scope based on feature
@@ -16,7 +21,28 @@ We originally anticipated building the Giftbox web application using PHP and ext
 | Email | Emails will be sent periodically to sponsors, intially with GBR wish list items, followed by friendly reminder with information on how to fulfill the commitment. | _**Angular / Firebase**_ | Emails will be sent out with a node package and script instead of using PHP. |
 
 ## Changes to the Structure
-As stated in the last section, some of the pages were deemed unnecessary and important information was merged into other pages. The revised structure is reflected in the diagram below:
+As stated in the last section, some of the pages were deemed unnecessary and important information was merged into other pages.
+
+The old structure was:
+
+```
+Home
+| - About Us
+	| - Our Mission
+	| - Who We Are
+	| - Who We Serve
+| - Support Us
+	| - Volunteer
+	| - Ways To Help
+	| - Wish List
+| - Programs
+	| - Holiday Gift Box
+	| - Adopt Now
+| - Blog
+| - Contact
+```
+
+The revised structure is:
 
 ```
 Home

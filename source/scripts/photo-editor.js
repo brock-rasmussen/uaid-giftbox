@@ -26,6 +26,11 @@ document.getElementById('photo-raw').addEventListener('change', function(e) {
 		img.src = event.target.result;
 		img.onload = function() {
 		var image = new fabric.Image(img, {crossOrigin: 'anonymous'});
+		if ( image.width > image.height ) {
+			image.scaleToHeight( 400 );
+		} else {
+			image.scaleToWidth( 400 );
+		}
 		canvas.add(image);
 		};
 	};

@@ -93,9 +93,6 @@
 						<li>
 							<img src="image3.jpg">
 						</li>
-						<li>
-							<img src="image4.jpg">
-						</li>
 					</ul>
 				</div>
 				<div class="cfa">
@@ -131,15 +128,17 @@
         <a name="applicants"></a>
 				<div class="row main-content-area profiles">
 					<div class="profile post-inner-content" ng-repeat="recip in uaid.recipsArr | limitTo: uaid.limit">
-						<img ng-src="{{recip.photo}}" alt="">
-						<div class="profile-info">
-							<h3 class="profile-name">{{ recip.fname }}</h3>
-							<hr>
-							<p class="profile-age">{{ recip.age }} years old</p>
-							<hr>
-							<p class="profile-intage">Intellectually {{ recip.intage }} years old</p>
-							<a ng-href="/recipients/{{uaid.recipsIds[$index]}}"><button class="btn-block profile-adopt">Adopt Me</button></a>
-						</div>
+						<a ng-href="/recipients/{{uaid.recipsIds[$index]}}">
+							<img ng-src="{{recip.photo}}" alt="">
+							<div class="profile-info">
+								<h3 class="profile-name">{{ recip.fname }}</h3>
+								<hr>
+								<p class="profile-age">{{ recip.age }} years old</p>
+								<hr>
+								<p class="profile-intage">Intellectually {{ recip.intage }} years old</p>
+								<span class="btn btn-default btn-block profile-adopt">Adopt Me</span>
+							</div>
+						</a>
 					</div>
 					<button ng-if="uaid.recipsArr > 4" class="btn-lg btn-block" ng-click="uaid.seeMoreRecips()">See More</button>
 				</div>
